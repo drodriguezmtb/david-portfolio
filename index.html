@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
+  <script>(function(){document.documentElement.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');}());</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>David Rodriguez — Senior Product Designer</title>
@@ -1146,7 +1147,9 @@
   const tBtn   = document.getElementById('themeBtn');
   const tIcon  = document.getElementById('tIcon');
   const tLabel = document.getElementById('tLabel');
-  let dark = true;
+  let dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  tIcon.textContent  = dark ? '◐' : '◑';
+  tLabel.textContent = dark ? 'Light' : 'Dark';
 
   tBtn.addEventListener('click', () => {
     dark = !dark;
