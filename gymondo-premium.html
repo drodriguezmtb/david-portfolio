@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>(function(){document.documentElement.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');}());</script>
+  <script>(function(){var s=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',s?s:(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));}());</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Go Premium Screen — David Rodriguez</title>
@@ -644,12 +644,13 @@
   const tBtn  = document.getElementById('themeBtn');
   const tIcon = document.getElementById('tIcon');
   const tLbl  = document.getElementById('tLabel');
-  let dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  let dark = (localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
   tIcon.textContent  = dark ? '◐' : '◑';
   tLabel.textContent = dark ? 'Light' : 'Dark';
   tBtn.addEventListener('click', () => {
     dark = !dark;
     html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
     tIcon.textContent = dark ? '◐' : '◑';
     tLbl.textContent  = dark ? 'Light' : 'Dark';
   });

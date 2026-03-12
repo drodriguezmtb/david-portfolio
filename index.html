@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>(function(){document.documentElement.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');}());</script>
+  <script>(function(){var s=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',s?s:(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));}());</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>David Rodriguez — Senior Product Designer</title>
@@ -729,7 +729,7 @@
       .nav-links { display: none; }
     }
     @media (max-width: 480px) {
-      .hero-title { font-size: 15vw; }
+      .hero-title { font-size: 15vw; hyphens: manual; overflow-wrap: break-word; }
       .s-title { font-size: 14vw; }
       .pname { font-size: 7vw; }
     }
@@ -784,7 +784,7 @@
 
     <h1 class="hero-title">
       <span class="tl"><span>David</span></span>
-      <span class="tl"><span>Rodriguez</span></span>
+      <span class="tl"><span>Rodri&shy;guez</span></span>
     </h1>
 
     <div class="hero-bottom">
@@ -1147,13 +1147,14 @@
   const tBtn   = document.getElementById('themeBtn');
   const tIcon  = document.getElementById('tIcon');
   const tLabel = document.getElementById('tLabel');
-  let dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  let dark = (localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
   tIcon.textContent  = dark ? '◐' : '◑';
   tLabel.textContent = dark ? 'Light' : 'Dark';
 
   tBtn.addEventListener('click', () => {
     dark = !dark;
     html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
     tIcon.textContent  = dark ? '◐' : '◑';
     tLabel.textContent = dark ? 'Light' : 'Dark';
     // also update nav scrolled bg dynamically via CSS variables — handled by CSS
