@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>David Rodriguez — Senior Product Designer</title>
+  <meta name="description" content="Senior Product Designer from Barcelona, based in Berlin. Crafting digital products that matter." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* ============================================
+       VARIABLES & THEMES
+    ============================================ */
+    :root {
+      --bg:        #0C0C0B;
+      --bg2:       #141413;
+      --fg:        #EDEDE8;
+      --muted:     rgba(237,237,232,0.42);
+      --border:    rgba(237,237,232,0.09);
+      --accent:    #FF3D00;
+      --accent2:   #FF7A5C;
+      --radius:    14px;
+      --transition: 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    [data-theme="light"] {
+      --bg:        #F0EDE5;
+      --bg2:       #E8E5DD;
+      --fg:        #0C0C0B;
+      --muted:     rgba(12,12,11,0.45);
+      --border:    rgba(12,12,11,0.1);
+      --accent:    #FF3D00;
+      --accent2:   #D93300;
+    }
+
+    /* ============================================
+       RESET
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+      cursor: none;
+      transition: background var(--transition), color var(--transition);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* Suppress browser default cursor everywhere so the custom one is always on top */
+    *, *::before, *::after { cursor: none !important; }
+
+    /* ============================================
+       NOISE OVERLAY
+    ============================================ */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 9997;
+    }
+
+    /* ============================================
+       CURSOR — MIRO STYLE
+    ============================================ */
+    .cursor {
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      /* tip of the arrow is the reference point */
+      will-change: transform;
+    }
+
+    /* Arrow SVG */
+    .cursor-arrow {
+      position: absolute;
+      top: 0; left: 0;
+      width: 22px; height: 26px;
+      transition: transform 0.2s cubic-bezier(0.25,0.46,0.45,0.94);
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.45));
+    }
+    .cursor-arrow svg { display: block; }
+
+    /* Guest label pill */
+    .cursor-label {
+      position: absolute;
+      /* align with tip: offset right of the arrow and slightly below */
+      top: 18px;
+      left: 16px;
+      background: #1A1A19;
+      color: #EDEDE8;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 4px 10px 4px 8px;
+      border-radius: 100px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.07);
+      transition: background 0.25s ease, transform 0.2s cubic-bezier(0.25,0.46,0.45,0.94);
+      /* keep legible in light mode too */
+    }
+    .cursor-label-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #FF3D00;
+      flex-shrink: 0;
+    }
+
+    /* Hover state — arrow tilts slightly, label flushes accent */
+    body.is-hovering .cursor-arrow {
+      transform: rotate(-12deg) scale(0.92);
+    }
+    body.is-hovering .cursor-label {
+      background: #FF3D00;
+      color: #fff;
+    }
+    body.is-hovering .cursor-label-dot {
+      background: rgba(255,255,255,0.6);
+    }
+
+    /* ============================================
+       PRELOADER
+    ============================================ */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .pl-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(32px, 6vw, 72px);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      overflow: hidden;
+    }
+    .pl-name span { display: inline-block; transform: translateY(110%); }
+    .pl-bar-wrap {
+      width: 160px; height: 1px;
+      background: var(--border);
+      overflow: hidden;
+    }
+    .pl-bar {
+      height: 100%;
+      width: 0;
+      background: var(--fg);
+      transition: width 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    /* ============================================
+       NAVIGATION
+    ============================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 22px 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.4s ease, border-bottom 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(12,12,11,0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    [data-theme="light"] nav.scrolled {
+      background: rgba(240,237,229,0.72);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      opacity: 0;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      opacity: 0;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--fg);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Theme Toggle */
+    .theme-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 7px 15px;
+      cursor: none;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+    .theme-btn:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+    .theme-btn .t-icon { font-size: 13px; }
+
+    /* ============================================
+       HERO
+    ============================================ */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 44px 56px;
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .hero-eyebrow span { display: inline-block; transform: translateY(110%); }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(72px, 12vw, 176px);
+      font-weight: 800;
+      line-height: 0.88;
+      letter-spacing: -0.05em;
+      margin-bottom: 48px;
+    }
+    .hero-title .tl { overflow: hidden; display: block; }
+    .hero-title .tl span { display: block; transform: translateY(110%); }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+    }
+    .hero-desc {
+      max-width: 360px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--muted);
+      font-weight: 300;
+      overflow: hidden;
+    }
+    .hero-desc p { transform: translateY(100%); }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: 100px;
+      color: var(--muted);
+      transform: translateX(32px);
+      opacity: 0;
+    }
+    .pill.available { border-color: rgba(0,220,100,0.28); color: rgba(0,220,100,0.85); }
+    .pill-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: blink 2.2s ease infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    /* Scroll line */
+    .scroll-hint {
+      position: absolute;
+      bottom: 56px; right: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+    }
+    .scroll-hint span {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-lr;
+    }
+    .sh-line {
+      width: 1px; height: 64px;
+      background: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .sh-line::after {
+      content: '';
+      position: absolute;
+      top: -100%; left: 0;
+      width: 100%; height: 100%;
+      background: var(--accent);
+      animation: shline 2.4s ease infinite;
+    }
+    @keyframes shline { 0%{top:-100%} 100%{top:100%} }
+
+    /* ============================================
+       MARQUEE
+    ============================================ */
+    .marquee-wrap {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-flex;
+      animation: mq 28s linear infinite;
+    }
+    .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+    .mq-item {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .mq-item::after { content: '✦'; font-size: 7px; }
+    @keyframes mq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ============================================
+       SECTION COMMON
+    ============================================ */
+    .s-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+    .s-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .s-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(52px, 8vw, 110px);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 0.88;
+    }
+    .s-count {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    /* ============================================
+       WORK
+    ============================================ */
+    #work { padding: 120px 44px; }
+
+    .projects { display: flex; flex-direction: column; gap: 3px; }
+
+    .pcard {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: none;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: border-color 0.4s ease;
+    }
+    .pcard:hover { border-color: rgba(237,237,232,0.28); }
+    .pcard-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 400px;
+    }
+    .pcard-info {
+      padding: 40px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .pcard-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .pnum {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+    .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag {
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--muted);
+    }
+    .pcard-mid {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8px 0;
+    }
+    .pcompany {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .pname {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 3.5vw, 50px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.02;
+    }
+    .pyear { font-size: 12px; color: var(--muted); margin-top: 10px; }
+    .pmetrics { display: flex; gap: 32px; }
+    .pmetric { display: flex; flex-direction: column; gap: 3px; }
+    .pm-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+    }
+    .pm-label { font-size: 11px; color: var(--muted); line-height: 1.35; max-width: 130px; }
+
+    /* Card Visual */
+    .pcard-vis {
+      position: relative;
+      overflow: hidden;
+    }
+    .pcard-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .pcard:hover .pcard-bg { transform: scale(1.06); }
+
+    /* Project gradients */
+    .p-caixabank .pcard-bg  { background: linear-gradient(145deg, #000B35 0%, #001F82 55%, #0050FF 100%); }
+    .p-gymondo1  .pcard-bg  { background: linear-gradient(145deg, #001209 0%, #003A16 55%, #006B28 100%); }
+    .p-gymondo2  .pcard-bg  { background: linear-gradient(145deg, #1A0400 0%, #4A1000 55%, #7A1E00 100%); }
+    .p-zattoo    .pcard-bg  { background: linear-gradient(145deg, #1A0A00 0%, #4A2000 55%, #CC5500 100%); }
+
+    /* Decorative blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.22;
+      filter: blur(0px);
+      transition: transform 0.9s ease, opacity 0.9s ease;
+    }
+    .pcard:hover .blob { opacity: 0.38; transform: scale(1.2) rotate(20deg); }
+
+    .p-caixabank .blob1 { width:320px;height:320px;top:-80px;right:-60px;background:#3B82F6; }
+    .p-caixabank .blob2 { width:200px;height:200px;bottom:20px;right:80px;background:#93C5FD; opacity:0.12; }
+    .p-gymondo1  .blob1 { width:300px;height:300px;top:-60px;right:-50px;background:#22C55E; }
+    .p-gymondo1  .blob2 { width:180px;height:180px;bottom:40px;right:60px;background:#86EFAC; opacity:0.1; }
+    .p-gymondo2  .blob1 { width:320px;height:320px;top:-80px;right:-70px;background:#EF4444; }
+    .p-gymondo2  .blob2 { width:200px;height:200px;bottom:30px;right:70px;background:#FCA5A5; opacity:0.1; }
+    .p-zattoo    .blob1 { width:310px;height:310px;top:-70px;right:-60px;background:#F97316; }
+    .p-zattoo    .blob2 { width:190px;height:190px;bottom:40px;right:80px;background:#FED7AA; opacity:0.1; }
+
+    /* Corner arrow */
+    .p-arrow {
+      position: absolute;
+      bottom: 24px; right: 24px;
+      width: 44px; height: 44px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .pcard:hover .p-arrow {
+      background: #fff;
+      border-color: #fff;
+      transform: rotate(45deg);
+    }
+    .pcard:hover .p-arrow svg path { stroke: #000; }
+
+    /* ============================================
+       ABOUT
+    ============================================ */
+    #about {
+      padding: 120px 44px;
+      border-top: 1px solid var(--border);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px;
+      margin-top: 80px;
+    }
+    .about-bio p {
+      font-size: clamp(17px, 1.7vw, 22px);
+      line-height: 1.62;
+      font-weight: 300;
+      color: var(--fg);
+      margin-bottom: 24px;
+    }
+    .about-bio p:last-child { margin-bottom: 0; }
+    .about-bio strong { font-weight: 600; }
+    .about-bio em { font-style: normal; color: var(--accent); }
+
+    .about-side { display: flex; flex-direction: column; gap: 44px; }
+    .detail-h {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+    }
+    .ei-l { display: flex; flex-direction: column; gap: 2px; }
+    .ei-co {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .ei-role { font-size: 12px; color: var(--muted); }
+    .ei-yr { font-size: 11px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+
+    .awards-list { display: flex; flex-direction: column; }
+    .award-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .aw-title { font-size: 13px; font-weight: 500; line-height: 1.4; }
+    .aw-issuer { font-size: 11px; color: var(--muted); }
+
+    /* Skills row */
+    .skills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .skill-pill {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--muted);
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .skill-pill:hover { border-color: var(--fg); color: var(--fg); }
+
+    /* ============================================
+       CONTACT
+    ============================================ */
+    #contact {
+      padding: 120px 44px 80px;
+      border-top: 1px solid var(--border);
+    }
+    .contact-headline {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(52px, 9vw, 130px);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 0.88;
+      margin: 56px 0 72px;
+      overflow: hidden;
+    }
+    .contact-headline .tl { overflow: hidden; display: block; }
+    .contact-headline .tl span { display: block; }
+    .contact-headline a {
+      position: relative;
+      display: inline-block;
+      transition: color 0.3s;
+    }
+    .contact-headline a::after {
+      content: '';
+      position: absolute;
+      bottom: 6px; left: 0;
+      width: 0; height: 4px;
+      background: var(--accent);
+      transition: width 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .contact-headline a:hover { color: var(--accent); }
+    .contact-headline a:hover::after { width: 100%; }
+
+    .contact-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 36px;
+      border-top: 1px solid var(--border);
+    }
+    .cf-left p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .cf-right {
+      display: flex;
+      gap: 24px;
+    }
+    .cf-right a {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.3s;
+    }
+    .cf-right a:hover { color: var(--fg); }
+    .copy {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 32px;
+      text-align: center;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ============================================
+       UTILITIES
+    ============================================ */
+    .sr-only {
+      position: absolute; width:1px; height:1px;
+      padding:0; margin:-1px; overflow:hidden;
+      clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      #hero { padding: 0 24px 40px; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-right { align-items: flex-start; }
+      #work, #about, #contact { padding: 80px 24px; }
+      .s-header { margin-bottom: 40px; }
+      .pcard-inner { grid-template-columns: 1fr; }
+      .pcard-vis { height: 220px; order: -1; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; margin-top: 48px; }
+      .contact-footer { flex-direction: column; gap: 24px; align-items: flex-start; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 15vw; }
+      .s-title { font-size: 14vw; }
+      .pname { font-size: 7vw; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== PRELOADER ==================== -->
+  <div id="preloader" aria-hidden="true">
+    <div class="pl-name"><span>David Rodriguez</span></div>
+    <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
+  </div>
+
+  <!-- ==================== CURSOR ==================== -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <!-- Miro-style: arrow tip + Guest pill -->
+    <div class="cursor-arrow">
+      <svg width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2L2 21L6.8 16.2L10.4 24L13.4 22.6L9.8 14.8L17 14.8L2 2Z"
+              fill="white"
+              stroke="#0C0C0B"
+              stroke-width="1.4"
+              stroke-linejoin="round"
+              stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="cursor-label" id="cursorLabel">
+      <span class="cursor-label-dot"></span>
+      <span id="cursorLabelText">Guest</span>
+    </div>
+  </div>
+
+  <!-- ==================== NAV ==================== -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">DR</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle colour scheme">
+        <span class="t-icon" id="tIcon">◐</span>
+        <span id="tLabel">Light</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section id="hero">
+    <p class="hero-eyebrow"><span>Senior Product Designer</span></p>
+
+    <h1 class="hero-title">
+      <span class="tl"><span>David</span></span>
+      <span class="tl"><span>Rodriguez</span></span>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        <span>Barcelona-born, Berlin-based. Crafting digital products that earn awards and retain users — from banking apps to fitness platforms.</span>
+      </p>
+      <div class="hero-right">
+        <div class="pill available"><span class="pill-dot"></span>Available for work</div>
+        <div class="pill">Berlin, Germany</div>
+        <div class="pill">Awwwards Young Jury</div>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <div class="sh-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ==================== MARQUEE ==================== -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="mq-item">Product Design</span>
+      <span class="mq-item">UX Research</span>
+      <span class="mq-item">Design Systems</span>
+      <span class="mq-item">iOS & Android</span>
+      <span class="mq-item">Prototyping</span>
+      <span class="mq-item">User Testing</span>
+      <span class="mq-item">A/B Testing</span>
+      <span class="mq-item">Figma</span>
+      <span class="mq-item">Mobile Apps</span>
+      <span class="mq-item">Cross-functional Teams</span>
+      <span class="mq-item">Product Design</span>
+      <span class="mq-item">UX Research</span>
+      <span class="mq-item">Design Systems</span>
+      <span class="mq-item">iOS & Android</span>
+      <span class="mq-item">Prototyping</span>
+      <span class="mq-item">User Testing</span>
+      <span class="mq-item">A/B Testing</span>
+      <span class="mq-item">Figma</span>
+      <span class="mq-item">Mobile Apps</span>
+      <span class="mq-item">Cross-functional Teams</span>
+    </div>
+  </div>
+
+  <!-- ==================== WORK ==================== -->
+  <section id="work">
+    <div class="s-header">
+      <div>
+        <p class="s-label">Selected Projects</p>
+        <h2 class="s-title">Work</h2>
+      </div>
+      <span class="s-count">04</span>
+    </div>
+
+    <div class="projects">
+
+      <!-- 01 — CaixaBank -->
+      <article class="pcard p-caixabank" data-index="0" onclick="window.location='caixabank.html'" style="cursor:none;">
+        <div class="pcard-inner">
+          <div class="pcard-info">
+            <div class="pcard-top">
+              <span class="pnum">01</span>
+              <div class="tags">
+                <span class="tag">Mobile App</span>
+                <span class="tag">Design System</span>
+              </div>
+            </div>
+            <div class="pcard-mid">
+              <p class="pcompany">VASS × CaixaBank</p>
+              <h3 class="pname">Banking App Redesign</h3>
+              <p class="pyear">2017 — 2019 · Barcelona</p>
+            </div>
+            <div class="pmetrics">
+              <div class="pmetric">
+                <span class="pm-val">4×</span>
+                <span class="pm-label">International awards in 2018</span>
+              </div>
+              <div class="pmetric">
+                <span class="pm-val">#1</span>
+                <span class="pm-label">Best Mobile Banking App, W. Europe</span>
+              </div>
+            </div>
+          </div>
+          <div class="pcard-vis">
+            <div class="pcard-bg"></div>
+            <div class="blob blob1"></div>
+            <div class="blob blob2"></div>
+            <div class="p-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 — Gymondo Go Premium -->
+      <article class="pcard p-gymondo1" data-index="1" onclick="window.location='gymondo-premium.html'" style="cursor:none;">
+        <div class="pcard-inner">
+          <div class="pcard-info">
+            <div class="pcard-top">
+              <span class="pnum">02</span>
+              <div class="tags">
+                <span class="tag">Conversion</span>
+                <span class="tag">A/B Testing</span>
+              </div>
+            </div>
+            <div class="pcard-mid">
+              <p class="pcompany">Gymondo</p>
+              <h3 class="pname">Go Premium Screen</h3>
+              <p class="pyear">2020 — 2021 · Berlin</p>
+            </div>
+            <div class="pmetrics">
+              <div class="pmetric">
+                <span class="pm-val">+17%</span>
+                <span class="pm-label">Conversion rate increase</span>
+              </div>
+              <div class="pmetric">
+                <span class="pm-val">−52%</span>
+                <span class="pm-label">Drop-off in onboarding</span>
+              </div>
+            </div>
+          </div>
+          <div class="pcard-vis">
+            <div class="pcard-bg"></div>
+            <div class="blob blob1"></div>
+            <div class="blob blob2"></div>
+            <div class="p-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 — Gymondo Challenges -->
+      <article class="pcard p-gymondo2" data-index="2" onclick="window.location='gymondo-challenges.html'" style="cursor:none;">
+        <div class="pcard-inner">
+          <div class="pcard-info">
+            <div class="pcard-top">
+              <span class="pnum">03</span>
+              <div class="tags">
+                <span class="tag">New Feature</span>
+                <span class="tag">Retention</span>
+              </div>
+            </div>
+            <div class="pcard-mid">
+              <p class="pcompany">Gymondo</p>
+              <h3 class="pname">Challenges Feature</h3>
+              <p class="pyear">2021 — 2022 · Berlin</p>
+            </div>
+            <div class="pmetrics">
+              <div class="pmetric">
+                <span class="pm-val">−21%</span>
+                <span class="pm-label">Drop-off reduced after 3 months</span>
+              </div>
+              <div class="pmetric">
+                <span class="pm-val">5</span>
+                <span class="pm-label">User test sessions run</span>
+              </div>
+            </div>
+          </div>
+          <div class="pcard-vis">
+            <div class="pcard-bg"></div>
+            <div class="blob blob1"></div>
+            <div class="blob blob2"></div>
+            <div class="p-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 — Zattoo -->
+      <article class="pcard p-zattoo" data-index="3" onclick="window.location='zattoo.html'" style="cursor:none;">
+        <div class="pcard-inner">
+          <div class="pcard-info">
+            <div class="pcard-top">
+              <span class="pnum">04</span>
+              <div class="tags">
+                <span class="tag">TV Platform</span>
+                <span class="tag">Design System</span>
+              </div>
+            </div>
+            <div class="pcard-mid">
+              <p class="pcompany">Zattoo</p>
+              <h3 class="pname">Android TV Platform</h3>
+              <p class="pyear">2023 — 2025 · Berlin</p>
+            </div>
+            <div class="pmetrics">
+              <div class="pmetric">
+                <span class="pm-val">D2C<br>B2B</span>
+                <span class="pm-label">Two product streams led</span>
+              </div>
+              <div class="pmetric">
+                <span class="pm-val">React</span>
+                <span class="pm-label">Native → React migration</span>
+              </div>
+            </div>
+          </div>
+          <div class="pcard-vis">
+            <div class="pcard-bg"></div>
+            <div class="blob blob1"></div>
+            <div class="blob blob2"></div>
+            <div class="p-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT ==================== -->
+  <section id="about">
+    <div class="s-header">
+      <div>
+        <p class="s-label">Who I Am</p>
+        <h2 class="s-title">About</h2>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-bio">
+        <p>I'm a <strong>Senior Product Designer</strong> originally from <em>Barcelona</em>, currently living and working in <em>Berlin</em>.</p>
+        <p>Over the past decade I've worked across agencies, consultancies and in-house product teams — from crafting a <em>multi-award-winning banking app</em> for millions of CaixaBank users, to growing retention at fitness and streaming platforms.</p>
+        <p>I work across the <strong>full product lifecycle</strong>: user research, interaction design, design systems, prototyping, A/B testing, and close collaboration with engineering. I thrive in cross-functional teams where design, product and code are in constant dialogue.</p>
+        <p>I'm also a <em>Young Jury member at Awwwards</em> since December 2018, staying close to the pulse of interaction design and digital craft.</p>
+      </div>
+
+      <div class="about-side">
+
+        <div>
+          <h3 class="detail-h">Experience</h3>
+          <ul class="exp-list">
+            <li class="exp-item">
+              <div class="ei-l">
+                <span class="ei-co">NeoTaste</span>
+                <span class="ei-role">Product Designer</span>
+              </div>
+              <span class="ei-yr">2025 — Now</span>
+            </li>
+            <li class="exp-item">
+              <div class="ei-l">
+                <span class="ei-co">Zattoo</span>
+                <span class="ei-role">Product Designer</span>
+              </div>
+              <span class="ei-yr">2023 — 2025</span>
+            </li>
+            <li class="exp-item">
+              <div class="ei-l">
+                <span class="ei-co">Gymondo</span>
+                <span class="ei-role">Senior UI/UX Designer</span>
+              </div>
+              <span class="ei-yr">2019 — 2022</span>
+            </li>
+            <li class="exp-item">
+              <div class="ei-l">
+                <span class="ei-co">VASS × CaixaBank</span>
+                <span class="ei-role">UI/UX Designer</span>
+              </div>
+              <span class="ei-yr">2017 — 2019</span>
+            </li>
+            <li class="exp-item">
+              <div class="ei-l">
+                <span class="ei-co">SEAT</span>
+                <span class="ei-role">UI/UX Designer</span>
+              </div>
+              <span class="ei-yr">2016</span>
+            </li>
+            <li class="exp-item">
+              <div class="ei-l">
+                <span class="ei-co">Lafosca · Mobile Jazz</span>
+                <span class="ei-role">Junior UI Designer</span>
+              </div>
+              <span class="ei-yr">2015 — 2016</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="detail-h">Awards</h3>
+          <ul class="awards-list">
+            <li class="award-item">
+              <span class="aw-title">Best Mobile Banking App, Western Europe</span>
+              <span class="aw-issuer">Global Finance · Sep 2018</span>
+            </li>
+            <li class="award-item">
+              <span class="aw-title">Best Mobile Tech Project</span>
+              <span class="aw-issuer">The Banker Tech Project Awards · Oct 2018</span>
+            </li>
+            <li class="award-item">
+              <span class="aw-title">Best Project — Innovative Touchpoints & Connected Services</span>
+              <span class="aw-issuer">BAI Global Innovation Awards · Oct 2018</span>
+            </li>
+            <li class="award-item">
+              <span class="aw-title">Silver — Digital New Service or Application</span>
+              <span class="aw-issuer">London Design Awards · Nov 2018</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="detail-h">Skills</h3>
+          <div class="skills-row">
+            <span class="skill-pill">Product Design</span>
+            <span class="skill-pill">UX Research</span>
+            <span class="skill-pill">Design Systems</span>
+            <span class="skill-pill">iOS & Android</span>
+            <span class="skill-pill">Figma</span>
+            <span class="skill-pill">Prototyping</span>
+            <span class="skill-pill">A/B Testing</span>
+            <span class="skill-pill">User Testing</span>
+            <span class="skill-pill">Agile / Scrum</span>
+            <span class="skill-pill">Dev Handoff</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
+  <section id="contact">
+    <p class="s-label">Let's Connect</p>
+
+    <div class="contact-headline">
+      <span class="tl"><span>Say hello —</span></span>
+      <span class="tl">
+        <span><a href="mailto:heeeydavidrodriguez@gmail.com">get in touch.</a></span>
+      </span>
+    </div>
+
+    <div class="contact-footer">
+      <div class="cf-left">
+        <p>heeeydavidrodriguez@gmail.com</p>
+        <p>Berlin, Germany</p>
+      </div>
+      <div class="cf-right">
+        <a href="mailto:heeeydavidrodriguez@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/david-rodriguez-product-designer/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.awwwards.com" target="_blank" rel="noopener">Awwwards</a>
+      </div>
+    </div>
+
+    <p class="copy">© 2026 David Rodriguez · Senior Product Designer</p>
+  </section>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script>
+  /* ---- THEME ---- */
+  const html   = document.documentElement;
+  const tBtn   = document.getElementById('themeBtn');
+  const tIcon  = document.getElementById('tIcon');
+  const tLabel = document.getElementById('tLabel');
+  let dark = true;
+
+  tBtn.addEventListener('click', () => {
+    dark = !dark;
+    html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    tIcon.textContent  = dark ? '◐' : '◑';
+    tLabel.textContent = dark ? 'Light' : 'Dark';
+    // also update nav scrolled bg dynamically via CSS variables — handled by CSS
+  });
+
+  /* ---- CURSOR (Miro-style) ---- */
+  const cursorEl = document.getElementById('cursor');
+
+  // Move cursor so the arrow TIP sits exactly on the mouse pointer
+  document.addEventListener('mousemove', e => {
+    cursorEl.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  });
+
+  // Hide cursor when mouse leaves the window
+  document.addEventListener('mouseleave', () => {
+    cursorEl.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', () => {
+    cursorEl.style.opacity = '1';
+  });
+
+  // Hover states — interactive targets
+  document.querySelectorAll('a, button, .pcard, .skill-pill').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('is-hovering'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('is-hovering'));
+  });
+
+  /* ---- PRELOADER ---- */
+  const preloader = document.getElementById('preloader');
+  const plBar     = document.getElementById('plBar');
+  const plName    = document.querySelector('.pl-name span');
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Animate preloader name in
+  gsap.to(plName, { y: 0, duration: 0.7, ease: 'power3.out', delay: 0.1 });
+
+  window.addEventListener('load', () => {
+    setTimeout(() => { plBar.style.width = '100%'; }, 150);
+    setTimeout(() => {
+      gsap.to(preloader, {
+        yPercent: -100,
+        duration: 0.9,
+        ease: 'power3.inOut',
+        onComplete: () => {
+          preloader.style.display = 'none';
+          heroIn();
+        }
+      });
+    }, 1300);
+  });
+
+  /* ---- HERO ENTRANCE ---- */
+  function heroIn() {
+    // Nav
+    gsap.to(['.nav-logo', '.nav-right'], {
+      opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out'
+    });
+    // Title lines
+    gsap.to('.hero-title .tl span', {
+      y: 0, duration: 1.05, stagger: 0.1, ease: 'power3.out', delay: 0.05
+    });
+    // Eyebrow
+    gsap.to('.hero-eyebrow span', {
+      y: 0, duration: 0.75, ease: 'power3.out', delay: 0.5
+    });
+    // Desc
+    gsap.to('.hero-desc span', {
+      y: 0, duration: 0.75, ease: 'power2.out', delay: 0.65
+    });
+    // Pills
+    gsap.to('.pill', {
+      x: 0, opacity: 1, duration: 0.55, stagger: 0.1,
+      ease: 'power2.out', delay: 0.75
+    });
+    // Scroll hint
+    gsap.to('.scroll-hint', { opacity: 1, duration: 0.6, delay: 1.2 });
+
+    // Scroll animations
+    initScroll();
+  }
+
+  /* ---- SCROLL ANIMATIONS ---- */
+  function initScroll() {
+    // Section titles
+    gsap.utils.toArray('.s-title').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 32 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%' }
+        }
+      );
+    });
+
+    // Project cards stagger
+    gsap.utils.toArray('.pcard').forEach((el, i) => {
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.75,
+        ease: 'power2.out',
+        delay: i * 0.05,
+        scrollTrigger: { trigger: el, start: 'top 88%' }
+      });
+    });
+
+    // About bio paragraphs
+    gsap.utils.toArray('.about-bio p').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.65, delay: i * 0.08, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%' }
+        }
+      );
+    });
+
+    // About side blocks
+    gsap.utils.toArray('.about-side > div').forEach((el, i) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.65, delay: i * 0.1, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%' }
+        }
+      );
+    });
+
+    // Contact headline lines
+    gsap.utils.toArray('.contact-headline .tl span').forEach((el, i) => {
+      gsap.fromTo(el,
+        { y: '110%' },
+        { y: '0%', duration: 0.9, delay: i * 0.12, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 90%' }
+        }
+      );
+    });
+
+    // Contact footer
+    gsap.fromTo('.contact-footer',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
+        scrollTrigger: { trigger: '.contact-footer', start: 'top 90%' }
+      }
+    );
+  }
+
+  /* ---- NAV SCROLL BG ---- */
+  const navEl = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  /* ---- SMOOTH ANCHOR SCROLL ---- */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+  </script>
+</body>
+</html>
