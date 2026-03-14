@@ -551,6 +551,9 @@
     .p-gymondo1  .pcard-bg  { background: linear-gradient(145deg, #001209 0%, #003A16 55%, #006B28 100%); }
     .p-gymondo2  .pcard-bg  { background: linear-gradient(145deg, #1A0400 0%, #4A1000 55%, #7A1E00 100%); }
     .p-zattoo    .pcard-bg  { background: linear-gradient(145deg, #1A0A00 0%, #4A2000 55%, #CC5500 100%); }
+    .p-nt-onboarding .pcard-bg { background: linear-gradient(145deg, #1A0500 0%, #7A2800 55%, #D44A0A 100%); }
+    .p-nt-quests     .pcard-bg { background: linear-gradient(145deg, #001A0A 0%, #004A20 55%, #00A854 100%); }
+    .p-nt-referral   .pcard-bg { background: linear-gradient(145deg, #0A0415 0%, #2A0A50 55%, #5B21B6 100%); }
 
     /* Decorative blobs */
     .blob {
@@ -568,8 +571,14 @@
     .p-gymondo1  .blob2 { width:180px;height:180px;bottom:40px;right:60px;background:#86EFAC; opacity:0.1; }
     .p-gymondo2  .blob1 { width:320px;height:320px;top:-80px;right:-70px;background:#EF4444; }
     .p-gymondo2  .blob2 { width:200px;height:200px;bottom:30px;right:70px;background:#FCA5A5; opacity:0.1; }
-    .p-zattoo    .blob1 { width:310px;height:310px;top:-70px;right:-60px;background:#F97316; }
-    .p-zattoo    .blob2 { width:190px;height:190px;bottom:40px;right:80px;background:#FED7AA; opacity:0.1; }
+    .p-zattoo        .blob1 { width:310px;height:310px;top:-70px;right:-60px;background:#F97316; }
+    .p-zattoo        .blob2 { width:190px;height:190px;bottom:40px;right:80px;background:#FED7AA; opacity:0.1; }
+    .p-nt-onboarding .blob1 { width:320px;height:320px;top:-80px;right:-60px;background:#FF6B35; }
+    .p-nt-onboarding .blob2 { width:200px;height:200px;bottom:30px;right:70px;background:#FDBA74; opacity:0.1; }
+    .p-nt-quests     .blob1 { width:300px;height:300px;top:-60px;right:-50px;background:#00C96B; }
+    .p-nt-quests     .blob2 { width:180px;height:180px;bottom:40px;right:60px;background:#6EE7B7; opacity:0.1; }
+    .p-nt-referral   .blob1 { width:320px;height:320px;top:-80px;right:-70px;background:#8B5CF6; }
+    .p-nt-referral   .blob2 { width:200px;height:200px;bottom:30px;right:70px;background:#C4B5FD; opacity:0.1; }
 
     /* Corner arrow */
     .p-arrow {
@@ -872,7 +881,7 @@
         <p class="s-label">Selected Projects</p>
         <h2 class="s-title">Work</h2>
       </div>
-      <span class="s-count">04</span>
+      <span class="s-count">07</span>
     </div>
 
     <div class="projects">
@@ -1021,6 +1030,127 @@
               <div class="pmetric">
                 <span class="pm-val">React</span>
                 <span class="pm-label">Native → React migration</span>
+              </div>
+            </div>
+          </div>
+          <div class="pcard-vis">
+            <div class="pcard-bg"></div>
+            <div class="blob blob1"></div>
+            <div class="blob blob2"></div>
+            <div class="p-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- 05 — NeoTaste Onboarding -->
+      <article class="pcard p-nt-onboarding" data-index="4" onclick="window.location='neotaste-onboarding.html'" style="cursor:none;">
+        <div class="pcard-inner">
+          <div class="pcard-info">
+            <div class="pcard-top">
+              <span class="pnum">05</span>
+              <div class="tags">
+                <span class="tag">Onboarding</span>
+                <span class="tag">UX Research</span>
+              </div>
+            </div>
+            <div class="pcard-mid">
+              <p class="pcompany">NeoTaste</p>
+              <h3 class="pname">Onboarding Redesign</h3>
+              <p class="pyear">2024 · Berlin</p>
+            </div>
+            <div class="pmetrics">
+              <div class="pmetric">
+                <span class="pm-val">−63%</span>
+                <span class="pm-label">Drop-off during onboarding</span>
+              </div>
+              <div class="pmetric">
+                <span class="pm-val">+38%</span>
+                <span class="pm-label">Day-1 activation rate</span>
+              </div>
+            </div>
+          </div>
+          <div class="pcard-vis">
+            <div class="pcard-bg"></div>
+            <div class="blob blob1"></div>
+            <div class="blob blob2"></div>
+            <div class="p-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 06 — NeoTaste Quests -->
+      <article class="pcard p-nt-quests" data-index="5" onclick="window.location='neotaste-quests.html'" style="cursor:none;">
+        <div class="pcard-inner">
+          <div class="pcard-info">
+            <div class="pcard-top">
+              <span class="pnum">06</span>
+              <div class="tags">
+                <span class="tag">Retention</span>
+                <span class="tag">Gamification</span>
+              </div>
+            </div>
+            <div class="pcard-mid">
+              <p class="pcompany">NeoTaste</p>
+              <h3 class="pname">Quest System</h3>
+              <p class="pyear">2024 · Berlin</p>
+            </div>
+            <div class="pmetrics">
+              <div class="pmetric">
+                <span class="pm-val">+31%</span>
+                <span class="pm-label">Day-7 retention uplift</span>
+              </div>
+              <div class="pmetric">
+                <span class="pm-val">2.4×</span>
+                <span class="pm-label">Feature adoption rate</span>
+              </div>
+            </div>
+          </div>
+          <div class="pcard-vis">
+            <div class="pcard-bg"></div>
+            <div class="blob blob1"></div>
+            <div class="blob blob2"></div>
+            <div class="p-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 07 — NeoTaste Referral -->
+      <article class="pcard p-nt-referral" data-index="6" onclick="window.location='neotaste-referral.html'" style="cursor:none;">
+        <div class="pcard-inner">
+          <div class="pcard-info">
+            <div class="pcard-top">
+              <span class="pnum">07</span>
+              <div class="tags">
+                <span class="tag">Growth</span>
+                <span class="tag">A/B Testing</span>
+              </div>
+            </div>
+            <div class="pcard-mid">
+              <p class="pcompany">NeoTaste</p>
+              <h3 class="pname">Referral A/B Test</h3>
+              <p class="pyear">2024 · Berlin</p>
+            </div>
+            <div class="pmetrics">
+              <div class="pmetric">
+                <span class="pm-val">+148%</span>
+                <span class="pm-label">Referral volume growth</span>
+              </div>
+              <div class="pmetric">
+                <span class="pm-val">5.2%</span>
+                <span class="pm-label">Final referral rate (was 2.1%)</span>
               </div>
             </div>
           </div>

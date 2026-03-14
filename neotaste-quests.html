@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5DGNJQL76"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C5DGNJQL76');</script>
+  <script>(function(){var s=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',s?s:(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));}());</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+  <title>Quest System — NeoTaste × David Rodriguez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <style>
+    :root { --bg:#0C0C0B; --bg2:#141413; --fg:#EDEDE8; --muted:#93938F; --border:rgba(237,237,232,0.09); --accent:#00C96B; --radius:14px; --transition:0.4s cubic-bezier(0.25,0.46,0.45,0.94); }
+    [data-theme="light"] { --bg:#F0EDE5; --bg2:#E8E5DD; --fg:#0C0C0B; --muted:#5B5A57; --border:rgba(12,12,11,0.1); --accent:#00A854; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;cursor:none !important;}
+    @media(pointer:coarse){*,*::before,*::after{cursor:auto !important;}body{cursor:auto;}.cursor{display:none !important;}}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden;transition:background var(--transition),color var(--transition);}
+    a{color:inherit;text-decoration:none;}img{display:block;max-width:100%;}ul{list-style:none;}
+    body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;opacity:0.028;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");}
+    .cursor{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;will-change:transform;opacity:0;}
+    .cursor-arrow{position:absolute;top:0;left:0;width:22px;height:26px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));transition:transform .2s cubic-bezier(.25,.46,.45,.94);}
+    .cursor-arrow svg{display:block;}
+    .cursor-label{position:absolute;top:18px;left:16px;background:#1A1A19;color:#EDEDE8;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.04em;padding:4px 10px 4px 8px;border-radius:100px;white-space:nowrap;display:flex;align-items:center;gap:5px;box-shadow:0 2px 8px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.07);transition:background .25s ease,transform .2s cubic-bezier(.25,.46,.45,.94);}
+    .cursor-label-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+    body.is-hovering .cursor-arrow{transform:rotate(-12deg) scale(.92);}
+    body.is-hovering .cursor-label{background:var(--accent);color:#fff;}
+    body.is-hovering .cursor-label-dot{background:rgba(255,255,255,.6);}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:22px 44px;display:flex;justify-content:space-between;align-items:center;transition:padding .45s cubic-bezier(.4,0,.2,1),top .45s cubic-bezier(.4,0,.2,1),left .45s cubic-bezier(.4,0,.2,1),right .45s cubic-bezier(.4,0,.2,1),border-radius .45s cubic-bezier(.4,0,.2,1),background .4s ease,backdrop-filter .4s ease,box-shadow .4s ease;}
+    nav.scrolled{top:16px;left:5%;right:5%;padding:14px 28px;border-radius:100px;background:rgba(12,12,11,.80);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 4px 24px rgba(0,0,0,.25),inset 0 0 0 1px rgba(237,237,232,.08);}
+    [data-theme="light"] nav.scrolled{background:rgba(240,237,229,.85);box-shadow:0 4px 24px rgba(0,0,0,.10),inset 0 0 0 1px rgba(12,12,11,.08);}
+    .nav-logo{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;letter-spacing:-.02em;}
+    .nav-right{display:flex;align-items:center;gap:28px;}
+    .nav-back{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+    .nav-back:hover{color:var(--fg);}
+    .nav-back svg{transition:transform .3s ease;}
+    .nav-back:hover svg{transform:translateX(-3px);}
+    .theme-btn{display:flex;align-items:center;gap:7px;background:none;border:1px solid var(--border);border-radius:100px;padding:7px 15px;color:var(--muted);font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:all .3s ease;}
+    .theme-btn:hover{background:var(--fg);color:var(--bg);border-color:var(--fg);}
+    #preloader{position:fixed;inset:0;background:var(--bg);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;}
+    .pl-name{font-family:'Syne',sans-serif;font-size:clamp(24px,4vw,52px);text-align:center;font-weight:800;letter-spacing:-.045em;overflow:hidden;}
+    .pl-name span{display:inline-block;transform:translateY(110%);}
+    .pl-bar-wrap{width:120px;height:1px;background:var(--border);overflow:hidden;}
+    .pl-bar{height:100%;width:0;background:var(--fg);transition:width .9s cubic-bezier(.76,0,.24,1);}
+    .cs-hero{min-height:100svh;padding:0 44px max(60px,calc(60px + env(safe-area-inset-bottom)));display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
+    .cs-hero-bg{position:absolute;inset:0;z-index:0;opacity:.18;}
+    .cs-hero-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;}
+    .cs-breadcrumb{position:relative;z-index:1;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;overflow:hidden;}
+    .cs-breadcrumb span{display:inline-block;transform:translateY(110%);}
+    .cs-hero-number{position:absolute;top:50%;right:44px;transform:translateY(-50%);font-family:'Syne',sans-serif;font-size:clamp(100px,16vw,220px);font-weight:800;letter-spacing:-.05em;line-height:1;color:transparent;-webkit-text-stroke:1px var(--border);pointer-events:none;user-select:none;z-index:0;}
+    .cs-title-wrap{position:relative;z-index:1;margin-bottom:48px;}
+    .cs-company{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+    .cs-title{font-family:'Syne',sans-serif;font-size:clamp(52px,9vw,130px);font-weight:800;letter-spacing:-.045em;line-height:.9;}
+    .cs-title .tl{overflow:hidden;display:block;}
+    .cs-title .tl span{display:block;transform:translateY(110%);}
+    .cs-meta-strip{position:relative;z-index:1;display:flex;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:700px;opacity:0;transform:translateY(20px);}
+    .cs-meta-item{flex:1;padding:16px 20px;border-right:1px solid var(--border);}
+    .cs-meta-item:last-child{border-right:none;}
+    .cs-meta-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+    .cs-meta-value{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:-.01em;}
+    .cs-section{padding:100px 44px;border-top:1px solid var(--border);}
+    .cs-section-inner{max-width:1200px;margin:0 auto;}
+    .cs-section-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+    .cs-section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+    .cs-section-title{font-family:'Syne',sans-serif;font-size:clamp(32px,4.5vw,60px);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin-bottom:32px;max-width:760px;}
+    .cs-section-body{max-width:640px;}
+    .cs-section-body p{font-size:17px;line-height:1.7;font-weight:300;color:var(--fg);margin-bottom:20px;}
+    .cs-section-body p:last-child{margin-bottom:0;}
+    .cs-section-body strong{font-weight:600;}
+    .cs-section-body em{font-style:normal;color:var(--accent);}
+    .cs-two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:48px;}
+    .cs-findings{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;}
+    .cs-finding{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:28px;transition:border-color .3s;}
+    .cs-finding:hover{border-color:rgba(237,237,232,.25);}
+    .cs-finding-icon{font-size:22px;margin-bottom:12px;}
+    .cs-finding-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;}
+    .cs-finding-text{font-size:13px;color:var(--muted);line-height:1.6;}
+    .cs-steps{display:flex;flex-direction:column;gap:0;margin-top:40px;}
+    .cs-step{display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--border);align-items:baseline;}
+    .cs-step-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.08em;flex-shrink:0;width:28px;}
+    .cs-step-content{flex:1;}
+    .cs-step-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:6px;}
+    .cs-step-text{font-size:14px;color:var(--muted);line-height:1.6;}
+
+    /* QUEST CARDS */
+    .cs-quests{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+    .cs-quest-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px;transition:border-color .3s,transform .3s;}
+    .cs-quest-card:hover{border-color:rgba(0,201,107,.3);transform:translateY(-4px);}
+    .cs-quest-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:12px;}
+    .cs-quest-icon{font-size:28px;margin-bottom:14px;}
+    .cs-quest-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;}
+    .cs-quest-text{font-size:13px;color:var(--muted);line-height:1.6;}
+    .cs-quest-xp{display:inline-block;margin-top:12px;font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--accent);background:rgba(0,201,107,.1);border:1px solid rgba(0,201,107,.2);border-radius:100px;padding:4px 12px;}
+
+    /* RETENTION CHART */
+    .cs-chart{margin-top:48px;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:40px;}
+    .cs-chart-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;}
+    .cs-chart-sub{font-size:13px;color:var(--muted);margin-bottom:32px;}
+    .cs-chart-bars{display:flex;align-items:flex-end;gap:8px;height:140px;}
+    .cs-chart-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;}
+    .cs-chart-bar-wrap{width:100%;flex:1;display:flex;flex-direction:column;justify-content:flex-end;}
+    .cs-chart-bar{width:100%;border-radius:6px 6px 0 0;transition:height .6s ease;}
+    .cs-chart-label{font-size:10px;color:var(--muted);letter-spacing:.06em;}
+    .cs-chart-legend{display:flex;gap:20px;margin-top:20px;}
+    .cs-chart-legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);}
+    .cs-chart-legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+
+    .cs-metrics{display:flex;gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:60px;}
+    .cs-metric{flex:1;padding:40px 32px;border-right:1px solid var(--border);text-align:center;}
+    .cs-metric:last-child{border-right:none;}
+    .cs-metric-val{font-family:'Syne',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-.04em;color:var(--accent);line-height:1;margin-bottom:8px;}
+    .cs-metric-label{font-size:12px;color:var(--muted);line-height:1.5;max-width:160px;margin:0 auto;}
+    .cs-visual{border-radius:16px;overflow:hidden;position:relative;opacity:0;transform:translateY(24px);}
+    .cs-visual.full{aspect-ratio:16/8;margin-top:64px;}
+    .cs-visual.wide{aspect-ratio:16/9;}
+    .cs-visual-inner{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
+    .cs-visual-label{position:absolute;bottom:20px;left:20px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);z-index:2;}
+    .cs-quote{margin:60px 0;padding:40px 44px;border-left:3px solid var(--accent);background:var(--bg2);border-radius:0 12px 12px 0;}
+    .cs-quote p{font-family:'Syne',sans-serif;font-size:clamp(20px,2.5vw,30px);font-weight:700;letter-spacing:-.02em;line-height:1.35;color:var(--fg);}
+    .cs-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;}
+    .cs-result-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:32px;}
+    .cs-result-val{font-family:'Syne',sans-serif;font-size:clamp(36px,4.5vw,56px);font-weight:800;letter-spacing:-.04em;color:var(--accent);line-height:1;margin-bottom:10px;}
+    .cs-result-label{font-size:13px;color:var(--muted);line-height:1.5;}
+    .cs-next{display:block;padding:80px 44px;margin-top:80px;border-top:1px solid var(--border);background:var(--bg2);transition:background .3s;text-decoration:none;}
+    .cs-next:hover{background:var(--bg);}
+    .cs-next-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
+    .cs-next-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;}
+    .cs-next-name{font-family:'Syne',sans-serif;font-size:clamp(32px,5vw,72px);font-weight:800;letter-spacing:-.04em;line-height:.95;transition:color .3s;}
+    .cs-next:hover .cs-next-name{color:var(--accent);}
+    .cs-next-company{font-size:13px;color:var(--muted);margin-top:8px;}
+    .cs-next-arrow{width:64px;height:64px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .35s ease;}
+    .cs-next:hover .cs-next-arrow{background:var(--accent);border-color:var(--accent);transform:rotate(45deg);}
+    .cs-next:hover .cs-next-arrow svg path{stroke:#fff;}
+    .cs-footer{padding:24px 44px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+    .cs-footer p{font-size:12px;color:var(--muted);}
+    @media(max-width:900px){
+      nav{padding:18px 24px;}nav.scrolled{top:12px;left:16px;right:16px;padding:12px 20px;}
+      .cs-hero{padding:0 24px max(48px,calc(48px + env(safe-area-inset-bottom)));}
+      .cs-section{padding:72px 24px;}
+      .cs-two-col{grid-template-columns:1fr;gap:40px;}
+      .cs-findings{grid-template-columns:1fr;}
+      .cs-quests{grid-template-columns:1fr;}
+      .cs-result-grid{grid-template-columns:1fr;}
+      .cs-metrics{flex-direction:column;}
+      .cs-metric{border-right:none;border-bottom:1px solid var(--border);}
+      .cs-metric:last-child{border-bottom:none;}
+      .cs-hero-number{display:none;}
+      .cs-meta-strip{flex-wrap:wrap;}
+      .cs-meta-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border);}
+      .cs-footer{flex-direction:column;gap:12px;text-align:center;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="preloader" aria-hidden="true">
+  <div class="pl-name"><span>NeoTaste</span></div>
+  <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor-arrow">
+    <svg width="22" height="26" viewBox="0 0 22 26" fill="none">
+      <path d="M2 2L2 21L6.8 16.2L10.4 24L13.4 22.6L9.8 14.8L17 14.8L2 2Z" fill="white" stroke="#0C0C0B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="cursor-label"><span class="cursor-label-dot"></span><span>Guest</span></div>
+</div>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">dvdrod</a>
+  <div class="nav-right">
+    <a href="index.html#work" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M10 2L4 7L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to work
+    </a>
+    <button class="theme-btn" id="themeBtn"><span id="tIcon">◐</span><span id="tLabel">Light</span></button>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="cs-hero-bg" style="background:linear-gradient(145deg,#001A0A,#004A20,#00A854);"></div>
+  <div class="cs-hero-blob" style="width:500px;height:500px;top:-100px;right:-80px;background:#00C96B;opacity:.18;"></div>
+  <div class="cs-hero-blob" style="width:300px;height:300px;bottom:60px;left:-60px;background:#00FF87;opacity:.08;"></div>
+  <span class="cs-hero-number">06</span>
+  <div class="cs-breadcrumb"><span>Portfolio → Work → NeoTaste</span></div>
+  <div class="cs-title-wrap">
+    <p class="cs-company">NeoTaste</p>
+    <h1 class="cs-title">
+      <span class="tl"><span>Quest</span></span>
+      <span class="tl"><span>System</span></span>
+    </h1>
+  </div>
+  <div class="cs-meta-strip">
+    <div class="cs-meta-item"><div class="cs-meta-label">Role</div><div class="cs-meta-value">Senior Product Designer</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Year</div><div class="cs-meta-value">2024</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Location</div><div class="cs-meta-value">Berlin, Germany</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Type</div><div class="cs-meta-value">Retention · Gamification</div></div>
+  </div>
+  <div style="position:absolute;bottom:56px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" class="scroll-hint" aria-hidden="true">
+    <div style="width:1px;height:64px;background:var(--border);position:relative;overflow:hidden;">
+      <style>.sh-anim2::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--accent);animation:shln2 2.4s ease infinite;}@keyframes shln2{0%{top:-100%}100%{top:100%}}</style>
+      <div class="sh-anim2" style="width:100%;height:100%;"></div>
+    </div>
+    <span style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-lr;">Scroll</span>
+  </div>
+</section>
+
+<!-- 01 CONTEXT -->
+<section class="cs-section">
+  <div class="cs-section-inner">
+    <div class="cs-section-label">01 — Context</div>
+    <h2 class="cs-section-title">New users were signing up, completing onboarding — and then disappearing within 72 hours.</h2>
+    <div class="cs-two-col">
+      <div class="cs-section-body">
+        <p>With 2 million foodies on the platform, NeoTaste had cracked acquisition. But cohort data revealed a concerning pattern: <strong>38% of users who completed onboarding became inactive within their first 3 days</strong>, never returning after their initial session.</p>
+        <p>The app is rich with features — map discovery, exclusive 2-for-1 deals, free desserts, table bookings, neighbourhood guides — but new users only scratched the surface. They'd browse the home feed once, save nothing, book nothing, and lose interest before experiencing NeoTaste's core value loop.</p>
+        <p>The challenge wasn't onboarding completion. It was <em>habit formation</em>. How do you make a new user go from "this looks interesting" to "I use this every week"?</p>
+      </div>
+      <div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;">
+          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">Retention curve — new users</div>
+          <div style="display:flex;align-items:flex-end;gap:6px;height:100px;">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:100px;opacity:.8;"></div>
+              <span style="font-size:10px;color:var(--muted);">D0</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:62px;opacity:.6;"></div>
+              <span style="font-size:10px;color:var(--muted);">D1</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:38px;opacity:.5;"></div>
+              <span style="font-size:10px;color:var(--muted);">D3</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:28px;opacity:.4;"></div>
+              <span style="font-size:10px;color:var(--muted);">D7</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:22px;opacity:.3;"></div>
+              <span style="font-size:10px;color:var(--muted);">D14</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:18px;opacity:.25;"></div>
+              <span style="font-size:10px;color:var(--muted);">D30</span>
+            </div>
+          </div>
+          <div style="font-size:12px;color:var(--muted);margin-top:16px;line-height:1.5;">Sharp drop-off between D1 and D7. Users who survived past D7 showed long-term retention.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 RESEARCH -->
+<section class="cs-section">
+  <div class="cs-section-inner">
+    <div class="cs-section-label">02 — Research</div>
+    <h2 class="cs-section-title">The data showed a clear cliff at Day 3. Users who made a booking in the first week never left.</h2>
+    <div class="cs-section-body">
+      <p>I partnered with our Data Analyst to run a behavioural segmentation across 6 months of cohort data. The finding was striking: <strong>users who completed at least two distinct actions in their first 48 hours had a D30 retention rate of 71%</strong> — versus 12% for those who only viewed the feed.</p>
+      <p>The "magic actions" were saving a restaurant, redeeming a deal, and making a booking. Users who did all three in week one became power users. The problem: <strong>only 8% of new users discovered all three naturally.</strong></p>
+    </div>
+
+    <div class="cs-quote">
+      <p>"I completely forgot it was on my phone. I never actually used a deal — I just assumed I'd get around to it."</p>
+    </div>
+
+    <div class="cs-findings">
+      <div class="cs-finding">
+        <div class="cs-finding-icon">📊</div>
+        <div class="cs-finding-title">The Magic Number: 2 Actions in 48h</div>
+        <div class="cs-finding-text">Cohort analysis revealed that users completing 2+ distinct actions in the first 48 hours had 5.9× higher D30 retention than passive browsers.</div>
+      </div>
+      <div class="cs-finding">
+        <div class="cs-finding-icon">🗺️</div>
+        <div class="cs-finding-title">Features Hidden Behind Discovery</div>
+        <div class="cs-finding-text">Heatmaps showed 73% of new users never scrolled past the first feed row. Map view, neighbourhood guides, and bookings were invisible to them.</div>
+      </div>
+      <div class="cs-finding">
+        <div class="cs-finding-icon">🔁</div>
+        <div class="cs-finding-title">No Re-engagement Hook</div>
+        <div class="cs-finding-text">After the initial session, there was no prompt to return. Competitors like Duolingo and LinkedIn use guided completion mechanics to drive daily returns.</div>
+      </div>
+      <div class="cs-finding">
+        <div class="cs-finding-icon">🎯</div>
+        <div class="cs-finding-title">Power Users Showed the Path</div>
+        <div class="cs-finding-text">Interview sessions with top users revealed they had naturally "discovered" the app's depth in week one. The Quest system would replicate this deliberately.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 DESIGN -->
+<section class="cs-section">
+  <div class="cs-section-inner">
+    <div class="cs-section-label">03 — Design</div>
+    <h2 class="cs-section-title">Five quests. Forty-eight hours. Designed to make every new user feel like a power user.</h2>
+    <div class="cs-section-body">
+      <p>The Quest system presents new users with a set of guided missions that expire after 48 hours from sign-up. Each quest teaches one core app behaviour through direct action — not tutorial text or tooltips. Completing a quest earns a visible reward and unlocks the next mission.</p>
+      <p>The design deliberately avoided the feel of a tutorial. Quests are presented as <em>personal challenges</em>, framed around the user's own culinary exploration — not as app education. The progress tracker lives as a persistent but non-intrusive card on the home feed.</p>
+    </div>
+
+    <div class="cs-quests">
+      <div class="cs-quest-card">
+        <div class="cs-quest-num">QUEST 01</div>
+        <div class="cs-quest-icon">🔖</div>
+        <div class="cs-quest-title">Save your first spot</div>
+        <div class="cs-quest-text">Bookmark a restaurant that catches your eye. Teaches the save mechanic and builds a personal wishlist from day one.</div>
+        <div class="cs-quest-xp">+50 pts</div>
+      </div>
+      <div class="cs-quest-card">
+        <div class="cs-quest-num">QUEST 02</div>
+        <div class="cs-quest-icon">🗺️</div>
+        <div class="cs-quest-title">Explore the map</div>
+        <div class="cs-quest-text">Discover 3 restaurants using the map view. Unlocks neighbourhood browsing and the visual discovery experience.</div>
+        <div class="cs-quest-xp">+75 pts</div>
+      </div>
+      <div class="cs-quest-card">
+        <div class="cs-quest-num">QUEST 03</div>
+        <div class="cs-quest-icon">🍽️</div>
+        <div class="cs-quest-title">Unlock a deal</div>
+        <div class="cs-quest-text">View and activate a 2-for-1 or free dessert deal at a partner restaurant. Core value delivery — the "aha" moment.</div>
+        <div class="cs-quest-xp">+100 pts</div>
+      </div>
+      <div class="cs-quest-card">
+        <div class="cs-quest-num">QUEST 04</div>
+        <div class="cs-quest-icon">📅</div>
+        <div class="cs-quest-title">Make your first booking</div>
+        <div class="cs-quest-text">Reserve a table directly in the app. Teaches the booking flow and creates the first real-world NeoTaste moment.</div>
+        <div class="cs-quest-xp">+150 pts</div>
+      </div>
+      <div class="cs-quest-card">
+        <div class="cs-quest-num">QUEST 05</div>
+        <div class="cs-quest-icon">👥</div>
+        <div class="cs-quest-title">Bring a friend</div>
+        <div class="cs-quest-text">Share your referral link. Completes the loop and seeds the referral program from day one of the user's journey.</div>
+        <div class="cs-quest-xp">+200 pts</div>
+      </div>
+      <div class="cs-quest-card" style="background:transparent;border-style:dashed;display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;">
+          <div style="font-size:32px;margin-bottom:12px;">🏆</div>
+          <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:8px;">Complete all 5</div>
+          <div style="font-size:13px;color:var(--muted);">Earn "Explorer" badge + 1 month free subscription</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-visual full">
+      <div class="cs-visual-inner" style="background:linear-gradient(145deg,#001A0A,#004A20);">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:20px;padding:48px;">
+          <div style="flex:1.2;height:100%;background:rgba(0,201,107,.1);border-radius:20px;border:1px solid rgba(0,201,107,.2);padding:24px;display:flex;flex-direction:column;gap:10px;">
+            <div style="width:50%;height:7px;background:rgba(255,255,255,.2);border-radius:4px;"></div>
+            <div style="width:35%;height:5px;background:rgba(255,255,255,.1);border-radius:3px;"></div>
+            <div style="margin-top:8px;width:100%;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;"><div style="width:60%;height:100%;background:var(--accent);border-radius:3px;"></div></div>
+            <div style="font-size:10px;color:rgba(0,201,107,.6);margin-top:2px;">3 / 5 quests complete</div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+              <div style="width:100%;height:36px;background:rgba(0,201,107,.15);border-radius:8px;border:1px solid rgba(0,201,107,.2);"></div>
+              <div style="width:100%;height:36px;background:rgba(0,201,107,.15);border-radius:8px;border:1px solid rgba(0,201,107,.2);"></div>
+              <div style="width:100%;height:36px;background:rgba(255,255,255,.05);border-radius:8px;"></div>
+              <div style="width:100%;height:36px;background:rgba(255,255,255,.05);border-radius:8px;"></div>
+            </div>
+          </div>
+          <div style="flex:1;height:80%;background:rgba(0,201,107,.08);border-radius:20px;border:1px solid rgba(0,201,107,.15);padding:20px;display:flex;flex-direction:column;gap:8px;">
+            <div style="width:60%;height:40px;background:rgba(0,201,107,.2);border-radius:12px;"></div>
+            <div style="flex:1;background:rgba(255,255,255,.04);border-radius:12px;margin-top:8px;"></div>
+            <div style="width:100%;height:40px;background:rgba(0,201,107,.3);border-radius:100px;"></div>
+          </div>
+        </div>
+        <div class="cs-visual-label">Quest system UI — replace with Figma exports</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 RESULTS -->
+<section class="cs-section" style="padding-bottom:0;">
+  <div class="cs-section-inner">
+    <div class="cs-section-label">04 — Results</div>
+    <h2 class="cs-section-title">Day-7 retention improved by a third. Feature adoption more than doubled.</h2>
+    <div class="cs-section-body">
+      <p>The Quest system launched in Q4 2024 after a 3-week A/B test on 25% of new user traffic. Results were measured against the control group (no quests) over a 60-day post-signup window.</p>
+      <p>The most significant finding: <strong>quest completers had a D30 retention rate of 68%</strong> — nearly matching the historic power user segment that we'd benchmarked the system against.</p>
+    </div>
+
+    <div class="cs-metrics">
+      <div class="cs-metric">
+        <div class="cs-metric-val">+31%</div>
+        <div class="cs-metric-label">Day-7 retention (control: 22% → quests: 29%)</div>
+      </div>
+      <div class="cs-metric">
+        <div class="cs-metric-val">2.4×</div>
+        <div class="cs-metric-label">Feature adoption across map, deals & bookings</div>
+      </div>
+      <div class="cs-metric">
+        <div class="cs-metric-val">62%</div>
+        <div class="cs-metric-label">Quest completion rate among users who started</div>
+      </div>
+      <div class="cs-metric">
+        <div class="cs-metric-val">+18%</div>
+        <div class="cs-metric-label">Referral rate uplift — Quest 5 drove organic sharing</div>
+      </div>
+    </div>
+
+    <div class="cs-result-grid" style="margin-top:24px;">
+      <div class="cs-result-card">
+        <div class="cs-result-val">68%</div>
+        <div class="cs-result-label">D30 retention for quest completers — matching our historic power user benchmark</div>
+      </div>
+      <div class="cs-result-card">
+        <div class="cs-result-val">48h</div>
+        <div class="cs-result-label">Average time to complete all 5 quests. The urgency window worked exactly as designed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT -->
+<a href="neotaste-referral.html" class="cs-next">
+  <p class="cs-next-label">Next project</p>
+  <div class="cs-next-inner">
+    <div>
+      <div class="cs-next-name">Referral A/B Test</div>
+      <div class="cs-next-company">NeoTaste</div>
+    </div>
+    <div class="cs-next-arrow">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H5M15 3V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+</a>
+
+<footer class="cs-footer"><p>© 2026 David Rodriguez</p><p></p></footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  const html=document.documentElement,tBtn=document.getElementById('themeBtn'),tIcon=document.getElementById('tIcon'),tLbl=document.getElementById('tLabel');
+  let dark=(localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark';
+  tIcon.textContent=dark?'◐':'◑';tLbl.textContent=dark?'Light':'Dark';
+  tBtn.addEventListener('click',()=>{dark=!dark;html.setAttribute('data-theme',dark?'dark':'light');localStorage.setItem('theme',dark?'dark':'light');tIcon.textContent=dark?'◐':'◑';tLbl.textContent=dark?'Light':'Dark';});
+  if(window.matchMedia('(pointer: fine)').matches){
+    const cursorEl=document.getElementById('cursor');
+    document.addEventListener('mousemove',e=>{cursorEl.style.transform=`translate(${e.clientX}px,${e.clientY}px)`;cursorEl.style.opacity='1';});
+    document.addEventListener('mouseleave',()=>cursorEl.style.opacity='0');
+    document.addEventListener('mouseenter',()=>cursorEl.style.opacity='1');
+    document.querySelectorAll('a,button,.cs-finding,.cs-result-card,.cs-quest-card').forEach(el=>{
+      el.addEventListener('mouseenter',()=>document.body.classList.add('is-hovering'));
+      el.addEventListener('mouseleave',()=>document.body.classList.remove('is-hovering'));
+    });
+  }
+  const preloader=document.getElementById('preloader'),plBar=document.getElementById('plBar'),plSpan=document.querySelector('.pl-name span');
+  gsap.to(plSpan,{y:0,duration:.7,ease:'power3.out',delay:.1});
+  window.addEventListener('load',()=>{
+    setTimeout(()=>{plBar.style.width='100%';},150);
+    setTimeout(()=>{gsap.to(preloader,{yPercent:-100,duration:.85,ease:'power3.inOut',onComplete:()=>{preloader.style.display='none';initAnim();}});},1200);
+  });
+  gsap.registerPlugin(ScrollTrigger);
+  function initAnim(){
+    gsap.to('.cs-title .tl span',{y:0,duration:1,stagger:.1,ease:'power3.out',delay:.05});
+    gsap.to('.cs-breadcrumb span',{y:0,duration:.75,ease:'power3.out',delay:.4});
+    gsap.to('.cs-meta-strip',{opacity:1,y:0,duration:.7,ease:'power2.out',delay:.6});
+    gsap.to('.scroll-hint',{opacity:1,duration:.5,delay:1.1});
+    gsap.utils.toArray('.cs-section-title').forEach(el=>{gsap.fromTo(el,{opacity:0,y:28},{opacity:1,y:0,duration:.75,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%'}});});
+    gsap.utils.toArray('.cs-section-body p').forEach((el,i)=>{gsap.fromTo(el,{opacity:0,y:18},{opacity:1,y:0,duration:.6,delay:i*.06,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 90%'}});});
+    gsap.utils.toArray('.cs-finding,.cs-step,.cs-result-card,.cs-quest-card').forEach((el,i)=>{gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.6,delay:i*.07,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 90%'}});});
+    gsap.utils.toArray('.cs-visual').forEach(el=>{gsap.to(el,{opacity:1,y:0,duration:.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 85%'}});});
+    gsap.utils.toArray('.cs-metric-val').forEach(el=>{gsap.fromTo(el,{opacity:0,y:16},{opacity:1,y:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%'}});});
+    gsap.utils.toArray('.cs-quote').forEach(el=>{gsap.fromTo(el,{opacity:0,x:-20},{opacity:1,x:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%'}});});
+  }
+  const navEl=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{navEl.classList.toggle('scrolled',window.scrollY>50);},{passive:true});
+</script>
+</body>
+</html>
