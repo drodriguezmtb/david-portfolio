@@ -11,7 +11,7 @@
   </script>
   <script>(function(){var s=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',s?s:(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));}());</script>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>David Rodriguez — Senior Product Designer</title>
   <meta name="description" content="Senior Product Designer from Barcelona, based in Berlin. Crafting digital products that matter." />
 
@@ -286,7 +286,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 44px 56px;
+      padding: 0 44px max(56px, calc(56px + env(safe-area-inset-bottom)));
       position: relative;
     }
     .hero-eyebrow {
@@ -747,7 +747,7 @@
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
       nav.scrolled { top: 12px; left: 16px; right: 16px; padding: 12px 20px; }
-      #hero { padding: 0 24px 40px; }
+      #hero { padding: 0 24px max(40px, calc(40px + env(safe-area-inset-bottom))); }
       .hero-bottom { flex-direction: column; align-items: flex-start; }
       .hero-right { align-items: flex-start; }
       #work, #about, #contact { padding: 80px 24px; }
