@@ -96,6 +96,7 @@
       z-index: 9999;
       /* tip of the arrow is the reference point */
       will-change: transform;
+      opacity: 0;
     }
 
     /* Arrow SVG */
@@ -1184,9 +1185,11 @@
     const cursorEl = document.getElementById('cursor');
 
     // Move cursor so the arrow TIP sits exactly on the mouse pointer
+    // Keep it hidden until the first move so it doesn't flash at (0,0) on load
     document.addEventListener('mousemove', e => {
       cursorEl.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
+      cursorEl.style.opacity = '1';
+    }, { once: false });
 
     // Hide cursor when mouse leaves the window
     document.addEventListener('mouseleave', () => {
