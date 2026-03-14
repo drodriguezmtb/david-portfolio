@@ -30,6 +30,11 @@
       --accent: #FF3D00;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important; }
+    @media (pointer: coarse) {
+      *, *::before, *::after { cursor: auto !important; }
+      body { cursor: auto; }
+      .cursor { display: none !important; }
+    }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', system-ui, sans-serif;
@@ -665,17 +670,19 @@
     tLbl.textContent  = dark ? 'Light' : 'Dark';
   });
 
-  /* ---- CURSOR ---- */
-  const cursorEl = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    cursorEl.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
-  });
-  document.addEventListener('mouseleave', () => cursorEl.style.opacity = '0');
-  document.addEventListener('mouseenter', () => cursorEl.style.opacity = '1');
-  document.querySelectorAll('a,button,.cs-finding,.cs-result-card').forEach(el => {
-    el.addEventListener('mouseenter', () => document.body.classList.add('is-hovering'));
-    el.addEventListener('mouseleave', () => document.body.classList.remove('is-hovering'));
-  });
+  /* ---- CURSOR — desktop/mouse only ---- */
+  if (window.matchMedia('(pointer: fine)').matches) {
+    const cursorEl = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursorEl.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
+    });
+    document.addEventListener('mouseleave', () => cursorEl.style.opacity = '0');
+    document.addEventListener('mouseenter', () => cursorEl.style.opacity = '1');
+    document.querySelectorAll('a,button,.cs-finding,.cs-result-card').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('is-hovering'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('is-hovering'));
+    });
+  }
 
   /* ---- PRELOADER ---- */
   const preloader = document.getElementById('preloader');
