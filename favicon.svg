@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="4" fill="#0C0C0B"/>
+  <text
+    x="16"
+    y="23"
+    text-anchor="middle"
+    font-family="'Arial Black', 'Arial', sans-serif"
+    font-weight="900"
+    font-size="17"
+    letter-spacing="-0.5"
+    fill="#EDEDE8"
+  >DR</text>
+</svg>
