@@ -86,14 +86,21 @@
     nav {
       position:fixed; top:0; left:0; right:0; z-index:200;
       padding:22px 44px; display:flex; justify-content:space-between; align-items:center;
-      transition:background .4s ease, border-bottom .4s ease, backdrop-filter .4s ease;
+      transition:padding .45s cubic-bezier(.4,0,.2,1), top .45s cubic-bezier(.4,0,.2,1),
+        left .45s cubic-bezier(.4,0,.2,1), right .45s cubic-bezier(.4,0,.2,1),
+        border-radius .45s cubic-bezier(.4,0,.2,1), background .4s ease,
+        backdrop-filter .4s ease, box-shadow .4s ease;
     }
     nav.scrolled {
-      background:rgba(12,12,11,.72);
-      backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-      border-bottom:1px solid var(--border);
+      top:16px; left:5%; right:5%; padding:14px 28px; border-radius:100px;
+      background:rgba(12,12,11,.80);
+      backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+      box-shadow:0 4px 24px rgba(0,0,0,.25), inset 0 0 0 1px rgba(237,237,232,.08);
     }
-    [data-theme="light"] nav.scrolled { background:rgba(240,237,229,.72); }
+    [data-theme="light"] nav.scrolled {
+      background:rgba(240,237,229,.85);
+      box-shadow:0 4px 24px rgba(0,0,0,.10), inset 0 0 0 1px rgba(12,12,11,.08);
+    }
     .nav-logo { font-family:'Syne',sans-serif; font-size:15px; font-weight:800; letter-spacing:-.02em; }
     .nav-right { display:flex; align-items:center; gap:28px; }
     .nav-back {
@@ -335,6 +342,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width:900px) {
       nav { padding:18px 24px; }
+      nav.scrolled { top:12px; left:16px; right:16px; padding:12px 20px; }
       .cs-hero { padding:0 24px 48px; }
       .cs-section { padding:72px 24px; }
       .cs-two-col { grid-template-columns:1fr; gap:40px; }
