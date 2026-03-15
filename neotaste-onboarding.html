@@ -48,10 +48,14 @@
     .cursor-arrow { position:absolute; top:0; left:0; width:22px; height:26px; filter:drop-shadow(0 1px 3px rgba(0,0,0,.45)); transition:transform .2s cubic-bezier(.25,.46,.45,.94); }
     .cursor-arrow svg { display:block; }
     .cursor-label { position:absolute; top:18px; left:16px; background:#1A1A19; color:#EDEDE8; font-family:'Inter',sans-serif; font-size:11px; font-weight:600; letter-spacing:.04em; padding:4px 10px 4px 8px; border-radius:100px; white-space:nowrap; display:flex; align-items:center; gap:5px; box-shadow:0 2px 8px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.07); transition:background .25s ease,transform .2s cubic-bezier(.25,.46,.45,.94); }
-    .cursor-label-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+    .cursor-label-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; overflow:hidden; transition:width .25s cubic-bezier(.4,0,.2,1),opacity .25s cubic-bezier(.4,0,.2,1); }
+    .cursor-label-face { width:0; height:20px; border-radius:50%; object-fit:cover; flex-shrink:0; opacity:0; overflow:hidden; pointer-events:none; border:1.5px solid rgba(255,255,255,.45); transition:width .3s cubic-bezier(.4,0,.2,1),opacity .3s cubic-bezier(.4,0,.2,1); }
+    .cursor-label-text { transition:opacity .15s ease; }
+    .cursor-label-text.fading { opacity:0; }
     body.is-hovering .cursor-arrow { transform:rotate(-12deg) scale(.92); }
     body.is-hovering .cursor-label { background:var(--accent); color:#fff; }
-    body.is-hovering .cursor-label-dot { background:rgba(255,255,255,.6); }
+    body.is-hovering .cursor-label-dot { width:0; opacity:0; }
+    body.is-hovering .cursor-label-face { width:20px; opacity:1; }
 
     /* NAV */
     nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:22px 44px; display:flex; justify-content:space-between; align-items:center; transition:padding .45s cubic-bezier(.4,0,.2,1),top .45s cubic-bezier(.4,0,.2,1),left .45s cubic-bezier(.4,0,.2,1),right .45s cubic-bezier(.4,0,.2,1),border-radius .45s cubic-bezier(.4,0,.2,1),background .4s ease,backdrop-filter .4s ease,box-shadow .4s ease; }
@@ -204,7 +208,8 @@
   </div>
   <div class="cursor-label">
     <span class="cursor-label-dot"></span>
-    <span>Guest</span>
+    <img class="cursor-label-face" src="favicon.png" alt="">
+    <span class="cursor-label-text">Guest</span>
   </div>
 </div>
 
@@ -521,8 +526,16 @@
     document.addEventListener('mouseleave',()=>cursorEl.style.opacity='0');
     document.addEventListener('mouseenter',()=>cursorEl.style.opacity='1');
     document.querySelectorAll('a,button,.cs-finding,.cs-result-card,.cs-flow-col').forEach(el=>{
-      el.addEventListener('mouseenter',()=>document.body.classList.add('is-hovering'));
-      el.addEventListener('mouseleave',()=>document.body.classList.remove('is-hovering'));
+      el.addEventListener('mouseenter',()=>{
+        document.body.classList.add('is-hovering');
+        const t=document.querySelector('.cursor-label-text');
+        if(t){t.classList.add('fading');setTimeout(()=>{t.textContent='click me!';t.classList.remove('fading');},150);}
+      });
+      el.addEventListener('mouseleave',()=>{
+        document.body.classList.remove('is-hovering');
+        const t=document.querySelector('.cursor-label-text');
+        if(t){t.classList.add('fading');setTimeout(()=>{t.textContent='Guest';t.classList.remove('fading');},150);}
+      });
     });
   }
 

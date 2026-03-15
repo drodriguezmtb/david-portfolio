@@ -136,9 +136,27 @@
       border-radius: 50%;
       background: #FF3D00;
       flex-shrink: 0;
+      overflow: hidden;
+      transition: width 0.25s cubic-bezier(.4,0,.2,1), opacity 0.25s cubic-bezier(.4,0,.2,1);
     }
+    .cursor-label-face {
+      width: 0;
+      height: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+      border: 1.5px solid rgba(255,255,255,0.45);
+      transition: width 0.3s cubic-bezier(.4,0,.2,1), opacity 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    #cursorLabelText {
+      transition: opacity 0.15s ease;
+    }
+    #cursorLabelText.fading { opacity: 0; }
 
-    /* Hover state — arrow tilts slightly, label flushes accent */
+    /* Hover state — face replaces dot, pill goes red */
     body.is-hovering .cursor-arrow {
       transform: rotate(-12deg) scale(0.92);
     }
@@ -147,7 +165,12 @@
       color: #fff;
     }
     body.is-hovering .cursor-label-dot {
-      background: rgba(255,255,255,0.6);
+      width: 0;
+      opacity: 0;
+    }
+    body.is-hovering .cursor-label-face {
+      width: 20px;
+      opacity: 1;
     }
 
     /* ============================================
@@ -800,6 +823,7 @@
     </div>
     <div class="cursor-label" id="cursorLabel">
       <span class="cursor-label-dot"></span>
+      <img class="cursor-label-face" src="favicon.png" alt="">
       <span id="cursorLabelText">Guest</span>
     </div>
   </div>
@@ -1351,8 +1375,16 @@
 
     // Hover states — interactive targets
     document.querySelectorAll('a, button, .pcard, .skill-pill').forEach(el => {
-      el.addEventListener('mouseenter', () => document.body.classList.add('is-hovering'));
-      el.addEventListener('mouseleave', () => document.body.classList.remove('is-hovering'));
+      el.addEventListener('mouseenter', () => {
+        document.body.classList.add('is-hovering');
+        const t = document.getElementById('cursorLabelText');
+        if (t) { t.classList.add('fading'); setTimeout(() => { t.textContent = 'click me!'; t.classList.remove('fading'); }, 150); }
+      });
+      el.addEventListener('mouseleave', () => {
+        document.body.classList.remove('is-hovering');
+        const t = document.getElementById('cursorLabelText');
+        if (t) { t.classList.add('fading'); setTimeout(() => { t.textContent = 'Guest'; t.classList.remove('fading'); }, 150); }
+      });
     });
   }
 
