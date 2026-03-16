@@ -100,14 +100,14 @@
         backdrop-filter .4s ease, box-shadow .4s ease;
     }
     nav.scrolled {
-      top:16px; left:5%; right:5%; padding:14px 28px; border-radius:100px;
+      top:16px; left:44px; right:44px; padding:14px 28px; border-radius:100px;
       background:rgba(12,12,11,.80);
       backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-      box-shadow:0 4px 24px rgba(0,0,0,.25), inset 0 0 0 1px rgba(237,237,232,.08);
+      box-shadow:0 4px 24px rgba(0,0,0,.25);
     }
     [data-theme="light"] nav.scrolled {
       background:rgba(240,237,229,.85);
-      box-shadow:0 4px 24px rgba(0,0,0,.10), inset 0 0 0 1px rgba(12,12,11,.08);
+      box-shadow:0 4px 24px rgba(0,0,0,.10);
     }
     .nav-logo { font-family:'Syne',sans-serif; font-size:15px; font-weight:800; letter-spacing:-.02em; }
     .nav-right { display:flex; align-items:center; gap:28px; }
@@ -153,12 +153,6 @@
     .cs-hero-blob {
       position:absolute; border-radius:50%; filter:blur(80px); opacity:.35;
     }
-    .cs-breadcrumb {
-      position:relative; z-index:1;
-      font-size:11px; letter-spacing:.12em; text-transform:uppercase;
-      color:var(--muted); margin-bottom:20px; overflow:hidden;
-    }
-    .cs-breadcrumb span { display:inline-block; transform:translateY(110%); }
     .cs-hero-number {
       position:absolute; top:50%; right:44px; transform:translateY(-50%);
       font-family:'Inter',sans-serif; font-size:clamp(100px,16vw,220px);
@@ -418,8 +412,6 @@
     <div class="cs-hero-blob" style="width:300px;height:300px;bottom:60px;left:-80px;background:#001209;opacity:.2;"></div>
     <span class="cs-hero-number">02</span>
 
-    <div class="cs-breadcrumb"><span>Portfolio → Work</span></div>
-
     <div class="cs-title-wrap">
       <p class="cs-company">Gymondo</p>
       <h1 class="cs-title">
@@ -526,16 +518,8 @@
           </div>
         </div>
         
-    <div class="cs-visual tall" style="">
-      <div class="cs-visual-inner" style="background:linear-gradient(145deg,#001209,#006B28);">
-        <div style="position:absolute;width:220px;height:220px;border-radius:50%;background:#22C55E;opacity:0.25;filter:blur(0px);pointer-events:none;top:-30px;right:-30px;"></div><div style="position:absolute;width:140px;height:140px;border-radius:50%;background:#86EFAC;opacity:0.12;filter:blur(0px);pointer-events:none;bottom:20px;left:20px;"></div>
-        
-      <div style="position:absolute;width:60%;height:8px;background:rgba(255,255,255,.1);border-radius:4px;top:38%;left:20%;"></div>
-      <div style="position:absolute;width:40%;height:8px;background:rgba(255,255,255,.07);border-radius:4px;top:48%;left:20%;"></div>
-      <div style="position:absolute;width:25%;height:6px;background:rgba(255,255,255,.05);border-radius:3px;top:57%;left:20%;"></div>
-    
-        <div class="cs-visual-label">Benchmark research board</div>
-      </div>
+    <div class="cs-visual" style="margin-top:48px;">
+      <img src="images/gp-benchmark.jpg" alt="Benchmark — competitor subscription screen research" style="width:100%;display:block;border-radius:16px;" />
     </div>
 
       </div>
@@ -551,16 +535,8 @@
         <p>This shift from <strong>"pay to enter"</strong> to <strong>"pay to unlock more"</strong> fundamentally changed the conversion psychology.</p>
       </div>
       
-    <div class="cs-visual full" style="margin-top:48px;">
-      <div class="cs-visual-inner" style="background:linear-gradient(145deg,#001A08,#005520);">
-        <div style="position:absolute;width:280px;height:280px;border-radius:50%;background:#16A34A;opacity:0.2;filter:blur(0px);pointer-events:none;top:-60px;right:-60px;"></div><div style="position:absolute;width:180px;height:180px;border-radius:50%;background:#4ADE80;opacity:0.1;filter:blur(0px);pointer-events:none;bottom:30px;left:40px;"></div>
-        
-      <div style="position:absolute;width:60%;height:8px;background:rgba(255,255,255,.1);border-radius:4px;top:38%;left:20%;"></div>
-      <div style="position:absolute;width:40%;height:8px;background:rgba(255,255,255,.07);border-radius:4px;top:48%;left:20%;"></div>
-      <div style="position:absolute;width:25%;height:6px;background:rgba(255,255,255,.05);border-radius:3px;top:57%;left:20%;"></div>
-    
-        <div class="cs-visual-label">New user flow diagram</div>
-      </div>
+    <div class="cs-visual" style="margin-top:48px;">
+      <img src="images/gp-userflow.jpg" alt="New user flow — Go Premium removed from onboarding" style="width:100%;display:block;border-radius:16px;" />
     </div>
 
     </div>
@@ -609,16 +585,8 @@
         </div>
       </div>
       
-    <div class="cs-visual full" style="margin-top:48px;">
-      <div class="cs-visual-inner" style="background:linear-gradient(145deg,#001A08,#006B28);">
-        <div style="position:absolute;width:260px;height:260px;border-radius:50%;background:#22C55E;opacity:0.2;filter:blur(0px);pointer-events:none;top:-40px;right:-40px;"></div><div style="position:absolute;width:160px;height:160px;border-radius:50%;background:#86EFAC;opacity:0.1;filter:blur(0px);pointer-events:none;bottom:40px;left:60px;"></div>
-        
-      <div style="position:absolute;width:60%;height:8px;background:rgba(255,255,255,.1);border-radius:4px;top:38%;left:20%;"></div>
-      <div style="position:absolute;width:40%;height:8px;background:rgba(255,255,255,.07);border-radius:4px;top:48%;left:20%;"></div>
-      <div style="position:absolute;width:25%;height:6px;background:rgba(255,255,255,.05);border-radius:3px;top:57%;left:20%;"></div>
-    
-        <div class="cs-visual-label">A/B test variants side by side</div>
-      </div>
+    <div class="cs-visual" style="margin-top:48px;">
+      <img src="images/gp-abtest.jpg" alt="A/B test — Variant A vs Variant B side by side" style="width:100%;display:block;border-radius:16px;" />
     </div>
 
     </div>
@@ -668,7 +636,7 @@
 
   <footer class="cs-footer">
     <p>© 2026 David Rodriguez</p>
-    <p><a href="caixabank.html" style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:color .3s;display:flex;align-items:center;gap:6px;" onmouseenter="this.style.color='var(--fg)'" onmouseleave="this.style.color='var(--muted)'">← Prev</a></p>
+    <p></p>
   </footer>
 
   </main>
@@ -725,7 +693,6 @@
   function initAnim() {
     // Hero title lines
     gsap.to('.cs-title .tl span', { y:0, duration:1, stagger:.1, ease:'power3.out', delay:.05 });
-    gsap.to('.cs-breadcrumb span', { y:0, duration:.75, ease:'power3.out', delay:.4 });
     gsap.to('.cs-meta-strip', { opacity:1, y:0, duration:.7, ease:'power2.out', delay:.6 });
     gsap.to('.scroll-hint', { opacity:1, duration:.5, delay:1.1 });
 

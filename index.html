@@ -232,18 +232,18 @@
     }
     nav.scrolled {
       top: 16px;
-      left: 5%;
-      right: 5%;
+      left: 44px;
+      right: 44px;
       padding: 14px 28px;
       border-radius: 100px;
       background: rgba(12,12,11,0.80);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(237,237,232,0.08);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
     }
     [data-theme="light"] nav.scrolled {
       background: rgba(240,237,229,0.85);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.10), inset 0 0 0 1px rgba(12,12,11,0.08);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
     }
     .nav-logo {
       font-family: 'Syne', sans-serif;
@@ -383,7 +383,7 @@
     /* Scroll line */
     .scroll-hint {
       position: absolute;
-      bottom: 56px; right: 44px;
+      top: 110px; right: 44px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -819,6 +819,7 @@
       #hero { padding: 0 24px max(40px, calc(40px + env(safe-area-inset-bottom))); }
       .hero-bottom { flex-direction: column; align-items: flex-start; }
       .hero-right { align-items: flex-start; }
+      .scroll-hint { top: auto; bottom: 56px; }
       #work, #about, #contact { padding: 80px 24px; }
       .s-header { margin-bottom: 40px; }
       .pcard-inner { grid-template-columns: 1fr; }
@@ -991,7 +992,7 @@
         <div class="pcard-inner">
           <div class="pcard-info">
             <div class="pcard-top">
-              <span class="pnum">02</span>
+              <span class="pnum">01</span>
               <div class="tags">
                 <span class="tag">Conversion</span>
                 <span class="tag">A/B Testing</span>
@@ -1031,7 +1032,7 @@
         <div class="pcard-inner">
           <div class="pcard-info">
             <div class="pcard-top">
-              <span class="pnum">03</span>
+              <span class="pnum">02</span>
               <div class="tags">
                 <span class="tag">New Feature</span>
                 <span class="tag">Retention</span>
@@ -1112,7 +1113,7 @@
         <div class="pcard-inner">
           <div class="pcard-info">
             <div class="pcard-top">
-              <span class="pnum">05</span>
+              <span class="pnum">03</span>
               <div class="tags">
                 <span class="tag">Onboarding</span>
                 <span class="tag">UX Research</span>
@@ -1152,7 +1153,7 @@
         <div class="pcard-inner">
           <div class="pcard-info">
             <div class="pcard-top">
-              <span class="pnum">06</span>
+              <span class="pnum">04</span>
               <div class="tags">
                 <span class="tag">Retention</span>
                 <span class="tag">Gamification</span>
@@ -1192,7 +1193,7 @@
         <div class="pcard-inner">
           <div class="pcard-info">
             <div class="pcard-top">
-              <span class="pnum">07</span>
+              <span class="pnum">05</span>
               <div class="tags">
                 <span class="tag">Growth</span>
                 <span class="tag">A/B Testing</span>
