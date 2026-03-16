@@ -136,50 +136,30 @@
       border-radius: 50%;
       background: #FF3D00;
       flex-shrink: 0;
-      overflow: hidden;
-      transition: width 0.25s cubic-bezier(.4,0,.2,1), opacity 0.25s cubic-bezier(.4,0,.2,1);
     }
-    .cursor-label-face {
-      width: 0;
-      height: 20px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-      opacity: 0;
-      overflow: hidden;
-      pointer-events: none;
-      border: 1.5px solid rgba(255,255,255,0.45);
-      transition: width 0.3s cubic-bezier(.4,0,.2,1), opacity 0.3s cubic-bezier(.4,0,.2,1);
+    
+    @keyframes pill-bounce {
+      0%   { transform: scale(1,1); }
+      18%  { transform: scale(1.14,0.86); }
+      38%  { transform: scale(0.93,1.07); }
+      58%  { transform: scale(1.05,0.96); }
+      78%  { transform: scale(0.98,1.02); }
+      100% { transform: scale(1,1); }
     }
-    #cursorLabelText {
-      transition: opacity 0.15s ease;
-    }
-    #cursorLabelText.fading { opacity: 0; }
+    #cursorLabelText { transition: opacity 0.12s ease; }
 
-    /* Hover state — face replaces dot, pill goes red */
-    .cursor-arrow path {
-      transition: fill 0.25s ease, stroke 0.25s ease;
-    }
+    /* Hover state — arrow tilts, pill bounces red */
     body.is-hovering .cursor-arrow {
       transform: rotate(-12deg) scale(0.92);
-    }
-    body.is-hovering .cursor-arrow path {
-      fill: #FF3D00;
-      stroke: rgba(0,0,0,0.25);
     }
     body.is-hovering .cursor-label {
       background: #FF3D00;
       color: #fff;
+      animation: pill-bounce 0.42s cubic-bezier(.36,.07,.19,.97);
     }
     body.is-hovering .cursor-label-dot {
-      width: 0;
-      opacity: 0;
+      background: rgba(255,255,255,0.6);
     }
-    body.is-hovering .cursor-label-face {
-      width: 20px;
-      opacity: 1;
-    }
-
     /* ============================================
        PRELOADER
     ============================================ */
@@ -830,8 +810,7 @@
     </div>
     <div class="cursor-label" id="cursorLabel">
       <span class="cursor-label-dot"></span>
-      <img class="cursor-label-face" src="favicon.png" alt="">
-      <span id="cursorLabelText">Guest</span>
+            <span id="cursorLabelText">Guest</span>
     </div>
   </div>
 
@@ -864,7 +843,7 @@
 
     <div class="hero-bottom">
       <p class="hero-desc">
-        <span>Barcelona-born, Berlin-based. Crafting digital products that earn awards and retain users — from banking apps to fitness platforms.</span>
+        <span>Barcelona raised, Berlin based. I design products that move metrics and hold up under scrutiny. Eight years across banking, fitness, streaming and food tech.</span>
       </p>
       <div class="hero-right">
         <div class="pill available"><span class="pill-dot"></span>Available for work</div>
@@ -1010,7 +989,7 @@
             </div>
             <div class="pcard-mid">
               <p class="pcompany">Gymondo</p>
-              <h3 class="pname">Challenges Feature</h3>
+              <h3 class="pname">Challenges System</h3>
               <p class="pyear">2021 — 2022 · Berlin</p>
             </div>
             <div class="pmetrics">
@@ -1020,7 +999,7 @@
               </div>
               <div class="pmetric">
                 <span class="pm-val">5</span>
-                <span class="pm-label">User test sessions run</span>
+                <span class="pm-label">Usability test sessions</span>
               </div>
             </div>
           </div>
@@ -1056,7 +1035,7 @@
             <div class="pmetrics">
               <div class="pmetric">
                 <span class="pm-val">D2C<br>B2B</span>
-                <span class="pm-label">Two product streams led</span>
+                <span class="pm-label">Two product tracks, one team</span>
               </div>
               <div class="pmetric">
                 <span class="pm-val">React</span>
@@ -1205,17 +1184,17 @@
   <section id="about">
     <div class="s-header">
       <div>
-        <p class="s-label">Who I Am</p>
+        <p class="s-label">The short version</p>
         <h2 class="s-title">About</h2>
       </div>
     </div>
 
     <div class="about-grid">
       <div class="about-bio">
-        <p>I'm a <strong>Senior Product Designer</strong> originally from <em>Barcelona</em>, currently living and working in <em>Berlin</em>.</p>
-        <p>Over the past decade I've worked across agencies, consultancies and in-house product teams — from crafting a <em>multi-award-winning banking app</em> for millions of CaixaBank users, to growing retention at fitness and streaming platforms.</p>
-        <p>I work across the <strong>full product lifecycle</strong>: user research, interaction design, design systems, prototyping, A/B testing, and close collaboration with engineering. I thrive in cross-functional teams where design, product and code are in constant dialogue.</p>
-        <p>I'm also a <em>Young Jury member at Awwwards</em> since December 2018, staying close to the pulse of interaction design and digital craft.</p>
+        <p>Eight years in product design, working from Barcelona agencies to Berlin startups. I've shipped work for banks, fitness platforms, a streaming service and a food tech app with over 2 million users.</p>
+        <p>My process is research-first. I want to understand why users behave the way they do before I open Figma.</p>
+        <p>I'm comfortable owning the full design scope, from early research to shipped components. I like working in teams where decisions get debated properly, not just handed down.</p>
+        <p>I've also been on the Awwwards Young Jury since 2018.</p>
       </div>
 
       <div class="about-side">
@@ -1312,12 +1291,12 @@
 
   <!-- ==================== CONTACT ==================== -->
   <section id="contact">
-    <p class="s-label">Let's Connect</p>
+    <p class="s-label">Get in touch</p>
 
     <div class="contact-headline">
-      <span class="tl"><span>Say hello —</span></span>
+      <span class="tl"><span>I care about</span></span>
       <span class="tl">
-        <span><a href="mailto:heeeydavidrodriguez@gmail.com">get in touch.</a></span>
+        <span><a href="mailto:heeeydavidrodriguez@gmail.com" data-cursor="hi">the work. Let's talk about yours.</a></span>
       </span>
     </div>
 
@@ -1327,10 +1306,10 @@
         <p>Berlin, Germany</p>
       </div>
       <div class="cf-right">
-        <a href="mailto:heeeydavidrodriguez@gmail.com">Email</a>
-        <a href="https://www.linkedin.com/in/david-rodriguez-product-designer/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://dribbble.com/dvdrod" target="_blank" rel="noopener">Dribbble</a>
-        <a href="https://dvdrod.gumroad.com/" target="_blank" rel="noopener">Gumroad</a>
+        <a href="mailto:heeeydavidrodriguez@gmail.com" data-cursor="hi">Email</a>
+        <a href="https://www.linkedin.com/in/david-rodriguez-product-designer/" target="_blank" rel="noopener" data-cursor="hi">LinkedIn</a>
+        <a href="https://dribbble.com/dvdrod" target="_blank" rel="noopener" data-cursor="hi">Dribbble</a>
+        <a href="https://dvdrod.gumroad.com/" target="_blank" rel="noopener" data-cursor="hi">Gumroad</a>
       </div>
     </div>
 
@@ -1385,12 +1364,18 @@
       el.addEventListener('mouseenter', () => {
         document.body.classList.add('is-hovering');
         const t = document.getElementById('cursorLabelText');
-        if (t) { t.classList.add('fading'); setTimeout(() => { t.textContent = 'Click me!'; t.classList.remove('fading'); }, 150); }
+        if (t && el.dataset.cursor === 'hi') {
+          t.style.opacity = '0';
+          setTimeout(() => { t.textContent = 'Say hi! 👋'; t.style.opacity = '1'; }, 120);
+        }
       });
       el.addEventListener('mouseleave', () => {
         document.body.classList.remove('is-hovering');
         const t = document.getElementById('cursorLabelText');
-        if (t) { t.classList.add('fading'); setTimeout(() => { t.textContent = 'Guest'; t.classList.remove('fading'); }, 150); }
+        if (t && t.textContent !== 'Guest') {
+          t.style.opacity = '0';
+          setTimeout(() => { t.textContent = 'Guest'; t.style.opacity = '1'; }, 120);
+        }
       });
     });
   }
