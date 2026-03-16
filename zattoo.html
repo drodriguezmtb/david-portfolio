@@ -63,6 +63,15 @@
 
     /* ── CURSOR ── */
     .cursor { position:fixed; top:0; left:0; pointer-events:none; z-index:9999; will-change:transform; opacity:0; }
+
+    @keyframes pill-bounce {
+      0%   { transform: scale(1,1); }
+      18%  { transform: scale(1.14,0.86); }
+      38%  { transform: scale(0.93,1.07); }
+      58%  { transform: scale(1.05,0.96); }
+      78%  { transform: scale(0.98,1.02); }
+      100% { transform: scale(1,1); }
+    }
     .cursor-arrow { position:absolute; top:0; left:0; width:22px; height:26px;
       filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));
       transition:transform .2s cubic-bezier(.25,.46,.45,.94); }
@@ -77,17 +86,10 @@
       box-shadow:0 2px 8px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.07);
       transition:background .25s ease,transform .2s cubic-bezier(.25,.46,.45,.94);
     }
-    .cursor-label-dot { width:6px; height:6px; border-radius:50%; background:#FF3D00; flex-shrink:0; overflow:hidden; transition:width .25s cubic-bezier(.4,0,.2,1),opacity .25s cubic-bezier(.4,0,.2,1); }
-    .cursor-label-face { width:0; height:20px; border-radius:50%; object-fit:cover; flex-shrink:0; opacity:0; overflow:hidden; pointer-events:none; border:1.5px solid rgba(255,255,255,.45); transition:width .3s cubic-bezier(.4,0,.2,1),opacity .3s cubic-bezier(.4,0,.2,1); }
-    .cursor-label-text { transition:opacity .15s ease; }
-    .cursor-label-text.fading { opacity:0; }
-    .cursor-arrow path { transition:fill .25s ease,stroke .25s ease; }
+    .cursor-label-dot { width:6px; height:6px; border-radius:50%; background:#FF3D00; flex-shrink:0; }
     body.is-hovering .cursor-arrow { transform:rotate(-12deg) scale(.92); }
-    body.is-hovering .cursor-arrow path { fill:#FF3D00; stroke:rgba(0,0,0,.25); }
-    body.is-hovering .cursor-label { background:#FF3D00; color:#fff; }
-    body.is-hovering .cursor-label-dot { width:0; opacity:0; }
-    body.is-hovering .cursor-label-face { width:20px; opacity:1; }
-
+    body.is-hovering .cursor-label { background:#FF3D00; color:#fff; animation:pill-bounce 0.42s cubic-bezier(.36,.07,.19,.97); }
+    body.is-hovering .cursor-label-dot { background:rgba(255,255,255,.6); }
     /* ── NAV ── */
     nav {
       position:fixed; top:0; left:0; right:0; z-index:200;
@@ -159,7 +161,7 @@
     .cs-breadcrumb span { display:inline-block; transform:translateY(110%); }
     .cs-hero-number {
       position:absolute; top:50%; right:44px; transform:translateY(-50%);
-      font-family:'Syne',sans-serif; font-size:clamp(100px,16vw,220px);
+      font-family:'Inter',sans-serif; font-size:clamp(100px,16vw,220px);
       font-weight:800; letter-spacing:-.05em; line-height:1;
       color:transparent; -webkit-text-stroke:1px var(--border);
       pointer-events:none; user-select:none; z-index:0;
@@ -167,7 +169,7 @@
     .cs-title-wrap { position:relative; z-index:1; margin-bottom:48px; }
     .cs-company { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
     .cs-title {
-      font-family:'Syne',sans-serif;
+      font-family:'Inter',sans-serif;
       font-size:clamp(52px,9vw,130px);
       font-weight:800; letter-spacing:-.045em; line-height:.9;
     }
@@ -184,7 +186,7 @@
     }
     .cs-meta-item:last-child { border-right:none; }
     .cs-meta-label { font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
-    .cs-meta-value { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; letter-spacing:-.01em; }
+    .cs-meta-value { font-family:'Inter',sans-serif; font-size:13px; font-weight:700; letter-spacing:-.01em; }
 
     /* ── CASE STUDY: SECTIONS ── */
     .cs-section { padding:100px 44px; border-top:1px solid var(--border); }
@@ -195,7 +197,7 @@
     }
     .cs-section-label::after { content:''; flex:1; height:1px; background:var(--border); }
     .cs-section-title {
-      font-family:'Syne',sans-serif;
+      font-family:'Inter',sans-serif;
       font-size:clamp(32px,4.5vw,60px);
       font-weight:800; letter-spacing:-.035em; line-height:1.05;
       margin-bottom:32px; max-width:760px;
@@ -222,7 +224,7 @@
     }
     .cs-finding:hover { border-color:rgba(237,237,232,.25); }
     .cs-finding-icon { font-size:22px; margin-bottom:12px; }
-    .cs-finding-title { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; margin-bottom:8px; }
+    .cs-finding-title { font-family:'Inter',sans-serif; font-size:16px; font-weight:700; margin-bottom:8px; }
     .cs-finding-text { font-size:13px; color:var(--muted); line-height:1.6; }
 
     /* Steps list */
@@ -232,11 +234,11 @@
       align-items:baseline;
     }
     .cs-step-num {
-      font-family:'Syne',sans-serif; font-size:11px; font-weight:700;
+      font-family:'Inter',sans-serif; font-size:11px; font-weight:700;
       color:var(--muted); letter-spacing:.08em; flex-shrink:0; width:28px;
     }
     .cs-step-content { flex:1; }
-    .cs-step-title { font-family:'Syne',sans-serif; font-size:17px; font-weight:700; margin-bottom:6px; }
+    .cs-step-title { font-family:'Inter',sans-serif; font-size:17px; font-weight:700; margin-bottom:6px; }
     .cs-step-text { font-size:14px; color:var(--muted); line-height:1.6; }
 
     /* ── METRICS BAND ── */
@@ -249,7 +251,7 @@
     }
     .cs-metric:last-child { border-right:none; }
     .cs-metric-val {
-      font-family:'Syne',sans-serif; font-size:clamp(40px,5vw,64px);
+      font-family:'Inter',sans-serif; font-size:clamp(40px,5vw,64px);
       font-weight:800; letter-spacing:-.04em; color:var(--accent); line-height:1;
       margin-bottom:8px;
     }
@@ -303,7 +305,7 @@
     .cs-next-label { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; }
     .cs-next-inner { display:flex; justify-content:space-between; align-items:center; gap:24px; }
     .cs-next-name {
-      font-family:'Syne',sans-serif; font-size:clamp(32px,5vw,72px);
+      font-family:'Inter',sans-serif; font-size:clamp(32px,5vw,72px);
       font-weight:800; letter-spacing:-.04em; line-height:.95;
       transition:color .3s;
     }
@@ -323,7 +325,7 @@
       background:var(--bg2); border-radius:0 12px 12px 0;
     }
     .cs-quote p {
-      font-family:'Syne',sans-serif; font-size:clamp(20px,2.5vw,30px);
+      font-family:'Inter',sans-serif; font-size:clamp(20px,2.5vw,30px);
       font-weight:700; letter-spacing:-.02em; line-height:1.35; color:var(--fg);
     }
 
@@ -333,7 +335,7 @@
       background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:32px;
     }
     .cs-result-val {
-      font-family:'Syne',sans-serif; font-size:clamp(36px,4.5vw,56px);
+      font-family:'Inter',sans-serif; font-size:clamp(36px,4.5vw,56px);
       font-weight:800; letter-spacing:-.04em; color:var(--accent); line-height:1; margin-bottom:10px;
     }
     .cs-result-label { font-size:13px; color:var(--muted); line-height:1.5; }
@@ -386,8 +388,7 @@
     </div>
     <div class="cursor-label">
       <span class="cursor-label-dot"></span>
-      <img class="cursor-label-face" src="favicon.png" alt="">
-      <span class="cursor-label-text">Guest</span>
+            <span>Guest</span>
     </div>
   </div>
 
@@ -667,16 +668,8 @@
     document.addEventListener('mouseleave', () => cursorEl.style.opacity = '0');
     document.addEventListener('mouseenter', () => cursorEl.style.opacity = '1');
     document.querySelectorAll('a,button,.cs-finding,.cs-result-card').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        document.body.classList.add('is-hovering');
-        const t = document.querySelector('.cursor-label-text');
-        if (t) { t.classList.add('fading'); setTimeout(() => { t.textContent = 'Click me!'; t.classList.remove('fading'); }, 150); }
-      });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('is-hovering');
-        const t = document.querySelector('.cursor-label-text');
-        if (t) { t.classList.add('fading'); setTimeout(() => { t.textContent = 'Guest'; t.classList.remove('fading'); }, 150); }
-      });
+      el.addEventListener('mouseenter', () => document.body.classList.add('is-hovering'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('is-hovering'));
     });
   }
 

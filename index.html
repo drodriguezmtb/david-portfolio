@@ -13,7 +13,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>David Rodriguez — Senior Product Designer</title>
-  <meta name="description" content="Senior Product Designer from Barcelona, based in Berlin. Crafting digital products that matter." />
+  <meta name="description" content="Senior Product Designer based in Berlin. Eight years across banking, fitness, streaming and food tech. Currently available." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://drodriguezmtb.github.io/david-portfolio/" />
+  <meta property="og:title"       content="David Rodriguez — Senior Product Designer" />
+  <meta property="og:description" content="Senior Product Designer based in Berlin. Eight years across banking, fitness, streaming and food tech. Currently available." />
+  <meta property="og:image"       content="https://drodriguezmtb.github.io/david-portfolio/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="David Rodriguez — Senior Product Designer" />
+  <meta name="twitter:description" content="Senior Product Designer based in Berlin. Eight years across banking, fitness, streaming and food tech. Currently available." />
+  <meta name="twitter:image"       content="https://drodriguezmtb.github.io/david-portfolio/og-image.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -424,7 +438,7 @@
       padding: 0 28px;
       display: inline-flex;
       align-items: center;
-      gap: 28px;
+      gap: 56px;
     }
     .mq-item::after { content: '✦'; font-size: 7px; }
     @keyframes mq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
@@ -435,7 +449,7 @@
     .s-header {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
       padding-bottom: 20px;
       border-bottom: 1px solid var(--border);
       margin-bottom: 64px;
@@ -460,6 +474,28 @@
       font-weight: 700;
       color: var(--muted);
     }
+    .cv-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      align-self: flex-end;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 7px 15px;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      cursor: none;
+    }
+    .cv-btn:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+    .cv-btn:hover svg { stroke: var(--bg); transform: translateY(2px); }
+    .cv-btn svg { flex-shrink: 0; transition: stroke 0.3s ease, transform 0.3s ease; }
 
     /* ============================================
        WORK
@@ -526,7 +562,7 @@
       margin-bottom: 8px;
     }
     .pname {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(28px, 3.5vw, 50px);
       font-weight: 800;
       letter-spacing: -0.03em;
@@ -614,7 +650,6 @@
     ============================================ */
     #about {
       padding: 120px 44px;
-      border-top: 1px solid var(--border);
     }
     .about-grid {
       display: grid;
@@ -693,7 +728,6 @@
     ============================================ */
     #contact {
       padding: 120px 44px 80px;
-      border-top: 1px solid var(--border);
     }
     .contact-headline {
       font-family: 'Syne', sans-serif;
@@ -727,9 +761,25 @@
       justify-content: space-between;
       align-items: flex-end;
       padding-top: 36px;
-      border-top: 1px solid var(--border);
     }
+    .cf-left { display: flex; flex-direction: column; }
+    .cf-email-row { display: flex; align-items: center; gap: 8px; }
     .cf-left p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      padding: 2px;
+      cursor: none;
+      color: var(--muted);
+      opacity: 0;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+    .cf-email-row:hover .copy-btn { opacity: 1; }
+    .copy-btn:hover { color: var(--fg); }
+    .copy-btn.copied { color: #00C96B; opacity: 1; }
     .cf-right {
       display: flex;
       gap: 24px;
@@ -891,13 +941,13 @@
         <p class="s-label">Selected Projects</p>
         <h2 class="s-title">Work</h2>
       </div>
-      <span class="s-count">07</span>
+      <span class="s-count">05</span>
     </div>
 
     <div class="projects">
 
-      <!-- 01 — CaixaBank -->
-      <article class="pcard p-caixabank" data-index="0" onclick="window.location='caixabank.html'" style="cursor:none;">
+      <!-- 01 — CaixaBank (hidden — re-enable by removing 'hidden') -->
+      <article class="pcard p-caixabank" data-index="0" onclick="window.location='caixabank.html'" style="cursor:none;" hidden>
         <div class="pcard-inner">
           <div class="pcard-info">
             <div class="pcard-top">
@@ -1016,8 +1066,8 @@
         </div>
       </article>
 
-      <!-- 04 — Zattoo -->
-      <article class="pcard p-zattoo" data-index="3" onclick="window.location='zattoo.html'" style="cursor:none;">
+      <!-- 04 — Zattoo (hidden — re-enable by removing 'hidden') -->
+      <article class="pcard p-zattoo" data-index="3" onclick="window.location='zattoo.html'" style="cursor:none;" hidden>
         <div class="pcard-inner">
           <div class="pcard-info">
             <div class="pcard-top">
@@ -1187,14 +1237,20 @@
         <p class="s-label">My story</p>
         <h2 class="s-title">About</h2>
       </div>
+      <a href="CV_David_Rodriguez.pdf" target="_blank" rel="noopener" class="cv-btn">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 1v7M3 5.5l3 3 3-3M1 10h10"/>
+        </svg>
+        Download CV
+      </a>
     </div>
 
     <div class="about-grid">
       <div class="about-bio">
-        <p><strong>Eight years in product design</strong>, working from Barcelona agencies to Berlin startups. I've shipped work for banks, fitness platforms, a streaming service and a food tech app with <strong>over 2 million users</strong>.</p>
-        <p>My process is <strong>research-first</strong>. I want to understand why users behave the way they do before I open Figma.</p>
-        <p>I'm comfortable owning the <strong>full design scope</strong>, from early research to shipped components. I like working in teams where decisions get debated properly, not just handed down.</p>
-        <p>I've also been on the <strong>Awwwards Young Jury</strong> since 2018.</p>
+        <p><strong>Eight years in product design</strong>, working from Barcelona agencies to Berlin startups. I've shipped work for banks, fitness platforms, a streaming service and a food tech app with over 2 million users.</p>
+        <p><strong>My process is research-first.</strong> I want to understand why users behave the way they do before I open Figma.</p>
+        <p><strong>I'm comfortable owning the full design scope,</strong> from early research to shipped components. I like working in teams where decisions get debated properly, not just handed down.</p>
+        <p>I've also been on the <strong>Awwwards Young Jury since 2018.</strong></p>
       </div>
 
       <div class="about-side">
@@ -1294,15 +1350,23 @@
     <p class="s-label">Get in touch</p>
 
     <div class="contact-headline">
-      <span class="tl"><span>I care about</span></span>
+      <span class="tl"><span>Say hi!</span></span>
       <span class="tl">
-        <span><a href="mailto:heeeydavidrodriguez@gmail.com" data-cursor="hi">the work. Let's talk about yours.</a></span>
+        <span><a href="mailto:heeeydavidrodriguez@gmail.com" data-cursor="hi">Let's talk.</a></span>
       </span>
     </div>
 
     <div class="contact-footer">
       <div class="cf-left">
-        <p>heeeydavidrodriguez@gmail.com</p>
+        <div class="cf-email-row">
+          <p>heeeydavidrodriguez@gmail.com</p>
+          <button class="copy-btn" id="copyEmailBtn" aria-label="Copy email address">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4.5" y="4.5" width="7" height="7" rx="1.2"/>
+              <path d="M1.5 8.5V2.5a1 1 0 0 1 1-1h6"/>
+            </svg>
+          </button>
+        </div>
         <p>Berlin, Germany</p>
       </div>
       <div class="cf-right">
@@ -1512,6 +1576,21 @@
       }
     });
   });
+
+  /* ---- COPY EMAIL ---- */
+  const copyBtn = document.getElementById('copyEmailBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText('heeeydavidrodriguez@gmail.com').then(() => {
+        copyBtn.classList.add('copied');
+        copyBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l3.5 3.5L11 3"/></svg>';
+        setTimeout(() => {
+          copyBtn.classList.remove('copied');
+          copyBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4.5" width="7" height="7" rx="1.2"/><path d="M1.5 8.5V2.5a1 1 0 0 1 1-1h6"/></svg>';
+        }, 2000);
+      });
+    });
+  }
   </script>
 </body>
 </html>
