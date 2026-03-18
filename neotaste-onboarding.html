@@ -67,19 +67,12 @@
     [data-theme="light"] nav.scrolled { background:rgba(240,237,229,.85); box-shadow:0 4px 24px rgba(0,0,0,.10); }
     .nav-logo { font-family:'Syne',sans-serif; font-size:15px; font-weight:800; letter-spacing:-.02em; }
     .nav-right { display:flex; align-items:center; gap:28px; }
-    .nav-back { display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); transition:color .3s; }
-    .nav-back:hover { color:var(--fg); }
-    .nav-back svg { transition:transform .3s ease; }
-    .nav-back:hover svg { transform:translateX(-3px); }
     .theme-btn { display:flex; align-items:center; gap:7px; background:none; border:1px solid var(--border); border-radius:100px; padding:7px 15px; color:var(--muted); font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.08em; text-transform:uppercase; transition:all .3s ease; }
     .theme-btn:hover { background:var(--fg); color:var(--bg); border-color:var(--fg); }
 
     /* PRELOADER */
-    #preloader { position:fixed; inset:0; background:var(--bg); z-index:9000; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px; }
-    .pl-name { font-family:'Syne',sans-serif; font-size:clamp(24px,4vw,52px); text-align:center; font-weight:800; letter-spacing:-.045em; overflow:hidden; }
-    .pl-name span { display:inline-block; transform:translateY(110%); }
-    .pl-bar-wrap { width:120px; height:1px; background:var(--border); overflow:hidden; }
-    .pl-bar { height:100%; width:0; background:var(--fg); transition:width .9s cubic-bezier(.76,0,.24,1); }
+    #preloader { position:fixed; inset:0; z-index:9000; display:flex; flex-direction:column; pointer-events:none; }
+    .pl-panel { flex:1; background:var(--bg); }
 
     /* CASE STUDY: HERO */
     .cs-hero { min-height:100svh; padding:0 44px max(60px,calc(60px + env(safe-area-inset-bottom))); display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden; }
@@ -175,6 +168,24 @@
     .cs-footer { padding:24px 44px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
     .cs-footer p { font-size:12px; color:var(--muted); }
 
+    /* PHONE COMPARE */
+    .cs-phone-compare { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:56px; border:1px solid var(--border); border-radius:20px; overflow:hidden; }
+    .cs-phone-group { padding:40px 32px 36px; }
+    .cs-phone-group:first-child { border-right:1px solid var(--border); }
+    .cs-phone-group-title { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:28px; display:flex; align-items:center; gap:10px; }
+    .cs-phone-group-title::after { content:''; flex:1; height:1px; background:var(--border); }
+    .cs-phone-pair { display:flex; align-items:flex-start; gap:16px; }
+    .cs-phone-pair-arrow { color:var(--muted); font-size:16px; flex-shrink:0; padding-top:36px; }
+    .cs-phone-trio { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .cs-phone-card { flex:1; display:flex; flex-direction:column; align-items:center; }
+    .cs-phone-label { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:12px; }
+    .cs-phone-label.old { background:var(--bg2); color:var(--muted); border:1px solid var(--border); }
+    .cs-phone-label.new { background:rgba(255,107,53,.12); color:var(--accent); border:1px solid rgba(255,107,53,.25); }
+    .cs-phone-wrap { width:100%; }
+    .cs-phone-wrap img, .cs-phone-wrap video { width:100%; height:auto; display:block; }
+    .cs-phone-caption { margin-top:12px; font-size:12px; font-weight:500; color:var(--fg); text-align:center; line-height:1.4; }
+    .cs-phone-caption span { display:block; font-size:11px; color:var(--muted); margin-top:3px; font-weight:400; }
+
     /* RESPONSIVE */
     @media (max-width:900px) {
       nav { padding:18px 24px; }
@@ -192,14 +203,17 @@
       .cs-meta-strip { flex-wrap:wrap; }
       .cs-meta-item { min-width:50%; border-right:none; border-bottom:1px solid var(--border); }
       .cs-footer { flex-direction:column; gap:12px; text-align:center; }
+      .scroll-hint { top:auto; bottom:56px; }
+      .cs-phone-compare { grid-template-columns:1fr; }
+      .cs-phone-group:first-child { border-right:none; border-bottom:1px solid var(--border); }
     }
   </style>
 </head>
 <body>
 
 <div id="preloader" aria-hidden="true">
-  <div class="pl-name"><span>NeoTaste</span></div>
-  <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
+  <div class="pl-panel" id="plTop"></div>
+  <div class="pl-panel" id="plBot"></div>
 </div>
 
 <div class="cursor" id="cursor" aria-hidden="true">
@@ -217,13 +231,7 @@
 <nav id="nav">
   <a href="index.html" class="nav-logo">dvdrod</a>
   <div class="nav-right">
-    <a href="index.html#work" class="nav-back">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M10 2L4 7L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Back to work
-    </a>
-    <button class="theme-btn" id="themeBtn">
+<button class="theme-btn" id="themeBtn">
       <span id="tIcon">◐</span><span id="tLabel">Light</span>
     </button>
   </div>
@@ -236,7 +244,7 @@
   <div class="cs-hero-bg" style="background:linear-gradient(145deg,#1A0500,#7A2800,#D44A0A);"></div>
   <div class="cs-hero-blob" style="width:520px;height:520px;top:-120px;right:-100px;background:#FF6B35;opacity:.2;"></div>
   <div class="cs-hero-blob" style="width:280px;height:280px;bottom:80px;left:-60px;background:#FF3D00;opacity:.12;"></div>
-  <span class="cs-hero-number">05</span>
+  <span class="cs-hero-number">03</span>
 
   <div class="cs-title-wrap">
     <p class="cs-company">NeoTaste</p>
@@ -265,7 +273,7 @@
     </div>
   </div>
 
-  <div style="position:absolute;bottom:56px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" class="scroll-hint" aria-hidden="true">
+  <div style="position:absolute;top:110px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" class="scroll-hint" aria-hidden="true">
     <div style="width:1px;height:64px;background:var(--border);position:relative;overflow:hidden;">
       <style>.sh-anim::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--accent);animation:shln 2.4s ease infinite;}@keyframes shln{0%{top:-100%}100%{top:100%}}</style>
       <div class="sh-anim" style="width:100%;height:100%;"></div>
@@ -284,18 +292,11 @@
         <p>NeoTaste is a restaurant discovery and deals platform used by hundreds of thousands of food lovers across Germany. Users sign up to explore local restaurants, unlock exclusive deals, and book tables directly in the app.</p>
         <p>When I joined the Growth team in early 2024, the data told a clear story: <strong>54% of newly registered users dropped off during onboarding</strong> — never reaching the home feed and therefore never experiencing the product's core value.</p>
         <p>The existing flow had grown organically over 3 years. What started as a simple 3-step setup had ballooned into a <em>7-screen sequence</em> with permission requests, lengthy form fields, and marketing opt-ins — all before showing the user a single restaurant.</p>
+        <p>I led this project as the sole product designer on the Growth team, working closely with the Growth PM and a data analyst, and aligning with engineering early to define what was feasible to ship within the quarter.</p>
       </div>
-      <div class="cs-visual tall" style="">
-        <div class="cs-visual-inner" style="background:linear-gradient(160deg,#1A0500,#7A2800);">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:40px;">
-            <div style="width:100%;height:10px;background:rgba(255,107,53,.3);border-radius:5px;"></div>
-            <div style="width:72%;height:8px;background:rgba(255,107,53,.15);border-radius:4px;"></div>
-            <div style="width:88%;height:8px;background:rgba(255,107,53,.15);border-radius:4px;margin-bottom:16px;"></div>
-            <div style="width:100%;height:44px;background:rgba(255,107,53,.18);border-radius:10px;"></div>
-            <div style="width:100%;height:44px;background:rgba(255,107,53,.10);border-radius:10px;"></div>
-            <div style="width:100%;height:44px;background:rgba(255,107,53,.08);border-radius:10px;"></div>
-            <div style="width:60%;height:36px;background:rgba(255,107,53,.25);border-radius:100px;margin-top:8px;"></div>
-          </div>
+      <div class="cs-visual" style="aspect-ratio:unset;">
+        <div class="cs-visual-inner" style="background:#0a0a0a; height:auto; align-items:flex-start;">
+          <img src="images/neotaste-onboarding/old onboarding.png" alt="Old NeoTaste onboarding — 7 steps" style="width:auto;height:auto;max-height:560px;max-width:100%;display:block;margin:0 auto;">
           <div class="cs-visual-label">Old onboarding — 7 steps</div>
         </div>
       </div>
@@ -311,6 +312,7 @@
     <div class="cs-section-body">
       <p>Before touching a wireframe, I spent two weeks in discovery. I reviewed session recordings in Hotjar, analysed the step-by-step funnel in Mixpanel, and ran eight 45-minute moderated interviews with recently churned users recruited through a post-signup survey.</p>
       <p>The funnel data confirmed that <strong>step 3 (location permissions) and step 5 (notification opt-in) had the highest abandonment</strong>. The interviews told us why: users felt the app was asking for too much before proving its worth.</p>
+      <p>I presented the findings to the Growth PM and engineering lead before touching a wireframe — getting alignment on the root cause early meant the solution brief was agreed before I opened Figma.</p>
     </div>
 
     <div class="cs-quote">
@@ -376,30 +378,10 @@
       </div>
     </div>
 
-    <div class="cs-visual full" style="margin-top:48px;">
-      <div class="cs-visual-inner" style="background:linear-gradient(160deg,#1A0500,#7A2800,#D44A0A);">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:24px;padding:48px;">
-          <div style="flex:1;height:100%;background:rgba(255,107,53,.12);border-radius:20px;border:1px solid rgba(255,107,53,.2);display:flex;flex-direction:column;gap:10px;padding:24px;">
-            <div style="width:40%;height:6px;background:rgba(255,255,255,.2);border-radius:3px;"></div>
-            <div style="width:70%;height:10px;background:rgba(255,255,255,.15);border-radius:5px;margin-top:8px;"></div>
-            <div style="width:55%;height:8px;background:rgba(255,255,255,.1);border-radius:4px;"></div>
-            <div style="flex:1;"></div>
-            <div style="width:100%;height:40px;background:rgba(255,107,53,.5);border-radius:100px;"></div>
-          </div>
-          <div style="flex:1;height:100%;background:rgba(255,107,53,.12);border-radius:20px;border:1px solid rgba(255,107,53,.2);display:flex;flex-direction:column;gap:10px;padding:24px;">
-            <div style="width:50%;height:6px;background:rgba(255,255,255,.2);border-radius:3px;"></div>
-            <div style="width:65%;height:10px;background:rgba(255,255,255,.15);border-radius:5px;margin-top:8px;"></div>
-            <div style="width:100%;height:36px;background:rgba(255,255,255,.08);border-radius:8px;margin-top:4px;"></div>
-            <div style="width:100%;height:36px;background:rgba(255,255,255,.05);border-radius:8px;"></div>
-            <div style="flex:1;"></div>
-            <div style="width:100%;height:40px;background:rgba(255,107,53,.5);border-radius:100px;"></div>
-          </div>
-          <div style="flex:1;height:100%;background:rgba(255,107,53,.12);border-radius:20px;border:1px solid rgba(255,107,53,.2);display:flex;flex-direction:column;gap:8px;padding:16px;">
-            <div style="width:100%;height:50%;background:rgba(255,255,255,.06);border-radius:12px;"></div>
-            <div style="width:100%;height:50%;background:rgba(255,255,255,.06);border-radius:12px;"></div>
-          </div>
-        </div>
-        <div class="cs-visual-label">New 3-step flow wireframes — replace with Figma exports</div>
+    <div class="cs-visual" style="margin-top:48px; aspect-ratio:unset;">
+      <div class="cs-visual-inner" style="background:#f0efed; height:auto; align-items:flex-start;">
+        <img src="images/neotaste-onboarding/New Onboarding.png" alt="New onboarding full flow map" style="width:100%;height:auto;display:block;">
+        <div class="cs-visual-label">New flow map — Figma prototype</div>
       </div>
     </div>
   </div>
@@ -445,6 +427,121 @@
           <div class="cs-step-text">Location and notification permissions are requested at the exact moment they add value — during first search and first deal save respectively.</div>
         </div>
       </div>
+    </div>
+
+    <!-- Before / After phone comparison -->
+    <div class="cs-phone-compare">
+
+      <!-- Group 1: Splash screen -->
+      <div class="cs-phone-group">
+        <div class="cs-phone-group-title">Splash Screen</div>
+        <div class="cs-phone-pair">
+          <div class="cs-phone-card">
+            <div class="cs-phone-label old">Before</div>
+            <div class="cs-phone-wrap">
+              <img src="images/neotaste-onboarding/old static splash.png" alt="Old static splash screen" loading="lazy">
+            </div>
+            <p class="cs-phone-caption">Static launch screen<br><span>Single frame, no motion</span></p>
+          </div>
+          <div class="cs-phone-pair-arrow">→</div>
+          <div class="cs-phone-card">
+            <div class="cs-phone-label new">After</div>
+            <div class="cs-phone-wrap">
+              <video src="images/neotaste-onboarding/new-splash.mp4" poster="images/neotaste-onboarding/poster-splash.jpg" autoplay loop muted playsinline></video>
+            </div>
+            <p class="cs-phone-caption">Animated splash<br><span>4s motion sequence</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 2: Intro / onboarding screens -->
+      <div class="cs-phone-group">
+        <div class="cs-phone-group-title">Intro Screens</div>
+        <div class="cs-phone-pair">
+          <div class="cs-phone-card">
+            <div class="cs-phone-label old">Before</div>
+            <div class="cs-phone-wrap">
+              <img src="images/neotaste-onboarding/old onboarding.png" alt="Old onboarding — video-first flow" loading="lazy">
+            </div>
+            <p class="cs-phone-caption">Video-only intro<br><span>Play video or skip</span></p>
+          </div>
+          <div class="cs-phone-pair-arrow">→</div>
+          <div class="cs-phone-card">
+            <div class="cs-phone-label new">After</div>
+            <div class="cs-phone-wrap">
+              <video src="images/neotaste-onboarding/new-onboarding.mp4" poster="images/neotaste-onboarding/poster-onboarding.jpg" autoplay loop muted playsinline></video>
+            </div>
+            <p class="cs-phone-caption">3-step value slider<br><span>Benefits before sign-up</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 3: Paywall -->
+      <div class="cs-phone-group">
+        <div class="cs-phone-group-title">Paywall</div>
+        <div class="cs-phone-pair">
+          <div class="cs-phone-card">
+            <div class="cs-phone-label old">Before</div>
+            <div class="cs-phone-wrap">
+              <img src="images/neotaste-onboarding/paywall_old.png" alt="Old paywall" loading="lazy">
+            </div>
+            <p class="cs-phone-caption">Urgency-led trial<br><span>Countdown timer, free gate</span></p>
+          </div>
+          <div class="cs-phone-pair-arrow">→</div>
+          <div class="cs-phone-card">
+            <div class="cs-phone-label new">After</div>
+            <div class="cs-phone-wrap">
+              <img src="images/neotaste-onboarding/paywall_new.png" alt="New paywall" loading="lazy">
+            </div>
+            <p class="cs-phone-caption">Value-led paywall<br><span>Benefits first, price second</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 4: Pricing -->
+      <div class="cs-phone-group">
+        <div class="cs-phone-group-title">Pricing</div>
+        <div class="cs-phone-pair">
+          <div class="cs-phone-card">
+            <div class="cs-phone-label old">Before</div>
+            <div class="cs-phone-wrap">
+              <img src="images/neotaste-onboarding/pricing_old.png" alt="Old pricing" loading="lazy">
+            </div>
+            <p class="cs-phone-caption">Single-tier pricing<br><span>Limited plan context</span></p>
+          </div>
+          <div class="cs-phone-pair-arrow">→</div>
+          <div class="cs-phone-card">
+            <div class="cs-phone-label new">After</div>
+            <div class="cs-phone-wrap">
+              <img src="images/neotaste-onboarding/pricing_new.png" alt="New pricing" loading="lazy">
+            </div>
+            <p class="cs-phone-caption">Clearer pricing<br><span>Plan comparison, value anchoring</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 5: Payment — full width -->
+      <div class="cs-phone-group" style="grid-column:1/-1; border-top:1px solid var(--border);">
+        <div class="cs-phone-group-title">Payment</div>
+        <div class="cs-phone-pair" style="max-width:560px;">
+          <div class="cs-phone-card">
+            <div class="cs-phone-label old">Before</div>
+            <div class="cs-phone-wrap">
+              <img src="images/neotaste-onboarding/payment_old.png" alt="Old payment" loading="lazy">
+            </div>
+            <p class="cs-phone-caption">Standard checkout<br><span>Form-heavy, no native pay</span></p>
+          </div>
+          <div class="cs-phone-pair-arrow">→</div>
+          <div class="cs-phone-card">
+            <div class="cs-phone-label new">After</div>
+            <div class="cs-phone-wrap">
+              <img src="images/neotaste-onboarding/payment_new.png" alt="New payment" loading="lazy">
+            </div>
+            <p class="cs-phone-caption">Streamlined checkout<br><span>Apple/Google Pay prominent</span></p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -530,11 +627,12 @@
     });
   }
 
-  const preloader=document.getElementById('preloader'),plBar=document.getElementById('plBar'),plSpan=document.querySelector('.pl-name span');
-  gsap.to(plSpan,{y:0,duration:.7,ease:'power3.out',delay:.1});
+  const preloader=document.getElementById('preloader'),plTop=document.getElementById('plTop'),plBot=document.getElementById('plBot');
   window.addEventListener('load',()=>{
-    setTimeout(()=>{plBar.style.width='100%';},150);
-    setTimeout(()=>{gsap.to(preloader,{yPercent:-100,duration:.85,ease:'power3.inOut',onComplete:()=>{preloader.style.display='none';initAnim();}});},1200);
+    setTimeout(()=>{
+      gsap.to(plTop,{yPercent:-100,duration:.5,ease:'power3.inOut'});
+      gsap.to(plBot,{yPercent:100,duration:.5,ease:'power3.inOut',onComplete:()=>{preloader.style.display='none';initAnim();}});
+    },80);
   });
 
   gsap.registerPlugin(ScrollTrigger);

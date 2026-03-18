@@ -111,14 +111,6 @@
     }
     .nav-logo { font-family:'Syne',sans-serif; font-size:15px; font-weight:800; letter-spacing:-.02em; }
     .nav-right { display:flex; align-items:center; gap:28px; }
-    .nav-back {
-      display:flex; align-items:center; gap:8px;
-      font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
-      transition:color .3s;
-    }
-    .nav-back:hover { color:var(--fg); }
-    .nav-back svg { transition:transform .3s ease; }
-    .nav-back:hover svg { transform:translateX(-3px); }
     .theme-btn {
       display:flex; align-items:center; gap:7px;
       background:none; border:1px solid var(--border); border-radius:100px;
@@ -130,14 +122,10 @@
 
     /* ── PRELOADER ── */
     #preloader {
-      position:fixed; inset:0; background:var(--bg); z-index:9000;
-      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px;
+      position:fixed; inset:0; z-index:9000;
+      display:flex; flex-direction:column; pointer-events:none;
     }
-    .pl-name { font-family:'Syne',sans-serif; font-size:clamp(24px,4vw,52px); text-align:center;
-      font-weight:800; letter-spacing:-.045em; overflow:hidden; }
-    .pl-name span { display:inline-block; transform:translateY(110%); }
-    .pl-bar-wrap { width:120px; height:1px; background:var(--border); overflow:hidden; }
-    .pl-bar { height:100%; width:0; background:var(--fg); transition:width .9s cubic-bezier(.76,0,.24,1); }
+    .pl-panel { flex:1; background:var(--bg); }
 
     /* ── CASE STUDY: HERO ── */
     .cs-hero {
@@ -358,6 +346,7 @@
       .cs-meta-strip { flex-wrap:wrap; }
       .cs-meta-item { min-width:50%; border-right:none; border-bottom:1px solid var(--border); }
       .cs-footer { flex-direction:column; gap:12px; text-align:center; }
+      .scroll-hint { top:auto; bottom:56px; }
     }
 </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -367,8 +356,8 @@
 <body>
 
   <div id="preloader" aria-hidden="true">
-    <div class="pl-name"><span>Gymondo</span></div>
-    <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
+    <div class="pl-panel" id="plTop"></div>
+    <div class="pl-panel" id="plBot"></div>
   </div>
 
   
@@ -390,13 +379,7 @@
   <nav id="nav">
     <a href="index.html" class="nav-logo">dvdrod</a>
     <div class="nav-right">
-      <a href="index.html#work" class="nav-back">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M10 2L4 7L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Back to work
-      </a>
-      <button class="theme-btn" id="themeBtn">
+<button class="theme-btn" id="themeBtn">
         <span id="tIcon">◐</span><span id="tLabel">Light</span>
       </button>
     </div>
@@ -410,7 +393,7 @@
     <div class="cs-hero-bg" style="background:linear-gradient(145deg,#001209,#006B28);"></div>
     <div class="cs-hero-blob" style="width:500px;height:500px;top:-100px;right:-100px;background:#006B28;"></div>
     <div class="cs-hero-blob" style="width:300px;height:300px;bottom:60px;left:-80px;background:#001209;opacity:.2;"></div>
-    <span class="cs-hero-number">02</span>
+    <span class="cs-hero-number">01</span>
 
     <div class="cs-title-wrap">
       <p class="cs-company">Gymondo</p>
@@ -439,7 +422,7 @@
     </div>
 
     
-    <div class="scroll-hint" style="position:absolute;bottom:56px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" aria-hidden="true">
+    <div class="scroll-hint" style="position:absolute;top:110px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" aria-hidden="true">
       <div style="width:1px;height:64px;background:var(--border);position:relative;overflow:hidden;">
         <style>.sh-anim::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--accent);animation:shln 2.4s ease infinite;}@keyframes shln{0%{top:-100%}100%{top:100%}}</style>
         <div class="sh-anim" style="width:100%;height:100%;"></div>
@@ -457,6 +440,7 @@
       <div class="cs-section-body">
         <p>Gymondo had recently expanded to English-speaking markets where the brand was completely unknown. Conversion rates were disappointing — and data was pointing at one clear culprit.</p>
         <p>The <strong>Go Premium screen</strong>, shown during onboarding, had a massive drop-off rate. Users were hitting a paywall before they'd experienced any value. At the same time, the subscription model itself was outdated compared to competitors, with no trial or freemium entry point.</p>
+        <p>I owned the full UX and UI scope on this project — working directly with the PM and a data analyst tracking funnel metrics, and with the iOS and Android engineers on implementation. The brief evolved beyond a screen redesign: it became a case for rethinking the subscription model itself.</p>
       </div>
       <div class="cs-findings" style="margin-top:48px;">
         <div class="cs-finding">
@@ -532,7 +516,7 @@
       <h2 class="cs-section-title">Shorter onboarding. Smarter free content. Better timing.</h2>
       <div class="cs-section-body">
         <p>Removing Go Premium from onboarding shortened the flow considerably — users reached the main screen faster and with less friction. The paywall moved to a contextual moment: when a user tried to unlock premium content they'd already engaged with.</p>
-        <p>This shift from <strong>"pay to enter"</strong> to <strong>"pay to unlock more"</strong> fundamentally changed the conversion psychology.</p>
+        <p>This shift from <strong>"pay to enter"</strong> to <strong>"pay to unlock more"</strong> fundamentally changed the conversion psychology. Getting alignment from the PM and product leadership on this direction was a prerequisite before we could move into testing — it wasn't a screen redesign, it was a model change.</p>
       </div>
       
     <div class="cs-visual" style="margin-top:48px;">
@@ -597,7 +581,7 @@
       <div class="cs-section-label">06 — Results</div>
       <h2 class="cs-section-title">Significant impact on the bottom line — in every market.</h2>
       <div class="cs-section-body">
-        <p>The winning screen shipped as a modular component, designed for easy iteration. Future improvements can be made directly in-app with a permanent A/B test loop — no full redesign needed.</p>
+        <p>The winning screen shipped as a modular component, designed for easy iteration. I worked directly with the iOS and Android engineers to spec the component structure, ensuring it was buildable within existing constraints. Future improvements can be made directly in-app with a permanent A/B test loop — no full redesign needed.</p>
       </div>
       <div class="cs-metrics" style="margin-top:48px;">
         <div class="cs-metric">
@@ -676,16 +660,15 @@
 
   /* ---- PRELOADER ---- */
   const preloader = document.getElementById('preloader');
-  const plBar     = document.getElementById('plBar');
-  const plSpan    = document.querySelector('.pl-name span');
-  gsap.to(plSpan, { y:0, duration:.7, ease:'power3.out', delay:.1 });
+  const plTop     = document.getElementById('plTop');
+  const plBot     = document.getElementById('plBot');
   window.addEventListener('load', () => {
-    setTimeout(() => { plBar.style.width = '100%'; }, 150);
     setTimeout(() => {
-      gsap.to(preloader, { yPercent:-100, duration:.85, ease:'power3.inOut',
+      gsap.to(plTop, { yPercent:-100, duration:.5, ease:'power3.inOut' });
+      gsap.to(plBot, { yPercent:100,  duration:.5, ease:'power3.inOut',
         onComplete: () => { preloader.style.display='none'; initAnim(); }
       });
-    }, 1200);
+    }, 80);
   });
 
   /* ---- ANIMATIONS ---- */
