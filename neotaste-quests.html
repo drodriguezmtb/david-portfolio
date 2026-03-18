@@ -45,10 +45,17 @@
     [data-theme="light"] nav.scrolled{background:rgba(240,237,229,.85);box-shadow:0 4px 24px rgba(0,0,0,.10);}
     .nav-logo{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;letter-spacing:-.02em;}
     .nav-right{display:flex;align-items:center;gap:28px;}
+    .nav-back{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+    .nav-back:hover{color:var(--fg);}
+    .nav-back svg{transition:transform .3s ease;}
+    .nav-back:hover svg{transform:translateX(-3px);}
     .theme-btn{display:flex;align-items:center;gap:7px;background:none;border:1px solid var(--border);border-radius:100px;padding:7px 15px;color:var(--muted);font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:all .3s ease;}
     .theme-btn:hover{background:var(--fg);color:var(--bg);border-color:var(--fg);}
-    #preloader{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;pointer-events:none;}
-    .pl-panel{flex:1;background:var(--bg);}
+    #preloader{position:fixed;inset:0;background:var(--bg);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;}
+    .pl-name{font-family:'Syne',sans-serif;font-size:clamp(24px,4vw,52px);text-align:center;font-weight:800;letter-spacing:-.045em;overflow:hidden;}
+    .pl-name span{display:inline-block;transform:translateY(110%);}
+    .pl-bar-wrap{width:120px;height:1px;background:var(--border);overflow:hidden;}
+    .pl-bar{height:100%;width:0;background:var(--fg);transition:width .9s cubic-bezier(.76,0,.24,1);}
     .cs-hero{min-height:100svh;padding:0 44px max(60px,calc(60px + env(safe-area-inset-bottom)));display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
     .cs-hero-bg{position:absolute;inset:0;z-index:0;opacity:.18;}
     .cs-hero-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;}
@@ -153,15 +160,14 @@
       .cs-meta-strip{flex-wrap:wrap;}
       .cs-meta-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border);}
       .cs-footer{flex-direction:column;gap:12px;text-align:center;}
-      .scroll-hint{top:auto;bottom:56px;}
     }
   </style>
 </head>
 <body>
 
 <div id="preloader" aria-hidden="true">
-  <div class="pl-panel" id="plTop"></div>
-  <div class="pl-panel" id="plBot"></div>
+  <div class="pl-name"><span>NeoTaste</span></div>
+  <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
 </div>
 
 <div class="cursor" id="cursor" aria-hidden="true">
@@ -177,7 +183,11 @@
 <nav id="nav">
   <a href="index.html" class="nav-logo">dvdrod</a>
   <div class="nav-right">
-<button class="theme-btn" id="themeBtn"><span id="tIcon">◐</span><span id="tLabel">Light</span></button>
+    <a href="index.html#work" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M10 2L4 7L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to work
+    </a>
+    <button class="theme-btn" id="themeBtn"><span id="tIcon">◐</span><span id="tLabel">Light</span></button>
   </div>
 </nav>
 
@@ -188,7 +198,7 @@
   <div class="cs-hero-bg" style="background:linear-gradient(145deg,#001A0A,#004A20,#00A854);"></div>
   <div class="cs-hero-blob" style="width:500px;height:500px;top:-100px;right:-80px;background:#00C96B;opacity:.18;"></div>
   <div class="cs-hero-blob" style="width:300px;height:300px;bottom:60px;left:-60px;background:#00FF87;opacity:.08;"></div>
-  <span class="cs-hero-number">04</span>
+  <span class="cs-hero-number">06</span>
   <div class="cs-title-wrap">
     <p class="cs-company">NeoTaste</p>
     <h1 class="cs-title">
@@ -202,7 +212,7 @@
     <div class="cs-meta-item"><div class="cs-meta-label">Location</div><div class="cs-meta-value">Berlin, Germany</div></div>
     <div class="cs-meta-item"><div class="cs-meta-label">Type</div><div class="cs-meta-value">Retention · Gamification</div></div>
   </div>
-  <div style="position:absolute;top:110px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" class="scroll-hint" aria-hidden="true">
+  <div style="position:absolute;bottom:56px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" class="scroll-hint" aria-hidden="true">
     <div style="width:1px;height:64px;background:var(--border);position:relative;overflow:hidden;">
       <style>.sh-anim2::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--accent);animation:shln2 2.4s ease infinite;}@keyframes shln2{0%{top:-100%}100%{top:100%}}</style>
       <div class="sh-anim2" style="width:100%;height:100%;"></div>
@@ -221,7 +231,6 @@
         <p>With 2 million foodies on the platform, NeoTaste had cracked acquisition. But cohort data revealed a concerning pattern: <strong>38% of users who completed onboarding became inactive within their first 3 days</strong>, never returning after their initial session.</p>
         <p>The app is rich with features — map discovery, exclusive 2-for-1 deals, free desserts, table bookings, neighbourhood guides — but new users only scratched the surface. They'd browse the home feed once, save nothing, book nothing, and lose interest before experiencing NeoTaste's core value loop.</p>
         <p>The challenge wasn't onboarding completion. It was <em>habit formation</em>. How do you make a new user go from "this looks interesting" to "I use this every week"?</p>
-        <p>I led the feature design as part of a three-person squad with the Growth PM and Data Analyst, and presented the habit-formation framework to the Head of Product before any design work began.</p>
       </div>
       <div>
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;">
@@ -267,7 +276,6 @@
     <div class="cs-section-body">
       <p>I partnered with our Data Analyst to run a behavioural segmentation across 6 months of cohort data. The finding was striking: <strong>users who completed at least two distinct actions in their first 48 hours had a D30 retention rate of 71%</strong> — versus 12% for those who only viewed the feed.</p>
       <p>The "magic actions" were saving a restaurant, redeeming a deal, and making a booking. Users who did all three in week one became power users. The problem: <strong>only 8% of new users discovered all three naturally.</strong></p>
-      <p>I shared these findings with the PM and the wider Growth team before moving into design — framing the quest mechanic not as a nice-to-have, but as a direct design response to a measurable retention problem.</p>
     </div>
 
     <div class="cs-quote">
@@ -457,12 +465,11 @@
       el.addEventListener('mouseleave',()=>document.body.classList.remove('is-hovering'));
     });
   }
-  const preloader=document.getElementById('preloader'),plTop=document.getElementById('plTop'),plBot=document.getElementById('plBot');
+  const preloader=document.getElementById('preloader'),plBar=document.getElementById('plBar'),plSpan=document.querySelector('.pl-name span');
+  gsap.to(plSpan,{y:0,duration:.7,ease:'power3.out',delay:.1});
   window.addEventListener('load',()=>{
-    setTimeout(()=>{
-      gsap.to(plTop,{yPercent:-100,duration:.5,ease:'power3.inOut'});
-      gsap.to(plBot,{yPercent:100,duration:.5,ease:'power3.inOut',onComplete:()=>{preloader.style.display='none';initAnim();}});
-    },80);
+    setTimeout(()=>{plBar.style.width='100%';},150);
+    setTimeout(()=>{gsap.to(preloader,{yPercent:-100,duration:.85,ease:'power3.inOut',onComplete:()=>{preloader.style.display='none';initAnim();}});},1200);
   });
   gsap.registerPlugin(ScrollTrigger);
   function initAnim(){

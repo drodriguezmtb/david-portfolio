@@ -111,6 +111,14 @@
     }
     .nav-logo { font-family:'Syne',sans-serif; font-size:15px; font-weight:800; letter-spacing:-.02em; }
     .nav-right { display:flex; align-items:center; gap:28px; }
+    .nav-back {
+      display:flex; align-items:center; gap:8px;
+      font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
+      transition:color .3s;
+    }
+    .nav-back:hover { color:var(--fg); }
+    .nav-back svg { transition:transform .3s ease; }
+    .nav-back:hover svg { transform:translateX(-3px); }
     .theme-btn {
       display:flex; align-items:center; gap:7px;
       background:none; border:1px solid var(--border); border-radius:100px;
@@ -122,10 +130,14 @@
 
     /* ── PRELOADER ── */
     #preloader {
-      position:fixed; inset:0; z-index:9000;
-      display:flex; flex-direction:column; pointer-events:none;
+      position:fixed; inset:0; background:var(--bg); z-index:9000;
+      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px;
     }
-    .pl-panel { flex:1; background:var(--bg); }
+    .pl-name { font-family:'Syne',sans-serif; font-size:clamp(24px,4vw,52px); text-align:center;
+      font-weight:800; letter-spacing:-.045em; overflow:hidden; }
+    .pl-name span { display:inline-block; transform:translateY(110%); }
+    .pl-bar-wrap { width:120px; height:1px; background:var(--border); overflow:hidden; }
+    .pl-bar { height:100%; width:0; background:var(--fg); transition:width .9s cubic-bezier(.76,0,.24,1); }
 
     /* ── CASE STUDY: HERO ── */
     .cs-hero {
@@ -346,7 +358,6 @@
       .cs-meta-strip { flex-wrap:wrap; }
       .cs-meta-item { min-width:50%; border-right:none; border-bottom:1px solid var(--border); }
       .cs-footer { flex-direction:column; gap:12px; text-align:center; }
-      .scroll-hint { top:auto; bottom:56px; }
     }
 </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -356,8 +367,8 @@
 <body>
 
   <div id="preloader" aria-hidden="true">
-    <div class="pl-panel" id="plTop"></div>
-    <div class="pl-panel" id="plBot"></div>
+    <div class="pl-name"><span>Gymondo</span></div>
+    <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
   </div>
 
   
@@ -379,7 +390,13 @@
   <nav id="nav">
     <a href="index.html" class="nav-logo">dvdrod</a>
     <div class="nav-right">
-<button class="theme-btn" id="themeBtn">
+      <a href="index.html#work" class="nav-back">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M10 2L4 7L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to work
+      </a>
+      <button class="theme-btn" id="themeBtn">
         <span id="tIcon">◐</span><span id="tLabel">Light</span>
       </button>
     </div>
@@ -393,7 +410,7 @@
     <div class="cs-hero-bg" style="background:linear-gradient(145deg,#1A0400,#7A1E00);"></div>
     <div class="cs-hero-blob" style="width:500px;height:500px;top:-100px;right:-100px;background:#7A1E00;"></div>
     <div class="cs-hero-blob" style="width:300px;height:300px;bottom:60px;left:-80px;background:#1A0400;opacity:.2;"></div>
-    <span class="cs-hero-number">02</span>
+    <span class="cs-hero-number">03</span>
 
     <div class="cs-title-wrap">
       <p class="cs-company">Gymondo</p>
@@ -422,7 +439,7 @@
     </div>
 
     
-    <div class="scroll-hint" style="position:absolute;top:110px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" aria-hidden="true">
+    <div class="scroll-hint" style="position:absolute;bottom:56px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" aria-hidden="true">
       <div style="width:1px;height:64px;background:var(--border);position:relative;overflow:hidden;">
         <style>.sh-anim::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--accent);animation:shln 2.4s ease infinite;}@keyframes shln{0%{top:-100%}100%{top:100%}}</style>
         <div class="sh-anim" style="width:100%;height:100%;"></div>
@@ -440,7 +457,6 @@
       <div class="cs-section-body">
         <p>Activity data showed that <strong>nearly 50% of users dropped off within the first three months</strong>. Only 10% were still active after 22 months. Program completion rates were low — suggesting users either found the content too long, or lacked the motivation to keep going.</p>
         <p>A deeper look revealed a second problem: <em>62% of Gymondo's user base were beginners</em>, and most new features were built for them. The 33% of intermediate users felt underserved — and were quietly leaving for competitors.</p>
-        <p>I led the project end-to-end — from data analysis and research through to launch — working with the PM, a data analyst, and iOS and Android engineers. The retention case and proposed solution were presented to the leadership team before the project was greenlit.</p>
       </div>
       <div class="cs-findings" style="margin-top:48px;">
         <div class="cs-finding">
@@ -475,7 +491,7 @@
         <div class="cs-section-body">
           <p>We ran a survey asking users which potential features — ones Gymondo didn't yet have — they'd find most valuable. The top answer for both beginners and intermediate users was: <em>"Challenges to build lifestyle habits."</em></p>
           <p>Most competitors already had some form of challenges. We classified them into three types: <strong>create-your-own</strong>, <strong>activity-based</strong>, and <strong>curated workout challenges</strong>.</p>
-          <p>For the MVP, we scoped down to the two most implementable types — <strong>curated workouts</strong> and <strong>activity-based</strong> — deferring custom challenges to a later phase. This scoping call was made jointly with the PM to balance speed to market against feature completeness.</p>
+          <p>For the MVP, we focused on the two most implementable types — <strong>curated workouts</strong> and <strong>activity-based</strong> — deferring custom challenges to a later phase.</p>
         </div>
         
     <div class="cs-visual" style="margin-top:48px;">
@@ -578,7 +594,7 @@
       <div class="cs-section-label">07 — Results</div>
       <h2 class="cs-section-title">Retention improved. A side effect emerged. Both informed what came next.</h2>
       <div class="cs-section-body">
-        <p>Challenges shipped and performed well on the main metric — but surfaced an interesting tension with Programs that needed attention. The findings directly informed the next roadmap priority: resolving the cannibalisation effect became the following design sprint.</p>
+        <p>Challenges shipped and performed well on the main metric — but surfaced an interesting tension with Programs that needed attention.</p>
       </div>
       <div class="cs-metrics" style="margin-top:48px;">
         <div class="cs-metric">
@@ -657,15 +673,16 @@
 
   /* ---- PRELOADER ---- */
   const preloader = document.getElementById('preloader');
-  const plTop     = document.getElementById('plTop');
-  const plBot     = document.getElementById('plBot');
+  const plBar     = document.getElementById('plBar');
+  const plSpan    = document.querySelector('.pl-name span');
+  gsap.to(plSpan, { y:0, duration:.7, ease:'power3.out', delay:.1 });
   window.addEventListener('load', () => {
+    setTimeout(() => { plBar.style.width = '100%'; }, 150);
     setTimeout(() => {
-      gsap.to(plTop, { yPercent:-100, duration:.5, ease:'power3.inOut' });
-      gsap.to(plBot, { yPercent:100,  duration:.5, ease:'power3.inOut',
+      gsap.to(preloader, { yPercent:-100, duration:.85, ease:'power3.inOut',
         onComplete: () => { preloader.style.display='none'; initAnim(); }
       });
-    }, 80);
+    }, 1200);
   });
 
   /* ---- ANIMATIONS ---- */
