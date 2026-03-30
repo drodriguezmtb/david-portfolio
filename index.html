@@ -12,20 +12,20 @@
   <script>(function(){var s=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',s?s:(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));}());</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>David Rodriguez — Senior Product Designer</title>
+  <title>David Rodriguez - Senior Product Designer</title>
   <meta name="description" content="Senior Product Designer based in Berlin. Eight years across banking, fitness, streaming and food tech. Open to new opportunities." />
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://drodriguezmtb.github.io/david-portfolio/" />
-  <meta property="og:title"       content="David Rodriguez — Senior Product Designer" />
+  <meta property="og:title"       content="David Rodriguez - Senior Product Designer" />
   <meta property="og:description" content="Senior Product Designer based in Berlin. Eight years across banking, fitness, streaming and food tech. Currently available." />
   <meta property="og:image"       content="https://drodriguezmtb.github.io/david-portfolio/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="David Rodriguez — Senior Product Designer" />
+  <meta name="twitter:title"       content="David Rodriguez - Senior Product Designer" />
   <meta name="twitter:description" content="Senior Product Designer based in Berlin. Eight years across banking, fitness, streaming and food tech. Currently available." />
   <meta name="twitter:image"       content="https://drodriguezmtb.github.io/david-portfolio/og-image.png" />
 
@@ -101,7 +101,7 @@
     }
 
     /* ============================================
-       CURSOR — MIRO STYLE
+       CURSOR - MIRO STYLE
     ============================================ */
     .cursor {
       position: fixed;
@@ -162,7 +162,7 @@
     }
     #cursorLabelText { transition: opacity 0.12s ease; }
 
-    /* Hover state — arrow tilts, pill bounces red */
+    /* Hover state - arrow tilts, pill bounces red */
     body.is-hovering .cursor-arrow {
       transform: rotate(-12deg) scale(0.92);
     }
@@ -348,7 +348,7 @@
       font-weight: 300;
       overflow: hidden;
     }
-    .hero-desc p { transform: translateY(100%); }
+    .hero-desc { opacity: 0; }
 
     .hero-right {
       display: flex;
@@ -563,10 +563,10 @@
     }
     .pname {
       font-family: 'Inter', sans-serif;
-      font-size: clamp(28px, 3.5vw, 50px);
+      font-size: clamp(22px, 2.8vw, 40px);
       font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.02;
+      line-height: 1.08;
     }
     .pyear { font-size: 12px; color: var(--muted); margin-top: 10px; }
     .pmetrics { display: flex; gap: 32px; }
@@ -695,16 +695,22 @@
     .ei-role { font-size: 12px; color: var(--muted); }
     .ei-yr { font-size: 11px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
 
+    .pdf-strip { opacity: 0; transform: translateY(24px); }
+    .about-bio .cv-btn { opacity: 0; transform: translateY(16px); }
+
     .awards-list { display: flex; flex-direction: column; }
     .award-item {
       display: flex;
-      flex-direction: column;
-      gap: 2px;
-      padding: 12px 0;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 14px 0;
       border-bottom: 1px solid var(--border);
+      gap: 12px;
     }
-    .aw-title { font-size: 13px; font-weight: 500; line-height: 1.4; }
-    .aw-issuer { font-size: 11px; color: var(--muted); }
+    .aw-l { display: flex; flex-direction: column; gap: 2px; }
+    .aw-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
+    .aw-issuer { font-size: 12px; color: var(--muted); }
+    .aw-yr { font-size: 11px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
 
     /* Skills row */
     .skills-row {
@@ -719,9 +725,7 @@
       border: 1px solid var(--border);
       border-radius: 100px;
       color: var(--muted);
-      transition: border-color 0.3s, color 0.3s;
     }
-    .skill-pill:hover { border-color: var(--fg); color: var(--fg); }
 
     /* ============================================
        CONTACT
@@ -955,7 +959,7 @@
 
     <div class="projects">
 
-      <!-- 01 — CaixaBank (hidden — re-enable by removing 'hidden') -->
+      <!-- 01 - CaixaBank (hidden - re-enable by removing 'hidden') -->
       <article class="pcard p-caixabank" data-index="0" onclick="window.location='caixabank.html'" style="cursor:none;" hidden>
         <div class="pcard-inner">
           <div class="pcard-info">
@@ -969,7 +973,7 @@
             <div class="pcard-mid">
               <p class="pcompany">VASS × CaixaBank</p>
               <h3 class="pname">Banking App Redesign</h3>
-              <p class="pyear">2017 — 2019 · Barcelona</p>
+              <p class="pyear">2017 - 2019 · Barcelona</p>
             </div>
             <div class="pmetrics">
               <div class="pmetric">
@@ -995,7 +999,7 @@
         </div>
       </article>
 
-      <!-- 02 — Gymondo Go Premium (hidden) -->
+      <!-- 02 - Gymondo Go Premium (hidden) -->
       <article class="pcard p-gymondo1" data-index="1" onclick="window.location='gymondo-premium.html'" style="cursor:none;" hidden>
         <div class="pcard-inner">
           <div class="pcard-info">
@@ -1009,7 +1013,7 @@
             <div class="pcard-mid">
               <p class="pcompany">Gymondo</p>
               <h3 class="pname">Go Premium Screen</h3>
-              <p class="pyear">2020 — 2021 · Berlin</p>
+              <p class="pyear">2020 - 2021 · Berlin</p>
             </div>
             <div class="pmetrics">
               <div class="pmetric">
@@ -1035,7 +1039,7 @@
         </div>
       </article>
 
-      <!-- 03 — Gymondo Challenges (hidden) -->
+      <!-- 03 - Gymondo Challenges (hidden) -->
       <article class="pcard p-gymondo2" data-index="2" onclick="window.location='gymondo-challenges.html'" style="cursor:none;" hidden>
         <div class="pcard-inner">
           <div class="pcard-info">
@@ -1049,7 +1053,7 @@
             <div class="pcard-mid">
               <p class="pcompany">Gymondo</p>
               <h3 class="pname">Challenges System</h3>
-              <p class="pyear">2021 — 2022 · Berlin</p>
+              <p class="pyear">2021 - 2022 · Berlin</p>
             </div>
             <div class="pmetrics">
               <div class="pmetric">
@@ -1075,7 +1079,7 @@
         </div>
       </article>
 
-      <!-- 04 — Zattoo (hidden — re-enable by removing 'hidden') -->
+      <!-- 04 - Zattoo (hidden - re-enable by removing 'hidden') -->
       <article class="pcard p-zattoo" data-index="3" onclick="window.location='zattoo.html'" style="cursor:none;" hidden>
         <div class="pcard-inner">
           <div class="pcard-info">
@@ -1089,7 +1093,7 @@
             <div class="pcard-mid">
               <p class="pcompany">Zattoo</p>
               <h3 class="pname">Android TV Platform</h3>
-              <p class="pyear">2023 — 2025 · Berlin</p>
+              <p class="pyear">2023 - 2025 · Berlin</p>
             </div>
             <div class="pmetrics">
               <div class="pmetric">
@@ -1116,7 +1120,7 @@
       </article>
 
 
-      <!-- 01 — NeoTaste Onboarding (hidden) -->
+      <!-- 01 - NeoTaste Onboarding (hidden) -->
       <article class="pcard p-nt-onboarding" data-index="0" onclick="window.location='neotaste-onboarding.html'" style="cursor:none;" hidden>
         <div class="pcard-inner">
           <div class="pcard-info">
@@ -1130,7 +1134,7 @@
             <div class="pcard-mid">
               <p class="pcompany">NeoTaste</p>
               <h3 class="pname">Onboarding Redesign</h3>
-              <p class="pyear">2024 · Berlin</p>
+              <p class="pyear">2025 - 2026 · Berlin</p>
             </div>
             <div class="pmetrics">
               <div class="pmetric">
@@ -1156,7 +1160,7 @@
         </div>
       </article>
 
-      <!-- 02 — NeoTaste Quests -->
+      <!-- 02 - NeoTaste Quests -->
       <article class="pcard p-nt-quests" data-index="1" onclick="window.location='neotaste-quests.html'" style="cursor:none;">
         <div class="pcard-inner">
           <div class="pcard-info">
@@ -1169,8 +1173,8 @@
             </div>
             <div class="pcard-mid">
               <p class="pcompany">NeoTaste</p>
-              <h3 class="pname">Quest System</h3>
-              <p class="pyear">2024 · Berlin</p>
+              <h3 class="pname">Turning free trial users into loyal members with a guided quest system</h3>
+              <p class="pyear">2025 - 2026 · Berlin</p>
             </div>
             <div class="pmetrics">
               <div class="pmetric">
@@ -1196,7 +1200,7 @@
         </div>
       </article>
 
-      <!-- 03 — NeoTaste Referral -->
+      <!-- 03 - NeoTaste Referral -->
       <article class="pcard p-nt-referral" data-index="2" onclick="window.location='neotaste-referral.html'" style="cursor:none;">
         <div class="pcard-inner">
           <div class="pcard-info">
@@ -1209,8 +1213,8 @@
             </div>
             <div class="pcard-mid">
               <p class="pcompany">NeoTaste</p>
-              <h3 class="pname">Referral A/B Test</h3>
-              <p class="pyear">2024 · Berlin</p>
+              <h3 class="pname">Finding the right incentive to double NeoTaste's referral volume</h3>
+              <p class="pyear">2025 - 2026 · Berlin</p>
             </div>
             <div class="pmetrics">
               <div class="pmetric">
@@ -1237,6 +1241,20 @@
       </article>
 
     </div>
+
+    <div class="pdf-strip" style="margin-top:48px;padding-top:48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <p style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;">Looking for more?</p>
+        <p style="font-size:13px;color:var(--muted);line-height:1.5;">Check older case studies from my time working at Gymondo. Available as PDF.</p>
+      </div>
+      <a href="David Rodriguez - Portfolio.pdf" target="_blank" rel="noopener" class="cv-btn">
+        View PDF
+        <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 12L12 2M12 2H4M12 2V10"/>
+        </svg>
+      </a>
+    </div>
+
   </section>
 
   <!-- ==================== ABOUT ==================== -->
@@ -1246,12 +1264,6 @@
         <p class="s-label">My story</p>
         <h2 class="s-title">About</h2>
       </div>
-      <a href="CV_David_Rodriguez.pdf" target="_blank" rel="noopener" class="cv-btn">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 1v7M3 5.5l3 3 3-3M1 10h10"/>
-        </svg>
-        Download CV
-      </a>
     </div>
 
     <div class="about-grid">
@@ -1260,6 +1272,12 @@
         <p><strong>My process is research-first.</strong> I want to understand why users behave the way they do before I open Figma.</p>
         <p><strong>I'm comfortable owning the full design scope,</strong> from early research to shipped components. I like working in teams where decisions get debated properly, not just handed down.</p>
         <p>I've also been on the <strong>Awwwards Young Jury since 2018.</strong></p>
+        <a href="CV_David_Rodriguez.pdf" target="_blank" rel="noopener" class="cv-btn" style="margin-top:20px;">
+          View CV
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12L12 2M12 2H4M12 2V10"/>
+          </svg>
+        </a>
       </div>
 
       <div class="about-side">
@@ -1272,28 +1290,28 @@
                 <span class="ei-co">NeoTaste</span>
                 <span class="ei-role">Product Designer</span>
               </div>
-              <span class="ei-yr">2025 — Now</span>
+              <span class="ei-yr">2025 - Now</span>
             </li>
             <li class="exp-item">
               <div class="ei-l">
                 <span class="ei-co">Zattoo</span>
                 <span class="ei-role">Product Designer</span>
               </div>
-              <span class="ei-yr">2023 — 2025</span>
+              <span class="ei-yr">2023 - 2025</span>
             </li>
             <li class="exp-item">
               <div class="ei-l">
                 <span class="ei-co">Gymondo</span>
                 <span class="ei-role">Senior UI/UX Designer</span>
               </div>
-              <span class="ei-yr">2019 — 2022</span>
+              <span class="ei-yr">2019 - 2022</span>
             </li>
             <li class="exp-item">
               <div class="ei-l">
                 <span class="ei-co">VASS × CaixaBank</span>
                 <span class="ei-role">UI/UX Designer</span>
               </div>
-              <span class="ei-yr">2017 — 2019</span>
+              <span class="ei-yr">2017 - 2019</span>
             </li>
             <li class="exp-item">
               <div class="ei-l">
@@ -1307,7 +1325,7 @@
                 <span class="ei-co">Lafosca · Mobile Jazz</span>
                 <span class="ei-role">Junior UI Designer</span>
               </div>
-              <span class="ei-yr">2015 — 2016</span>
+              <span class="ei-yr">2015 - 2016</span>
             </li>
           </ul>
         </div>
@@ -1316,20 +1334,32 @@
           <h3 class="detail-h">Awards</h3>
           <ul class="awards-list">
             <li class="award-item">
-              <span class="aw-title">Best Mobile Banking App, Western Europe</span>
-              <span class="aw-issuer">Global Finance · Sep 2018</span>
+              <div class="aw-l">
+                <span class="aw-title">Best Mobile Banking App, Western Europe</span>
+                <span class="aw-issuer">Global Finance</span>
+              </div>
+              <span class="aw-yr">Sep 2018</span>
             </li>
             <li class="award-item">
-              <span class="aw-title">Best Mobile Tech Project</span>
-              <span class="aw-issuer">The Banker Tech Project Awards · Oct 2018</span>
+              <div class="aw-l">
+                <span class="aw-title">Best Mobile Tech Project</span>
+                <span class="aw-issuer">The Banker Tech Project Awards</span>
+              </div>
+              <span class="aw-yr">Oct 2018</span>
             </li>
             <li class="award-item">
-              <span class="aw-title">Best Project — Innovative Touchpoints & Connected Services</span>
-              <span class="aw-issuer">BAI Global Innovation Awards · Oct 2018</span>
+              <div class="aw-l">
+                <span class="aw-title">Best Project - Innovative Touchpoints & Connected Services</span>
+                <span class="aw-issuer">BAI Global Innovation Awards</span>
+              </div>
+              <span class="aw-yr">Oct 2018</span>
             </li>
             <li class="award-item">
-              <span class="aw-title">Silver — Digital New Service or Application</span>
-              <span class="aw-issuer">London Design Awards · Nov 2018</span>
+              <div class="aw-l">
+                <span class="aw-title">Silver - Digital New Service or Application</span>
+                <span class="aw-issuer">London Design Awards</span>
+              </div>
+              <span class="aw-yr">Nov 2018</span>
             </li>
           </ul>
         </div>
@@ -1414,10 +1444,10 @@
     localStorage.setItem('theme', dark ? 'dark' : 'light');
     tIcon.textContent  = dark ? '◐' : '◑';
     tLabel.textContent = dark ? 'Light' : 'Dark';
-    // also update nav scrolled bg dynamically via CSS variables — handled by CSS
+    // also update nav scrolled bg dynamically via CSS variables - handled by CSS
   });
 
-  /* ---- CURSOR (Miro-style) — desktop/mouse only ---- */
+  /* ---- CURSOR (Miro-style) - desktop/mouse only ---- */
   if (window.matchMedia('(pointer: fine)').matches) {
     const cursorEl = document.getElementById('cursor');
 
@@ -1436,7 +1466,7 @@
       cursorEl.style.opacity = '1';
     });
 
-    // Hover states — interactive targets
+    // Hover states - interactive targets
     document.querySelectorAll('a, button, .pcard, .skill-pill').forEach(el => {
       el.addEventListener('mouseenter', () => {
         document.body.classList.add('is-hovering');
@@ -1497,9 +1527,10 @@
       y: 0, duration: 0.75, ease: 'power3.out', delay: 0.5
     });
     // Desc
-    gsap.to('.hero-desc span', {
-      y: 0, duration: 0.75, ease: 'power2.out', delay: 0.65
-    });
+    gsap.fromTo('.hero-desc',
+      { opacity: 0, y: 16 },
+      { opacity: 1, y: 0, duration: 0.75, ease: 'power2.out', delay: 0.65 }
+    );
     // Pills
     gsap.to('.pill', {
       x: 0, opacity: 1, duration: 0.55, stagger: 0.1,
@@ -1542,6 +1573,18 @@
           scrollTrigger: { trigger: el, start: 'top 90%' }
         }
       );
+    });
+
+    // PDF strip
+    gsap.to('.pdf-strip', {
+      opacity: 1, y: 0, duration: 0.65, ease: 'power2.out',
+      scrollTrigger: { trigger: '.pdf-strip', start: 'top 88%' }
+    });
+
+    // View CV button
+    gsap.to('.about-bio .cv-btn', {
+      opacity: 1, y: 0, duration: 0.65, ease: 'power2.out',
+      scrollTrigger: { trigger: '.about-bio .cv-btn', start: 'top 92%' }
     });
 
     // About side blocks
