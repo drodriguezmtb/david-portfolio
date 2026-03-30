@@ -111,14 +111,6 @@
     }
     .nav-logo { font-family:'Syne',sans-serif; font-size:15px; font-weight:800; letter-spacing:-.02em; }
     .nav-right { display:flex; align-items:center; gap:28px; }
-    .nav-back {
-      display:flex; align-items:center; gap:8px;
-      font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
-      transition:color .3s;
-    }
-    .nav-back:hover { color:var(--fg); }
-    .nav-back svg { transition:transform .3s ease; }
-    .nav-back:hover svg { transform:translateX(-3px); }
     .theme-btn {
       display:flex; align-items:center; gap:7px;
       background:none; border:1px solid var(--border); border-radius:100px;
@@ -130,14 +122,10 @@
 
     /* ── PRELOADER ── */
     #preloader {
-      position:fixed; inset:0; background:var(--bg); z-index:9000;
-      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px;
+      position:fixed; inset:0; z-index:9000;
+      display:flex; flex-direction:column; pointer-events:none;
     }
-    .pl-name { font-family:'Syne',sans-serif; font-size:clamp(24px,4vw,52px); text-align:center;
-      font-weight:800; letter-spacing:-.045em; overflow:hidden; }
-    .pl-name span { display:inline-block; transform:translateY(110%); }
-    .pl-bar-wrap { width:120px; height:1px; background:var(--border); overflow:hidden; }
-    .pl-bar { height:100%; width:0; background:var(--fg); transition:width .9s cubic-bezier(.76,0,.24,1); }
+    .pl-panel { flex:1; background:var(--bg); }
 
     /* ── CASE STUDY: HERO ── */
     .cs-hero {
@@ -341,6 +329,22 @@
     }
     .cs-footer p { font-size:12px; color:var(--muted); }
 
+    /* SUMMARY BAND */
+    .cs-summary { padding:48px 44px; border-top:1px solid var(--border); }
+    .cs-summary-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr auto; gap:60px; align-items:center; }
+    .cs-summary-tldr { font-size:19px; font-weight:400; line-height:1.6; letter-spacing:-.01em; color:var(--fg); }
+    .cs-summary-tldr strong { font-weight:700; }
+    .cs-summary-stats { display:flex; gap:40px; flex-shrink:0; }
+    .cs-summary-stat { text-align:right; }
+    .cs-summary-stat-val { font-family:'Inter',sans-serif; font-size:34px; font-weight:800; letter-spacing:-.04em; color:var(--accent); line-height:1; }
+    .cs-summary-stat-label { font-size:11px; color:var(--muted); margin-top:4px; line-height:1.4; }
+    /* NEXT STEPS */
+    .cs-next-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px; }
+    .cs-next-step { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:28px; }
+    .cs-next-step-num { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+    .cs-next-step-title { font-size:15px; font-weight:700; margin-bottom:8px; letter-spacing:-.01em; }
+    .cs-next-step-text { font-size:13px; color:var(--muted); line-height:1.6; }
+
     /* ── RESPONSIVE ── */
     @media (max-width:900px) {
       nav { padding:18px 24px; }
@@ -358,6 +362,11 @@
       .cs-meta-strip { flex-wrap:wrap; }
       .cs-meta-item { min-width:50%; border-right:none; border-bottom:1px solid var(--border); }
       .cs-footer { flex-direction:column; gap:12px; text-align:center; }
+      .scroll-hint { top:auto; bottom:56px; }
+      .cs-summary-inner { grid-template-columns:1fr; gap:32px; }
+      .cs-summary-stat { text-align:left; }
+      .cs-summary-stats { gap:24px; flex-wrap:wrap; }
+      .cs-next-steps { grid-template-columns:1fr; }
     }
 </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -367,8 +376,8 @@
 <body>
 
   <div id="preloader" aria-hidden="true">
-    <div class="pl-name"><span>Gymondo</span></div>
-    <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
+    <div class="pl-panel" id="plTop"></div>
+    <div class="pl-panel" id="plBot"></div>
   </div>
 
   
@@ -390,13 +399,7 @@
   <nav id="nav">
     <a href="index.html" class="nav-logo">dvdrod</a>
     <div class="nav-right">
-      <a href="index.html#work" class="nav-back">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M10 2L4 7L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Back to work
-      </a>
-      <button class="theme-btn" id="themeBtn">
+<button class="theme-btn" id="themeBtn">
         <span id="tIcon">◐</span><span id="tLabel">Light</span>
       </button>
     </div>
@@ -410,7 +413,7 @@
     <div class="cs-hero-bg" style="background:linear-gradient(145deg,#1A0400,#7A1E00);"></div>
     <div class="cs-hero-blob" style="width:500px;height:500px;top:-100px;right:-100px;background:#7A1E00;"></div>
     <div class="cs-hero-blob" style="width:300px;height:300px;bottom:60px;left:-80px;background:#1A0400;opacity:.2;"></div>
-    <span class="cs-hero-number">03</span>
+    <span class="cs-hero-number">02</span>
 
     <div class="cs-title-wrap">
       <p class="cs-company">Gymondo</p>
@@ -439,7 +442,7 @@
     </div>
 
     
-    <div class="scroll-hint" style="position:absolute;bottom:56px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" aria-hidden="true">
+    <div class="scroll-hint" style="position:absolute;top:110px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" aria-hidden="true">
       <div style="width:1px;height:64px;background:var(--border);position:relative;overflow:hidden;">
         <style>.sh-anim::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--accent);animation:shln 2.4s ease infinite;}@keyframes shln{0%{top:-100%}100%{top:100%}}</style>
         <div class="sh-anim" style="width:100%;height:100%;"></div>
@@ -449,7 +452,18 @@
 
   </section>
 
-  
+  <!-- SUMMARY -->
+  <div class="cs-summary">
+    <div class="cs-summary-inner">
+      <p class="cs-summary-tldr">Designed a <strong>Challenges feature from zero to shipped</strong> — and uncovered a structural tension with Programs that became the entire next design sprint.</p>
+      <div class="cs-summary-stats">
+        <div class="cs-summary-stat"><div class="cs-summary-stat-val">−21%</div><div class="cs-summary-stat-label">3-month drop-off</div></div>
+        <div class="cs-summary-stat"><div class="cs-summary-stat-val">5</div><div class="cs-summary-stat-label">Challenge types launched</div></div>
+        <div class="cs-summary-stat"><div class="cs-summary-stat-val">v2</div><div class="cs-summary-stat-label">Social layer ready</div></div>
+      </div>
+    </div>
+  </div>
+
   <section class="cs-section">
     <div class="cs-section-inner">
       <div class="cs-section-label">01 — Context</div>
@@ -457,6 +471,7 @@
       <div class="cs-section-body">
         <p>Activity data showed that <strong>nearly 50% of users dropped off within the first three months</strong>. Only 10% were still active after 22 months. Program completion rates were low — suggesting users either found the content too long, or lacked the motivation to keep going.</p>
         <p>A deeper look revealed a second problem: <em>62% of Gymondo's user base were beginners</em>, and most new features were built for them. The 33% of intermediate users felt underserved — and were quietly leaving for competitors.</p>
+        <p>I led the project end-to-end — from data analysis and research through to launch — working with the PM, a data analyst, and iOS and Android engineers. The retention case and proposed solution were presented to the leadership team before the project was greenlit.</p>
       </div>
       <div class="cs-findings" style="margin-top:48px;">
         <div class="cs-finding">
@@ -491,7 +506,7 @@
         <div class="cs-section-body">
           <p>We ran a survey asking users which potential features — ones Gymondo didn't yet have — they'd find most valuable. The top answer for both beginners and intermediate users was: <em>"Challenges to build lifestyle habits."</em></p>
           <p>Most competitors already had some form of challenges. We classified them into three types: <strong>create-your-own</strong>, <strong>activity-based</strong>, and <strong>curated workout challenges</strong>.</p>
-          <p>For the MVP, we focused on the two most implementable types — <strong>curated workouts</strong> and <strong>activity-based</strong> — deferring custom challenges to a later phase.</p>
+          <p>For the MVP, we scoped down to the two most implementable types — <strong>curated workouts</strong> and <strong>activity-based</strong> — deferring custom challenges to a later phase. This scoping call was made jointly with the PM to balance speed to market against feature completeness.</p>
         </div>
         
     <div class="cs-visual" style="margin-top:48px;">
@@ -504,35 +519,26 @@
 
   <section class="cs-section">
     <div class="cs-section-inner">
-      <div class="cs-section-label">03 — UX Design</div>
-      <h2 class="cs-section-title">Designing for two types of motivation — and knowing which to prioritise.</h2>
+      <div class="cs-section-label">03 — Challenges</div>
+      <h2 class="cs-section-title">Designing for two user groups with incompatible motivations.</h2>
       <div class="cs-section-body">
-        <p>The user flow needed to handle two challenge types with distinct mechanics: curated workouts (a structured sequence over days/weeks) and activity-based challenges (tied to tracked movement data).</p>
-        <p>We explored how users would discover, join, track, and complete each type — and how challenges could coexist with the existing Programs concept without cannibalising it.</p>
+        <p>The core tension was between competitive athletes who wanted leaderboards and personal-best tracking, and casual users who wanted encouragement without pressure. Early concepts that tried to serve both groups ended up working for neither. After two rounds of testing, we made the call to <strong>launch with individual progress only</strong> and defer the social layer to v2.</p>
+        <p>A second challenge emerged mid-project: the backend team flagged that recurring challenge logic was substantially more complex than estimated, requiring us to redesign the trigger system two weeks before dev handoff. We simplified to fixed-duration challenges and documented the dynamic version as a v2 spec.</p>
       </div>
-      
-    <div class="cs-visual" style="margin-top:48px;">
-      <img src="images/gc-userflow.jpg" alt="User flow — curated and activity-based challenge types" style="width:100%;display:block;border-radius:16px;" />
-    </div>
-
     </div>
   </section>
 
   <section class="cs-section">
     <div class="cs-section-inner">
-      <div class="cs-section-label">04 — Wireframing</div>
-      <h2 class="cs-section-title">Fast concepts. Internal feedback. Then a real prototype.</h2>
-      <div class="cs-two-col">
-        <div class="cs-section-body">
-          <p>We moved quickly from concept to internal review. The first wireframes were intentionally rough — the goal was to get something testable with colleagues before investing in high-fidelity work.</p>
-          <p>We designed for five key states: <strong>Home (available)</strong>, <strong>Home (active)</strong>, <strong>Not joined</strong>, <strong>Joined + activity</strong>, and <strong>Completed</strong>.</p>
-          <p>After a first UI iteration and internal feedback pass, we prepared a prototype for user testing with the introduction of both challenge types.</p>
-        </div>
-        
-    <div class="cs-visual" style="margin-top:48px;">
-      <img src="images/gc-wireframes.jpg" alt="Design iteration — challenge states wireframes" style="width:100%;display:block;border-radius:16px;" />
-    </div>
-
+      <div class="cs-section-label">04 — Solution</div>
+      <h2 class="cs-section-title">Designing for two types of motivation — and shipping the one that tested best.</h2>
+      <div class="cs-section-body">
+        <p>The user flow handled two challenge types with distinct mechanics: curated workouts (a structured sequence over days/weeks) and activity-based challenges (tied to tracked movement data). We explored how users would discover, join, track, and complete each — and how challenges could coexist with Programs without cannibalising it.</p>
+        <p>We moved quickly from rough concepts to internal review, designing five key states: <strong>Home (available)</strong>, <strong>Home (active)</strong>, <strong>Not joined</strong>, <strong>Joined + activity</strong>, and <strong>Completed</strong>.</p>
+        <p>Based on testing, we launched with <strong>Curated Challenges only</strong>. The activity-based type needed further design work to resolve a guidance problem. We defined all card states and progress components, and created a new set of backgrounds and achievement badges in collaboration with the graphic design team.</p>
+      </div>
+      <div class="cs-visual" style="margin-top:48px;">
+        <img src="images/gc-finaldesign.jpg" alt="Final Challenges design" style="width:100%;display:block;border-radius:16px;" />
       </div>
     </div>
   </section>
@@ -572,29 +578,12 @@
     </div>
   </section>
 
-  <section class="cs-section">
-    <div class="cs-section-inner">
-      <div class="cs-section-label">06 — Final Design</div>
-      <h2 class="cs-section-title">One challenge type launched. Built modularly for what comes next.</h2>
-      <div class="cs-section-body">
-        <p>Based on testing, we launched with <strong>Curated Challenges only</strong>. The activity-based type needed further design work to resolve the guidance problem before being production-ready.</p>
-        <p>We defined all states for the new Challenges cards and the progress card, and created a new set of <em>backgrounds and achievement badges</em> in collaboration with the graphic design team.</p>
-        <p>Working closely with devs was especially important here — we ran collaborative sessions to resolve exactly how the header and navigation should behave on the Challenge detail screen during scroll.</p>
-      </div>
-      
-    <div class="cs-visual" style="margin-top:48px;">
-      <img src="images/gc-finaldesign.jpg" alt="Final Challenges design — home screen with active, upcoming and completed states" style="width:100%;display:block;border-radius:16px;" />
-    </div>
-
-    </div>
-  </section>
-
   <section class="cs-section" style="padding-bottom:0;">
     <div class="cs-section-inner">
-      <div class="cs-section-label">07 — Results</div>
+      <div class="cs-section-label">06 — Results</div>
       <h2 class="cs-section-title">Retention improved. A side effect emerged. Both informed what came next.</h2>
       <div class="cs-section-body">
-        <p>Challenges shipped and performed well on the main metric — but surfaced an interesting tension with Programs that needed attention.</p>
+        <p>Challenges shipped and performed well on the main metric — but surfaced an interesting tension with Programs that needed attention. The findings directly informed the next roadmap priority: resolving the cannibalisation effect became the following design sprint.</p>
       </div>
       <div class="cs-metrics" style="margin-top:48px;">
         <div class="cs-metric">
@@ -613,9 +602,33 @@
     </div>
   </section>
 
+  <!-- NEXT STEPS -->
+  <section class="cs-section">
+    <div class="cs-section-inner">
+      <div class="cs-section-label">07 — Next Steps</div>
+      <h2 class="cs-section-title">The v1 infrastructure was built with v2 in mind from day one.</h2>
+      <div class="cs-next-steps">
+        <div class="cs-next-step">
+          <div class="cs-next-step-num">01</div>
+          <div class="cs-next-step-title">Social challenges</div>
+          <div class="cs-next-step-text">Community leaderboards and friend-vs-friend challenges. The individual-progress infrastructure was built to support this without significant rearchitecting — only the social layer and notification system need adding.</div>
+        </div>
+        <div class="cs-next-step">
+          <div class="cs-next-step-num">02</div>
+          <div class="cs-next-step-title">Challenge-driven personalisation</div>
+          <div class="cs-next-step-text">Users who consistently complete endurance challenges could be automatically routed toward more advanced training tracks — closing the loop between the engagement layer and the core product value proposition.</div>
+        </div>
+        <div class="cs-next-step">
+          <div class="cs-next-step-num">03</div>
+          <div class="cs-next-step-title">Activity-based challenge type</div>
+          <div class="cs-next-step-text">Deprioritised after testing revealed a guidance problem. With the right onboarding overlay and progress visualisation resolved, this is the next challenge type ready to ship and the highest-voted feature in post-launch user surveys.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- NEXT PROJECT -->
-  
+
   <a href="neotaste-onboarding.html" class="cs-next">
     <p class="cs-next-label">Next project</p>
     <div class="cs-next-inner">
@@ -673,16 +686,15 @@
 
   /* ---- PRELOADER ---- */
   const preloader = document.getElementById('preloader');
-  const plBar     = document.getElementById('plBar');
-  const plSpan    = document.querySelector('.pl-name span');
-  gsap.to(plSpan, { y:0, duration:.7, ease:'power3.out', delay:.1 });
+  const plTop     = document.getElementById('plTop');
+  const plBot     = document.getElementById('plBot');
   window.addEventListener('load', () => {
-    setTimeout(() => { plBar.style.width = '100%'; }, 150);
     setTimeout(() => {
-      gsap.to(preloader, { yPercent:-100, duration:.85, ease:'power3.inOut',
+      gsap.to(plTop, { yPercent:-100, duration:.5, ease:'power3.inOut' });
+      gsap.to(plBot, { yPercent:100,  duration:.5, ease:'power3.inOut',
         onComplete: () => { preloader.style.display='none'; initAnim(); }
       });
-    }, 1200);
+    }, 80);
   });
 
   /* ---- ANIMATIONS ---- */

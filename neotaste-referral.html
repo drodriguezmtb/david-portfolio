@@ -45,17 +45,10 @@
     [data-theme="light"] nav.scrolled{background:rgba(240,237,229,.85);box-shadow:0 4px 24px rgba(0,0,0,.10);}
     .nav-logo{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;letter-spacing:-.02em;}
     .nav-right{display:flex;align-items:center;gap:28px;}
-    .nav-back{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
-    .nav-back:hover{color:var(--fg);}
-    .nav-back svg{transition:transform .3s ease;}
-    .nav-back:hover svg{transform:translateX(-3px);}
     .theme-btn{display:flex;align-items:center;gap:7px;background:none;border:1px solid var(--border);border-radius:100px;padding:7px 15px;color:var(--muted);font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:all .3s ease;}
     .theme-btn:hover{background:var(--fg);color:var(--bg);border-color:var(--fg);}
-    #preloader{position:fixed;inset:0;background:var(--bg);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;}
-    .pl-name{font-family:'Syne',sans-serif;font-size:clamp(24px,4vw,52px);text-align:center;font-weight:800;letter-spacing:-.045em;overflow:hidden;}
-    .pl-name span{display:inline-block;transform:translateY(110%);}
-    .pl-bar-wrap{width:120px;height:1px;background:var(--border);overflow:hidden;}
-    .pl-bar{height:100%;width:0;background:var(--fg);transition:width .9s cubic-bezier(.76,0,.24,1);}
+    #preloader{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;pointer-events:none;}
+    .pl-panel{flex:1;background:var(--bg);}
     .cs-hero{min-height:100svh;padding:0 44px max(60px,calc(60px + env(safe-area-inset-bottom)));display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
     .cs-hero-bg{position:absolute;inset:0;z-index:0;opacity:.18;}
     .cs-hero-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;}
@@ -138,6 +131,21 @@
     .cs-next:hover .cs-next-arrow svg path{stroke:#fff;}
     .cs-footer{padding:24px 44px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
     .cs-footer p{font-size:12px;color:var(--muted);}
+    /* SUMMARY BAND */
+    .cs-summary { padding:48px 44px; border-top:1px solid var(--border); }
+    .cs-summary-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr auto; gap:60px; align-items:center; }
+    .cs-summary-tldr { font-size:19px; font-weight:400; line-height:1.6; letter-spacing:-.01em; color:var(--fg); }
+    .cs-summary-tldr strong { font-weight:700; }
+    .cs-summary-stats { display:flex; gap:40px; flex-shrink:0; }
+    .cs-summary-stat { text-align:right; }
+    .cs-summary-stat-val { font-family:'Inter',sans-serif; font-size:34px; font-weight:800; letter-spacing:-.04em; color:var(--accent); line-height:1; }
+    .cs-summary-stat-label { font-size:11px; color:var(--muted); margin-top:4px; line-height:1.4; }
+    /* NEXT STEPS */
+    .cs-next-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px; }
+    .cs-next-step { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:28px; }
+    .cs-next-step-num { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+    .cs-next-step-title { font-size:15px; font-weight:700; margin-bottom:8px; letter-spacing:-.01em; }
+    .cs-next-step-text { font-size:13px; color:var(--muted); line-height:1.6; }
     @media(max-width:900px){
       nav{padding:18px 24px;}nav.scrolled{top:12px;left:16px;right:16px;padding:12px 20px;}
       .cs-hero{padding:0 24px max(48px,calc(48px + env(safe-area-inset-bottom)));}
@@ -150,14 +158,47 @@
       .cs-meta-strip{flex-wrap:wrap;}
       .cs-meta-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border);}
       .cs-footer{flex-direction:column;gap:12px;text-align:center;}
+      .scroll-hint{top:auto;bottom:56px;}
+      .cs-summary-inner{grid-template-columns:1fr;gap:32px;} .cs-summary-stat{text-align:left;} .cs-summary-stats{gap:24px;flex-wrap:wrap;} .cs-next-steps{grid-template-columns:1fr;}
+    }
+
+    /* Stakeholder Management */
+    .cs-stakeholders { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:32px; }
+    .cs-stakeholder-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:24px; }
+    .cs-stakeholder-role { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+    .cs-stakeholder-need { font-size:15px; font-weight:600; color:var(--fg); margin-bottom:6px; line-height:1.3; }
+    .cs-stakeholder-resolution { font-size:14px; color:var(--muted); line-height:1.5; }
+
+    /* Hypothesis */
+    .cs-hypothesis { background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--fg); border-radius:12px; padding:32px; margin-top:32px; }
+    .cs-hypothesis-label { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+    .cs-hypothesis-text { font-size:clamp(18px,2.2vw,24px); font-weight:600; line-height:1.4; color:var(--fg); margin-bottom:16px; }
+    .cs-hypothesis-rationale { font-size:15px; color:var(--muted); line-height:1.6; }
+
+    /* Implementation Plan */
+    .cs-impl-steps { list-style:none; padding:0; margin:24px 0 0; display:flex; flex-direction:column; gap:12px; }
+    .cs-impl-step { display:flex; gap:16px; align-items:flex-start; }
+    .cs-impl-step-num { width:28px; height:28px; border-radius:50%; background:var(--bg2); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--muted); flex-shrink:0; margin-top:2px; }
+    .cs-impl-step-text { font-size:15px; color:var(--muted); line-height:1.6; }
+
+    /* Lessons Learned */
+    .cs-lessons { margin-top:32px; padding-top:32px; border-top:1px solid var(--border); }
+    .cs-lessons-label { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; }
+    .cs-lessons-list { display:flex; flex-direction:column; gap:16px; }
+    .cs-lesson { display:flex; gap:16px; align-items:flex-start; }
+    .cs-lesson-num { font-size:13px; font-weight:700; color:var(--muted); min-width:24px; padding-top:2px; }
+    .cs-lesson-text { font-size:15px; color:var(--muted); line-height:1.6; }
+
+    @media(max-width:640px){
+      .cs-stakeholders { grid-template-columns:1fr; }
     }
   </style>
 </head>
 <body>
 
 <div id="preloader" aria-hidden="true">
-  <div class="pl-name"><span>NeoTaste</span></div>
-  <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
+  <div class="pl-panel" id="plTop"></div>
+  <div class="pl-panel" id="plBot"></div>
 </div>
 
 <div class="cursor" id="cursor" aria-hidden="true">
@@ -173,11 +214,7 @@
 <nav id="nav">
   <a href="index.html" class="nav-logo">dvdrod</a>
   <div class="nav-right">
-    <a href="index.html#work" class="nav-back">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M10 2L4 7L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Back to work
-    </a>
-    <button class="theme-btn" id="themeBtn"><span id="tIcon">◐</span><span id="tLabel">Light</span></button>
+<button class="theme-btn" id="themeBtn"><span id="tIcon">◐</span><span id="tLabel">Light</span></button>
   </div>
 </nav>
 
@@ -188,7 +225,7 @@
   <div class="cs-hero-bg" style="background:linear-gradient(145deg,#0A0415,#2A0A50,#5B21B6);"></div>
   <div class="cs-hero-blob" style="width:500px;height:500px;top:-100px;right:-80px;background:#8B5CF6;opacity:.2;"></div>
   <div class="cs-hero-blob" style="width:280px;height:280px;bottom:60px;left:-60px;background:#A78BFA;opacity:.1;"></div>
-  <span class="cs-hero-number">07</span>
+  <span class="cs-hero-number">03</span>
   <div class="cs-title-wrap">
     <p class="cs-company">NeoTaste</p>
     <h1 class="cs-title">
@@ -202,7 +239,7 @@
     <div class="cs-meta-item"><div class="cs-meta-label">Location</div><div class="cs-meta-value">Berlin, Germany</div></div>
     <div class="cs-meta-item"><div class="cs-meta-label">Type</div><div class="cs-meta-value">Growth · Experimentation</div></div>
   </div>
-  <div style="position:absolute;bottom:56px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" class="scroll-hint" aria-hidden="true">
+  <div style="position:absolute;top:110px;right:44px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;pointer-events:none;" class="scroll-hint" aria-hidden="true">
     <div style="width:1px;height:64px;background:var(--border);position:relative;overflow:hidden;">
       <style>.sh-anim3::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--accent);animation:shln3 2.4s ease infinite;}@keyframes shln3{0%{top:-100%}100%{top:100%}}</style>
       <div class="sh-anim3" style="width:100%;height:100%;"></div>
@@ -210,6 +247,18 @@
     <span style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-lr;">Scroll</span>
   </div>
 </section>
+
+<!-- SUMMARY -->
+<div class="cs-summary">
+  <div class="cs-summary-inner">
+    <p class="cs-summary-tldr">A/B tested two referral reward structures, discovered neither worked alone, and shipped a <strong>hybrid model</strong> that more than doubled the referral rate.</p>
+    <div class="cs-summary-stats">
+      <div class="cs-summary-stat"><div class="cs-summary-stat-val">+148%</div><div class="cs-summary-stat-label">Referral rate</div></div>
+      <div class="cs-summary-stat"><div class="cs-summary-stat-val">−19%</div><div class="cs-summary-stat-label">Cost per referral</div></div>
+      <div class="cs-summary-stat"><div class="cs-summary-stat-val">2 wks</div><div class="cs-summary-stat-label">Test cycle</div></div>
+    </div>
+  </div>
+</div>
 
 <!-- 01 CONTEXT -->
 <section class="cs-section">
@@ -227,10 +276,19 @@
 <!-- 02 HYPOTHESIS & SETUP -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">02 — Test Design</div>
-    <h2 class="cs-section-title">Two variants. One question: does cash beat a free month?</h2>
+    <div class="cs-section-label">02 — Hypothesis</div>
+    <h2 class="cs-section-title">Immediate cash incentives would drive more referrals than delayed value.</h2>
     <div class="cs-section-body">
-      <p>We designed the test around a single primary metric: <strong>referral conversion rate</strong> — the percentage of active users who shared their referral link and had at least one friend sign up. Secondary metrics tracked new user quality: D7 retention and first-month engagement of referred users.</p>
+      <div class="cs-hypothesis">
+        <p class="cs-hypothesis-label">Our bet</p>
+        <p class="cs-hypothesis-text">Offering €10 cash per referral (credited immediately) would outperform a 1-month free subscription (deferred value) in referral conversion rates and user acquisition velocity.</p>
+        <p class="cs-hypothesis-rationale">Existing referral program (1-month free) was driving only 2.1% of active users to share. Behavioral economics literature showed immediate monetary incentives consistently outperform delayed value for activation tasks. We hypothesized cash would be more tangible and easier to understand than "free month," breaking through the activation barrier. Additionally, cash is fungible — less friction than redemption steps required for the free month feature.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;">
+      <h3 style="font-size:clamp(20px,2.5vw,28px); font-weight:700; margin-bottom:24px;">Test Design</h3>
+      <p style="font-size:17px; line-height:1.7; color:var(--fg); margin-bottom:20px;">We designed the test around a single primary metric: <strong>referral conversion rate</strong> — the percentage of active users who shared their referral link and had at least one friend sign up. Secondary metrics tracked new user quality: D7 retention and first-month engagement of referred users.</p>
     </div>
 
     <div class="cs-steps">
@@ -292,13 +350,47 @@
   </div>
 </section>
 
-<!-- 03 FINDINGS -->
+<!-- 04 RESEARCH & ANALYSIS -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">03 — Findings</div>
+    <div class="cs-section-label">03 — Research & Analysis</div>
+    <h2 class="cs-section-title">Coordinating across Growth, Legal, and Product on incentive logistics.</h2>
+    <div class="cs-section-body">
+      <p>This test required alignment across multiple stakeholder groups with competing interests. The Growth team owned the KPIs and wanted to move fast; Legal had compliance concerns about cash incentives; Engineering needed to scope the payment crediting infrastructure; and Product wanted to protect brand positioning. The friction differential between redemption paths (instant cash vs. confirmation-step subscription) was also a design trade-off we had to acknowledge upfront.</p>
+      <div class="cs-stakeholders">
+        <div class="cs-stakeholder-card">
+          <p class="cs-stakeholder-role">Growth Team (Referral Program Owner)</p>
+          <p class="cs-stakeholder-need">Wanted to move fast with test launch; believed cash would be unambiguous winner</p>
+          <p class="cs-stakeholder-resolution">Coordinated weekly test planning syncs with all teams upfront. Legal review timeline was identified as critical path and escalated early to compress the 2-week delay to 10 days. Clear success criteria documented before launch.</p>
+        </div>
+        <div class="cs-stakeholder-card">
+          <p class="cs-stakeholder-role">Legal</p>
+          <p class="cs-stakeholder-need">Needed to sign off on cash incentive variant; required compliance review</p>
+          <p class="cs-stakeholder-resolution">Prepared detailed test spec and use cases upfront so Legal could review async. Positioned test as time-boxed and reversible if issues arose. Legal approved in 10 days with contingency clauses documented.</p>
+        </div>
+        <div class="cs-stakeholder-card">
+          <p class="cs-stakeholder-role">Engineering</p>
+          <p class="cs-stakeholder-need">Flagged complexity of real-time payment crediting system; estimated 2-week implementation</p>
+          <p class="cs-stakeholder-resolution">Scoped a simplified v1: cash credited asynchronously to user account on next login, rather than real-time. Reduced implementation to 5 days. Documented as limitation in test results readout.</p>
+        </div>
+        <div class="cs-stakeholder-card">
+          <p class="cs-stakeholder-role">Product & Marketing</p>
+          <p class="cs-stakeholder-need">Concerned about brand positioning; wanted incentive framed around discovery and community, not commoditized cash</p>
+          <p class="cs-stakeholder-resolution">Agreed on messaging: €10 positioned as "money to explore" (toward deals/meals) rather than generic "cashback." Test positioned as exploring incentive mechanics, not locking brand strategy long-term.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 STAKEHOLDER MANAGEMENT -->
+<section class="cs-section">
+  <div class="cs-section-inner">
+    <div class="cs-section-label">04 — Stakeholder Management</div>
     <h2 class="cs-section-title">€10 drove twice as many referrals. But the free month brought better users.</h2>
     <div class="cs-section-body">
       <p>The results after 30 days were clear on the primary metric — and nuanced on the secondary ones. Variant B (€10 cash) dramatically outperformed on conversion rate. But the referred users it attracted showed meaningfully lower retention and engagement at Day 30.</p>
+      <p>The PM, Data Analyst, and I reviewed the findings together — the tension between volume and user quality wasn't immediately obvious in the raw numbers, and needed careful framing before we took it to the leadership team.</p>
     </div>
 
     <div class="cs-ab-grid">
@@ -359,12 +451,35 @@
 <!-- 04 DECISION -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">04 — Decision & Outcome</div>
-    <h2 class="cs-section-title">Neither variant alone. A combined approach outperformed both.</h2>
+    <!-- 05 DESIGN PROCESS -->
+<section class="cs-section">
+  <div class="cs-section-inner">
+    <div class="cs-section-label">05 — Design Process</div>
+    <h2 class="cs-section-title">From A/B results to a hybrid recommendation.</h2>
     <div class="cs-section-body">
-      <p>The data told a story of trade-offs: cash maximised volume but attracted price-sensitive users with lower LTV. The subscription reward attracted high-quality users but failed to move enough people to act.</p>
-      <p>Working with the Growth PM, we proposed a <strong>combined incentive</strong>: €10 cash credit for the referrer, plus one free month for the new user. This preserved the tangible draw of cash for the person sharing, while giving the new user a reason to explore the product for longer.</p>
-      <p>The combined variant launched to 100% of users in Q4 2024 and was tracked over the following 60 days.</p>
+      <p>The test revealed a clear trade-off: the €10 cash variant drove 5.2% referral rate but attracted deal-chasing users with lower LTV. The 1-month free subscription variant saw only 2.3% referral rate, but those referred users had 52% D7 retention vs. 38% for cash-referred users.</p>
+      <p>Rather than choosing the "winner," we designed a <strong>combined incentive</strong>: €10 cash credit for the referrer (addressing the activation barrier) plus one free month for the new user (ensuring product exposure and quality). This addressed both sides of the trade-off.</p>
+      <p>The combined approach was prototyped in the existing referral UI framework, tested with 15 users in moderated sessions, and launched to 100% in Q4 2024.</p>
+
+      <div style="margin-top:40px;">
+        <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Implementation & Rollout</p>
+        <ul class="cs-impl-steps">
+          <li class="cs-impl-step"><span class="cs-impl-step-num">1</span><span class="cs-impl-step-text">Updated referral flow copy and reward display to show both incentives (€10 for referrer + free month for new user). Minimal code changes leveraged existing variant infrastructure from the A/B test.</span></li>
+          <li class="cs-impl-step"><span class="cs-impl-step-num">2</span><span class="cs-impl-step-text">Coordinated payment crediting: €10 credited to referrer account on referred friend's first login (asynchronous, as engineered for test). Subscription added automatically to new user account on signup.</span></li>
+          <li class="cs-impl-step"><span class="cs-impl-step-num">3</span><span class="cs-impl-step-text">Launched with clear success tracking: referral rate as primary KPI, with secondary tracking on CAC per acquired user and D7 retention of referred cohort. Attributed 148% growth in total referral volume to combined approach.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 METRICS & KPIs -->
+<section class="cs-section">
+  <div class="cs-section-inner">
+    <div class="cs-section-label">06 — Metrics & KPIs</div>
+    <h2 class="cs-section-title">The combined incentive outperformed both single approaches.</h2>
+    <div class="cs-section-body">
+      <p>After 60 days of tracking following the launch of the combined incentive, the results showed:</p>
     </div>
 
     <div class="cs-metrics">
@@ -394,6 +509,42 @@
       <div class="cs-result-card">
         <div class="cs-result-val">2 wks</div>
         <div class="cs-result-label">Time from test results to full launch — fast iteration enabled by pre-built design components</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 CONCLUSION -->
+<section class="cs-section">
+  <div class="cs-section-inner">
+    <div class="cs-section-label">07 — Conclusion</div>
+    <h2 class="cs-section-title">A/B testing revealed the power of addressing both sides of a trade-off.</h2>
+    <div class="cs-section-body">
+      <p style="margin-bottom:40px;">This project proved that win-win solutions exist when you measure both sides of a trade-off clearly. The cash incentive drove volume but at the cost of user quality. The subscription incentive preserved quality but failed to move the needle on activation. By testing both and analyzing the data rigorously, we designed a combined approach that achieved 5.2% referral rate (2.5x baseline) while maintaining 46% D7 retention — best-in-class for a referral acquisition channel.</p>
+    </div>
+    <div class="cs-lessons">
+      <p class="cs-lessons-label">Lessons Learned</p>
+      <div class="cs-lessons-list">
+        <div class="cs-lesson"><span class="cs-lesson-num">01</span><span class="cs-lesson-text"><strong>Test both sides of the trade-off.</strong> If we'd stopped at the first test, we'd have shipped the cash incentive and missed the quality signal. By designing a second variant that prioritized quality, we learned there was room for a blended solution.</span></div>
+        <div class="cs-lesson"><span class="cs-lesson-num">02</span><span class="cs-lesson-text"><strong>Isolate the variable you're testing.</strong> The different UX paths for redemption (instant cash vs. subscription confirmation) introduced uncontrolled friction. For future tests, we'd standardize UX and test only the incentive mechanic to get cleaner signals.</span></div>
+        <div class="cs-lesson"><span class="cs-lesson-num">03</span><span class="cs-lesson-text"><strong>Stakeholder alignment upfront saves weeks.</strong> Legal review of the cash incentive was our critical path. By getting all stakeholders in a room at the start and documenting the timeline, we compressed a 2-week delay to 10 days and kept the test schedule intact.</span></div>
+      </div>
+    </div>
+    <div class="cs-next-steps" style="margin-top:48px;">
+      <div class="cs-next-step">
+        <div class="cs-next-step-num">01</div>
+        <div class="cs-next-step-title">Market-level segmentation</div>
+        <div class="cs-next-step-text">The incentive that works in Berlin may not land the same way in Hamburg or Munich. A follow-up test with city-level segmentation was already scoped at the time of writing.</div>
+      </div>
+      <div class="cs-next-step">
+        <div class="cs-next-step-num">02</div>
+        <div class="cs-next-step-title">Tiered referral system</div>
+        <div class="cs-next-step-text">Rewarding users who consistently refer high-retention friends differently from one-and-done referrers. Requires enriching the referral data model with downstream retention signals for referred users.</div>
+      </div>
+      <div class="cs-next-step">
+        <div class="cs-next-step-num">03</div>
+        <div class="cs-next-step-title">High-intent surface expansion</div>
+        <div class="cs-next-step-text">Currently triggered from settings and post-deal. Testing in-context placements — after a 5-star experience or completing a streak — as higher-intent sharing moments.</div>
       </div>
     </div>
   </div>
@@ -433,11 +584,12 @@
       el.addEventListener('mouseleave',()=>document.body.classList.remove('is-hovering'));
     });
   }
-  const preloader=document.getElementById('preloader'),plBar=document.getElementById('plBar'),plSpan=document.querySelector('.pl-name span');
-  gsap.to(plSpan,{y:0,duration:.7,ease:'power3.out',delay:.1});
+  const preloader=document.getElementById('preloader'),plTop=document.getElementById('plTop'),plBot=document.getElementById('plBot');
   window.addEventListener('load',()=>{
-    setTimeout(()=>{plBar.style.width='100%';},150);
-    setTimeout(()=>{gsap.to(preloader,{yPercent:-100,duration:.85,ease:'power3.inOut',onComplete:()=>{preloader.style.display='none';initAnim();}});},1200);
+    setTimeout(()=>{
+      gsap.to(plTop,{yPercent:-100,duration:.5,ease:'power3.inOut'});
+      gsap.to(plBot,{yPercent:100,duration:.5,ease:'power3.inOut',onComplete:()=>{preloader.style.display='none';initAnim();}});
+    },80);
   });
   gsap.registerPlugin(ScrollTrigger);
   function initAnim(){
