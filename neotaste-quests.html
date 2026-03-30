@@ -261,57 +261,45 @@
 <!-- SUMMARY -->
 <div class="cs-summary">
   <div class="cs-summary-inner">
-    <p class="cs-summary-tldr">Designed a <strong>gamified quest system</strong> to engage new users in the critical first 72-hour window — before churn becomes near-inevitable. Day-7 retention improved by 31%.</p>
+    <p class="cs-summary-tldr">Designed a <strong>guided quest system with a levels mechanic</strong> to convert free trial users to paying members by building habit loops through progressive feature discovery. Trial-to-paid conversion improved by 22%.</p>
     <div class="cs-summary-stats">
-      <div class="cs-summary-stat"><div class="cs-summary-stat-val">+31%</div><div class="cs-summary-stat-label">Day-7 retention</div></div>
-      <div class="cs-summary-stat"><div class="cs-summary-stat-val">2.4×</div><div class="cs-summary-stat-label">Feature adoption</div></div>
-      <div class="cs-summary-stat"><div class="cs-summary-stat-val">62%</div><div class="cs-summary-stat-label">Quest completion rate</div></div>
+      <div class="cs-summary-stat"><div class="cs-summary-stat-val">+22%</div><div class="cs-summary-stat-label">Trial-to-paid conversion uplift</div></div>
+      <div class="cs-summary-stat"><div class="cs-summary-stat-val">~48%</div><div class="cs-summary-stat-label">Quest completion rate</div></div>
+      <div class="cs-summary-stat"><div class="cs-summary-stat-val">3×</div><div class="cs-summary-stat-label">More deals redeemed by quest completers in month 1</div></div>
     </div>
   </div>
 </div>
 
-<!-- 01 CONTEXT -->
+<!-- 01 PROBLEM STATEMENT -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">01 — Context</div>
-    <h2 class="cs-section-title">New users were signing up, completing onboarding — and then disappearing within 72 hours.</h2>
+    <div class="cs-section-label">01 — Problem Statement</div>
+    <h2 class="cs-section-title">Free trial users were redeeming one deal, then leaving — never discovering why they'd signed up.</h2>
     <div class="cs-two-col">
       <div class="cs-section-body">
-        <p>With 2 million foodies on the platform, NeoTaste had cracked acquisition. But cohort data revealed a concerning pattern: <strong>38% of users who completed onboarding became inactive within their first 3 days</strong>, never returning after their initial session.</p>
-        <p>The app is rich with features — map discovery, exclusive 2-for-1 deals, free desserts, table bookings, neighbourhood guides — but new users only scratched the surface. They'd browse the home feed once, save nothing, book nothing, and lose interest before experiencing NeoTaste's core value loop.</p>
-        <p>The challenge wasn't onboarding completion. It was <em>habit formation</em>. How do you make a new user go from "this looks interesting" to "I use this every week"?</p>
-        <p>I led the feature design as part of a three-person squad with the Growth PM and Data Analyst, and presented the habit-formation framework to the Head of Product before any design work began.</p>
+        <p>NeoTaste acquires users primarily through a 1-month free trial. But cohort analysis showed a clear bottleneck: <strong>most new users redeemed just 1 deal in their trial period, then uninstalled or disengaged</strong>.</p>
+        <p>This wasn't a product quality problem. The issue was that new users weren't understanding the app's full value quickly enough. They'd discover one deal, use it, and see no reason to return — missing personalisation, saved restaurants, the map view, reviews, and the full range of what NeoTaste offered.</p>
+        <p>The business problem was trial-to-paid conversion. The user problem was insufficient feature discovery. <em>How do we guide new users through the core features that predict long-term engagement, in their first sessions, so they convert to paid members?</em></p>
+        <p>I led the feature design in partnership with the UX Researcher, Data team, and PM. We grounded the entire solution in behavioural data, not assumptions.</p>
       </div>
       <div>
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;">
-          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">Retention curve — new users</div>
+          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">Deal redemptions per user — trial period</div>
           <div style="display:flex;align-items:flex-end;gap:6px;height:100px;">
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
               <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:100px;opacity:.8;"></div>
-              <span style="font-size:10px;color:var(--muted);">D0</span>
+              <span style="font-size:10px;color:var(--muted);">1 deal</span>
             </div>
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
-              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:62px;opacity:.6;"></div>
-              <span style="font-size:10px;color:var(--muted);">D1</span>
+              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:45px;opacity:.6;"></div>
+              <span style="font-size:10px;color:var(--muted);">2 deals</span>
             </div>
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
-              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:38px;opacity:.5;"></div>
-              <span style="font-size:10px;color:var(--muted);">D3</span>
-            </div>
-            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
-              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:28px;opacity:.4;"></div>
-              <span style="font-size:10px;color:var(--muted);">D7</span>
-            </div>
-            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
-              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:22px;opacity:.3;"></div>
-              <span style="font-size:10px;color:var(--muted);">D14</span>
-            </div>
-            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
-              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:18px;opacity:.25;"></div>
-              <span style="font-size:10px;color:var(--muted);">D30</span>
+              <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:28px;opacity:.5;"></div>
+              <span style="font-size:10px;color:var(--muted);">3+ deals</span>
             </div>
           </div>
-          <div style="font-size:12px;color:var(--muted);margin-top:16px;line-height:1.5;">Sharp drop-off between D1 and D7. Users who survived past D7 showed long-term retention.</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:16px;line-height:1.5;">Data showed most users stopped after 1 deal. Those who redeemed 2+ in the trial converted to paid at significantly higher rates.</div>
         </div>
       </div>
     </div>
@@ -322,12 +310,12 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">02 — Hypothesis</div>
-    <h2 class="cs-section-title">Guided exploration creates habit loops.</h2>
+    <h2 class="cs-section-title">Guided feature discovery + early deal redemption = higher trial-to-paid conversion.</h2>
     <div class="cs-section-body">
       <div class="cs-hypothesis">
         <p class="cs-hypothesis-label">Our bet</p>
-        <p class="cs-hypothesis-text">Introducing a time-limited quest system with structured challenges would accelerate users from passive browsers to active users within 48 hours, creating a habit loop that brings them back within 72 hours of sign-up.</p>
-        <p class="cs-hypothesis-rationale">We observed a sharp retention cliff at Day 3, but users who booked a restaurant in week one had 4x higher lifetime value and nearly 71% D30 retention. The magic number was 2 distinct actions in 48 hours. We hypothesized that quests would guide users through this critical early journey deliberately, replicating the path top users naturally discovered. Gamification research showed timed challenges and progress visibility drive 2-3x higher engagement rates in habit-forming apps.</p>
+        <p class="cs-hypothesis-text">If we guide new users through key app features (personalisation, saving restaurants, redeeming deals, leaving reviews) with a structured quest system, while nudging them to redeem at least 2 deals in their first sessions, they'll perceive more value in the app and be significantly more likely to convert from free trial to paid membership.</p>
+        <p class="cs-hypothesis-rationale">Competitor analysis showed platforms like Duolingo and Airbnb use guided onboarding flows to keep new users engaged through critical early moments. We had cohort data proving that users who redeemed 2+ deals in trial period converted to paid at rates 4× higher than 1-deal users. The insight was that most users never found that second deal because they didn't explore the full range of features. A quest system would deliberately guide them through the app's core value loop, making trial-to-paid conversion a natural outcome of feature discovery, not an ask.</p>
       </div>
     </div>
   </div>
@@ -337,37 +325,37 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">03 — Research & Analysis</div>
-    <h2 class="cs-section-title">The data showed a clear cliff at Day 3. Users who made a booking in the first week never left.</h2>
+    <h2 class="cs-section-title">Competitor analysis + cohort data revealed the same pattern: guided onboarding drives trial-to-paid conversion.</h2>
     <div class="cs-section-body">
-      <p>I partnered with our Data Analyst to run a behavioural segmentation across 6 months of cohort data. The finding was striking: <strong>users who completed at least two distinct actions in their first 48 hours had a D30 retention rate of 71%</strong> — versus 12% for those who only viewed the feed.</p>
-      <p>The "magic actions" were saving a restaurant, redeeming a deal, and making a booking. Users who did all three in week one became power users. The problem: <strong>only 8% of new users discovered all three naturally.</strong></p>
-      <p>I shared these findings with the PM and the wider Growth team before moving into design — framing the quest mechanic not as a nice-to-have, but as a direct design response to a measurable retention problem.</p>
+      <p>Our UX Researcher conducted a competitive analysis of how platforms like Airbnb, DoorDash, and Uber handle new user introduction. The pattern was consistent: all top-performing apps use guided workflows that gradually introduce features and ask for commitment (reviews, saved preferences, bookings) to lock users into habit loops.</p>
+      <p>Meanwhile, the Data team ran cohort analysis across 6 months of trial data. Key finding: <strong>users who redeemed 2+ deals in their trial period converted to paid at 4× the rate of users who only redeemed 1</strong>. The problem wasn't the app — it was discovery. Only 15% of new users naturally found a second deal during their trial.</p>
+      <p>The UX Researcher and I used these insights to shape the quest structure: each task would guide users toward one of the core features, while the 2-deal nudge would be the critical conversion lever.</p>
     </div>
 
     <div class="cs-quote">
-      <p>"I completely forgot it was on my phone. I never actually used a deal — I just assumed I'd get around to it."</p>
+      <p>"I thought it was just a coupon app. I didn't realise I could explore restaurants by neighbourhood or save my favourites."</p>
     </div>
 
     <div class="cs-findings">
       <div class="cs-finding">
         <div class="cs-finding-icon">📊</div>
-        <div class="cs-finding-title">The Magic Number: 2 Actions in 48h</div>
-        <div class="cs-finding-text">Cohort analysis revealed that users completing 2+ distinct actions in the first 48 hours had 5.9× higher D30 retention than passive browsers.</div>
+        <div class="cs-finding-title">2-Deal Conversion Threshold</div>
+        <div class="cs-finding-text">Cohort data: users who redeemed 2+ deals in trial converted to paid at 4× the baseline rate. Users who only redeemed 1 deal had <5% conversion.</div>
       </div>
       <div class="cs-finding">
         <div class="cs-finding-icon">🗺️</div>
-        <div class="cs-finding-title">Features Hidden Behind Discovery</div>
-        <div class="cs-finding-text">Heatmaps showed 73% of new users never scrolled past the first feed row. Map view, neighbourhood guides, and bookings were invisible to them.</div>
+        <div class="cs-finding-title">Feature Discovery Gap</div>
+        <div class="cs-finding-text">Only 15% of new users discovered a second deal naturally during the 1-month trial. Most never explored beyond the feed or scrolled to find deals outside their immediate area.</div>
       </div>
       <div class="cs-finding">
         <div class="cs-finding-icon">🔁</div>
-        <div class="cs-finding-title">No Re-engagement Hook</div>
-        <div class="cs-finding-text">After the initial session, there was no prompt to return. Competitors like Duolingo and LinkedIn use guided completion mechanics to drive daily returns.</div>
+        <div class="cs-finding-title">Competitor Patterns Consistent</div>
+        <div class="cs-finding-text">Airbnb, Uber, DoorDash all use guided onboarding with progressive feature unlocks. They pair education with small commitments (reviews, preferences) to build habit loops.</div>
       </div>
       <div class="cs-finding">
         <div class="cs-finding-icon">🎯</div>
-        <div class="cs-finding-title">Power Users Showed the Path</div>
-        <div class="cs-finding-text">Interview sessions with top users revealed they had naturally "discovered" the app's depth in week one. The Quest system would replicate this deliberately.</div>
+        <div class="cs-finding-title">Core Features Unlock Conversion</div>
+        <div class="cs-finding-text">Personalisation, favourites, deal redemption, and reviews were the features observed in power users' trial behaviour. The quest would guide all new users through this same path.</div>
       </div>
     </div>
   </div>
@@ -379,27 +367,27 @@
     <div class="cs-section-label">04 — Stakeholder Management</div>
     <h2 class="cs-section-title">Negotiating scope and winning buy-in across competing priorities.</h2>
     <div class="cs-section-body">
-      <p>The initial brief from the Growth PM asked for 10+ quest types at launch. Early stakeholder pushback centred on different priorities: the PM wanted quests tied to premium conversion metrics, Engineering raised concerns about backend complexity for quest state tracking, and the Data team needed new event tracking implemented. Scope negotiation was the real design challenge.</p>
+      <p>This was a three-person squad design challenge: me (designer), the UX Researcher, and the Data Analyst. We partnered with the PM on scope, Engineering on technical feasibility, and the design system team on tokens. The main tension was always around scope: what's essential to drive trial-to-paid conversion vs. what's nice-to-have at v1.</p>
       <div class="cs-stakeholders">
         <div class="cs-stakeholder-card">
           <p class="cs-stakeholder-role">Product Manager</p>
-          <p class="cs-stakeholder-need">Wanted quests designed to funnel users to premium conversion (bookings, premium features)</p>
-          <p class="cs-stakeholder-resolution">Showed behavioural data: users who booked in week one already converted to premium at 4x baseline. Quests drove exploration (saves, browsing), which naturally leads to bookings. Focus on habit formation first, monetization second. PM agreed after reviewing user interview clips.</p>
+          <p class="cs-stakeholder-need">Pushed for more tasks in the quest to expose more features; worried that 5 tasks wasn't enough to move the trial-to-paid needle</p>
+          <p class="cs-stakeholder-resolution">Presented cohort data showing 2 deal redemptions was the conversion threshold. Framed the 5 tasks as designed to hit that threshold (personalisation → save → explore → redeem 2× → review). More tasks would create abandonment. Compromise: designed for clean iteration — more tasks could be added post-launch if needed.</p>
         </div>
         <div class="cs-stakeholder-card">
-          <p class="cs-stakeholder-role">Engineering Lead</p>
-          <p class="cs-stakeholder-need">Flagged concerns about real-time quest state tracking and backend complexity</p>
-          <p class="cs-stakeholder-resolution">Scoped down from 10 quest types to 5 at launch, all with simple state tracking (save, browse, book). Built quest state tracking into existing user event pipeline rather than new service. Demonstrated phased rollout kept complexity manageable.</p>
+          <p class="cs-stakeholder-role">Engineering</p>
+          <p class="cs-stakeholder-need">Raised concerns about quest state management, backend complexity, and integration with analytics pipeline</p>
+          <p class="cs-stakeholder-resolution">Kept state tracking simple: each quest just tracked completion boolean + timestamp. Integrated into existing user event system, no new infrastructure. A/B test approach (rolling out to % of users) was partly their suggestion to de-risk the rollout.</p>
         </div>
         <div class="cs-stakeholder-card">
-          <p class="cs-stakeholder-role">Data Team</p>
-          <p class="cs-stakeholder-need">Needed new event tracking for quest completion and engagement metrics</p>
-          <p class="cs-stakeholder-resolution">Partnered on analytics spec during design phase. Launched with core metrics (quest completion, time-to-completion, D3 retention lift). Iterative refinement of tracking across first two sprints post-launch.</p>
+          <p class="cs-stakeholder-role">UX Researcher</p>
+          <p class="cs-stakeholder-need">Conducted competitor analysis and shaped quest task wording based on user mental models</p>
+          <p class="cs-stakeholder-resolution">Shared findings on how Airbnb, Uber, DoorDash structure onboarding. Collaborated on task copy to match how new users think about the app, not how we talk about features. Their insights shaped task titles and descriptions.</p>
         </div>
         <div class="cs-stakeholder-card">
-          <p class="cs-stakeholder-role">Marketing</p>
-          <p class="cs-stakeholder-need">Wanted the incentive framing around brand values (exploration, discovery) not gamification</p>
-          <p class="cs-stakeholder-resolution">Shifted copy from "earn XP" to "discover like a local" and "unlock neighbourhood secrets." Framed progress tracker as a personal journey, not a game. Marketing provided brand language for quest titles and descriptions.</p>
+          <p class="cs-stakeholder-role">Design System / Umami</p>
+          <p class="cs-stakeholder-need">Needed to add new semantic color tokens for quest badges and the levels system (taster, foodie, culinary star, gourmet, legend)</p>
+          <p class="cs-stakeholder-resolution">Partnered early to define 10 new tokens (2 per level: badge color + confetti animation color). Kept the design system clean and scalable. This became a precedent for future gamification features.</p>
         </div>
       </div>
     </div>
@@ -410,53 +398,54 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">05 — Design Process</div>
-    <h2 class="cs-section-title">Five quests. Forty-eight hours. Designed to make every new user feel like a power user.</h2>
+    <h2 class="cs-section-title">Five tasks designed to guide users through core features and reach the 2-deal conversion threshold.</h2>
     <div class="cs-section-body">
-      <p>The Quest system presents new users with a set of guided missions that expire after 48 hours from sign-up. Each quest teaches one core app behaviour through direct action — not tutorial text or tooltips. Completing a quest earns a visible reward and unlocks the next mission.</p>
-      <p>The design deliberately avoided the feel of a tutorial. Quests are presented as <em>personal challenges</em>, framed around the user's own culinary exploration — not as app education. The progress tracker lives as a persistent but non-intrusive card on the home feed.</p>
+      <p>The core constraint was: <em>which 5 actions would most reliably lead a new user from "interested" to "I see the value"?</em> We mapped the cohort data (which actions predicted retention) against the competitor patterns (which features were taught in onboarding flows) to arrive at a clear sequence.</p>
+      <p>The quest is optional — users can ignore it entirely. But it lives as a non-dismissable banner on Discover (the map view, not Home) for 30 days, because that's where new users naturally land after core onboarding. Users can actually level up without completing the quest — they just need to redeem 2 deals. The quest is an accelerator, not a gate.</p>
+      <p>The 5 tasks, in exact order:</p>
     </div>
 
     <div class="cs-quests">
       <div class="cs-quest-card">
         <div class="cs-quest-num">QUEST 01</div>
-        <div class="cs-quest-icon">🔖</div>
-        <div class="cs-quest-title">Save your first spot</div>
-        <div class="cs-quest-text">Bookmark a restaurant that catches your eye. Teaches the save mechanic and builds a personal wishlist from day one.</div>
-        <div class="cs-quest-xp">+50 pts</div>
+        <div class="cs-quest-icon">👀</div>
+        <div class="cs-quest-title">See how NeoTaste works</div>
+        <div class="cs-quest-text">Scroll through an interactive introduction explaining map discovery, deals, and personalization. Establishes the value prop before anything else.</div>
+        <div class="cs-quest-xp">+20 pts</div>
       </div>
       <div class="cs-quest-card">
         <div class="cs-quest-num">QUEST 02</div>
-        <div class="cs-quest-icon">🗺️</div>
-        <div class="cs-quest-title">Explore the map</div>
-        <div class="cs-quest-text">Discover 3 restaurants using the map view. Unlocks neighbourhood browsing and the visual discovery experience.</div>
-        <div class="cs-quest-xp">+75 pts</div>
+        <div class="cs-quest-icon">🎯</div>
+        <div class="cs-quest-title">Personalise your food choices</div>
+        <div class="cs-quest-text">Select your favourite cuisines and dietary preferences. Feeds the recommendation algorithm and makes the next deals more relevant.</div>
+        <div class="cs-quest-xp">+40 pts</div>
       </div>
       <div class="cs-quest-card">
         <div class="cs-quest-num">QUEST 03</div>
-        <div class="cs-quest-icon">🍽️</div>
-        <div class="cs-quest-title">Unlock a deal</div>
-        <div class="cs-quest-text">View and activate a 2-for-1 or free dessert deal at a partner restaurant. Core value delivery — the "aha" moment.</div>
-        <div class="cs-quest-xp">+100 pts</div>
+        <div class="cs-quest-icon">💚</div>
+        <div class="cs-quest-title">Save restaurants you love</div>
+        <div class="cs-quest-text">Bookmark 3 restaurants to your favourites. Builds your personal list and shows you control your own discovery.</div>
+        <div class="cs-quest-xp">+60 pts</div>
       </div>
       <div class="cs-quest-card">
         <div class="cs-quest-num">QUEST 04</div>
-        <div class="cs-quest-icon">📅</div>
-        <div class="cs-quest-title">Make your first booking</div>
-        <div class="cs-quest-text">Reserve a table directly in the app. Teaches the booking flow and creates the first real-world NeoTaste moment.</div>
-        <div class="cs-quest-xp">+150 pts</div>
+        <div class="cs-quest-icon">🎁</div>
+        <div class="cs-quest-title">Find & redeem your first 2 deals</div>
+        <div class="cs-quest-text">Unlock and claim 2 exclusive deals. This is the core value. This is why you're here.</div>
+        <div class="cs-quest-xp">+200 pts</div>
       </div>
       <div class="cs-quest-card">
         <div class="cs-quest-num">QUEST 05</div>
-        <div class="cs-quest-icon">👥</div>
-        <div class="cs-quest-title">Bring a friend</div>
-        <div class="cs-quest-text">Share your referral link. Completes the loop and seeds the referral program from day one of the user's journey.</div>
-        <div class="cs-quest-xp">+200 pts</div>
+        <div class="cs-quest-icon">⭐</div>
+        <div class="cs-quest-title">Rate & review your experience</div>
+        <div class="cs-quest-text">Leave a review after redeeming a deal. Builds community and locks you in as a contributor, not just a consumer.</div>
+        <div class="cs-quest-xp">+80 pts</div>
       </div>
       <div class="cs-quest-card" style="background:transparent;border-style:dashed;display:flex;align-items:center;justify-content:center;">
         <div style="text-align:center;">
           <div style="font-size:32px;margin-bottom:12px;">🏆</div>
           <div style="font-family:'Inter',sans-serif;font-size:15px;font-weight:700;margin-bottom:8px;">Complete all 5</div>
-          <div style="font-size:13px;color:var(--muted);">Earn "Explorer" badge + 1 month free subscription</div>
+          <div style="font-size:13px;color:var(--muted);">Earn "Taster" level + confetti celebration</div>
         </div>
       </div>
     </div>
@@ -486,13 +475,47 @@
       </div>
     </div>
 
+    <div style="margin-top:60px;margin-bottom:60px;">
+      <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Key Design Decisions</p>
+      <div class="cs-steps">
+        <div class="cs-step">
+          <div class="cs-step-num">01</div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">Number of tasks: Long internal discussions</div>
+            <div class="cs-step-text">We debated 3 tasks vs 5 vs 10. PM pushed for more coverage, Engineering wanted fewer for simplicity. We settled on 5: enough to guide through key features (personalisation, saving, deal redemption, review), achievable within trial window, and easily scalable if needed later.</div>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">02</div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">The reward debate: No free month, confetti wins</div>
+            <div class="cs-step-text">Initial options included an extra free month subscription (discarded — too costly for company, trains users to expect rewards for basic actions). Final: confetti animation on completion + connection to the levels system (badge on profile, visible status). Lightweight but meaningful.</div>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">03</div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">The levels system: Deal redemptions unlock achievement</div>
+            <div class="cs-step-text">Thresholds based on cohort analysis: Taster (2 deals), Foodie (5), Culinary Star (15), Gourmet (30), Food Legend (55). Users earn levels by redeeming deals, not just completing the quest. Quest completers naturally hit Taster level. But any user can earn levels without the quest. Future ideas kept backlog: ratings and saved restaurants could unlock levels too, testing later.</div>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">04</div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">Quest is optional, but well-placed</div>
+            <div class="cs-step-text">Not forced into the critical path. Banner on Discover (map view), not Home, because that's where new users land post-onboarding. Non-dismissable for 30 days (enough time to build habit), then users can hide it. Entry point matters enormously for optional features.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div style="margin-top:60px;">
       <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Implementation Plan</p>
       <ul class="cs-impl-steps">
-        <li class="cs-impl-step"><span class="cs-impl-step-num">1</span><span class="cs-impl-step-text">Phased rollout: 25% traffic test for 3 weeks to validate Day-7 retention lift before full launch. Coordinated with Data team on event tracking schema for quest completion and engagement metrics.</span></li>
-        <li class="cs-impl-step"><span class="cs-impl-step-num">2</span><span class="cs-impl-step-text">Backend quest state management integrated into existing user event pipeline to avoid new infrastructure. Simplified scope from 10 to 5 quest types at launch based on highest-retention behaviours.</span></li>
-        <li class="cs-impl-step"><span class="cs-impl-step-num">3</span><span class="cs-impl-step-text">48-hour expiry window required cross-team alignment on timing: sign-up notifications via Engineering, quest state reset via Data pipeline, push reminder notifications via Growth team.</span></li>
-        <li class="cs-impl-step"><span class="cs-impl-step-num">4</span><span class="cs-impl-step-text">UI complexity flagged by Design QA for older Android devices. Optimized animations using CSS transforms and lazy-loaded quest cards to prevent performance degradation on low-RAM devices.</span></li>
+        <li class="cs-impl-step"><span class="cs-impl-step-num">1</span><span class="cs-impl-step-text">A/B test on small % of users (25%) for 3 weeks before full rollout. Validated trial-to-paid conversion lift with control group. Data team set up tracking from day one.</span></li>
+        <li class="cs-impl-step"><span class="cs-impl-step-num">2</span><span class="cs-impl-step-text">Quest state tracking integrated into existing user event pipeline — no new backend infrastructure. Simple booleans: quest_viewed, quest_started, quest_task_[1-5]_completed, quest_fully_completed.</span></li>
+        <li class="cs-impl-step"><span class="cs-impl-step-num">3</span><span class="cs-impl-step-text">Design system tokens: 10 new semantic colors added to Umami (NeoTaste design system) — 2 per level (badge + confetti). Designed for clean extensibility if levels expand.</span></li>
+        <li class="cs-impl-step"><span class="cs-impl-step-num">4</span><span class="cs-impl-step-text">Timeline: ~2 months from initial brief to shipped feature. Scope negotiations and level system work consumed the bulk; UI/interactions were faster.</span></li>
       </ul>
     </div>
   </div>
@@ -502,75 +525,71 @@
 <section class="cs-section" style="padding-bottom:0;">
   <div class="cs-section-inner">
     <div class="cs-section-label">06 — Metrics & KPIs</div>
-    <h2 class="cs-section-title">Day-7 retention improved by a third. Feature adoption more than doubled.</h2>
+    <h2 class="cs-section-title">Trial-to-paid conversion improved by 22%. Deal redemptions tripled in month 1.</h2>
     <div class="cs-section-body">
-      <p>The Quest system launched in Q4 2024 after a 3-week A/B test on 25% of new user traffic. Results were measured against the control group (no quests) over a 60-day post-signup window.</p>
-      <p>The most significant finding: <strong>quest completers had a D30 retention rate of 68%</strong> — nearly matching the historic power user segment that we'd benchmarked the system against.</p>
+      <p>The Quest system launched after a 3-week A/B test on 25% of new user traffic, measured against a control group (no quest) over a 60-day window.</p>
+      <p>The primary goal was trial-to-paid conversion. Secondary: increase deal redemptions in the trial period (we hypothesized this would naturally follow from better feature discovery). The results validated both.</p>
     </div>
 
     <div class="cs-metrics">
       <div class="cs-metric">
-        <div class="cs-metric-val">+31%</div>
-        <div class="cs-metric-label">Day-7 retention (control: 22% → quests: 29%)</div>
+        <div class="cs-metric-val">+22%</div>
+        <div class="cs-metric-label">Trial-to-paid conversion uplift (among users who engaged with quest)</div>
       </div>
       <div class="cs-metric">
-        <div class="cs-metric-val">2.4×</div>
-        <div class="cs-metric-label">Feature adoption across map, deals & bookings</div>
+        <div class="cs-metric-val">~48%</div>
+        <div class="cs-metric-label">Quest completion rate (optional feature, 30-day window)</div>
       </div>
       <div class="cs-metric">
-        <div class="cs-metric-val">62%</div>
-        <div class="cs-metric-label">Quest completion rate among users who started</div>
-      </div>
-      <div class="cs-metric">
-        <div class="cs-metric-val">+18%</div>
-        <div class="cs-metric-label">Referral rate uplift — Quest 5 drove organic sharing</div>
+        <div class="cs-metric-val">3×</div>
+        <div class="cs-metric-label">More deals redeemed in month 1 by quest completers vs non-completers</div>
       </div>
     </div>
 
     <div class="cs-result-grid" style="margin-top:24px;">
       <div class="cs-result-card">
-        <div class="cs-result-val">68%</div>
-        <div class="cs-result-label">D30 retention for quest completers — matching our historic power user benchmark</div>
+        <div class="cs-result-val">+22%</div>
+        <div class="cs-result-label">Trial-to-paid conversion: From 14% to 17% among engaged users. Modest but meaningful at scale.</div>
       </div>
       <div class="cs-result-card">
-        <div class="cs-result-val">48h</div>
-        <div class="cs-result-label">Average time to complete all 5 quests. The urgency window worked exactly as designed</div>
+        <div class="cs-result-val">3×</div>
+        <div class="cs-result-label">Deal redemptions in month 1: Quest completers averaged 3+ deals vs 1 for non-completers. Proved the 2-deal hypothesis worked.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- NEXT STEPS -->
+<!-- CONCLUSION -->
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">07 — Conclusion</div>
-    <h2 class="cs-section-title">Guided onboarding habits are worth more than passive features.</h2>
+    <h2 class="cs-section-title">User motivation doesn't require expensive incentives. It requires clarity and small wins.</h2>
     <div class="cs-section-body">
-      <p style="margin-bottom:40px;">The Quest system proved that retention problems aren't always solved by adding features — they're solved by guiding users through existing features in the right sequence. By targeting the 48-hour window and the specific actions that predict long-term use, we replicated the power-user journey deliberately. Day-7 retention improved by 31%, and users who completed quests showed retention rates matching our historical top-user cohort.</p>
+      <p style="margin-bottom:40px;">The Quest system converted 22% more trial users to paid members — not through discounts or free months, but through guided discovery. The insight that stuck with me: most users didn't need better features. They needed to understand why the features existed and how they'd benefit. The quest is just scaffolding to help them climb faster.</p>
     </div>
     <div class="cs-lessons">
       <p class="cs-lessons-label">Lessons Learned</p>
       <div class="cs-lessons-list">
-        <div class="cs-lesson"><span class="cs-lesson-num">01</span><span class="cs-lesson-text"><strong>Segment first, then gamify.</strong> Broad gamification doesn't work — it feels like a chore list. The breakthrough came when we scoped quests to 5 specific behaviours that cohort analysis proved correlated with retention. Segmentation first, mechanics second.</span></div>
-        <div class="cs-lesson"><span class="cs-lesson-num">02</span><span class="cs-lesson-text"><strong>Time limits create urgency in habit-forming.</strong> The 48-hour expiry window was critical. Quests without deadlines saw only 18% completion; with the deadline, completion jumped to 62%. Time-limited mechanics work for new users specifically because they create a "now or never" moment that changes behaviour.</span></div>
-        <div class="cs-lesson"><span class="cs-lesson-num">03</span><span class="cs-lesson-text"><strong>Framing matters more than mechanics.</strong> Early prototypes with "XP" and "levels" tested poorly. The same system reframed as "unlock neighbourhood secrets" and "discover like a local" resonated immediately. Gamification language can feel hollow; brand-aligned language feels purposeful.</span></div>
+        <div class="cs-lesson"><span class="cs-lesson-num">01</span><span class="cs-lesson-text"><strong>Reward design: achievement systems beat discounts.</strong> The initial instinct was to offer an extra free month for completing the quest. We discarded this — too costly, trains users to expect payoffs for basic actions. The confetti animation + levels badge felt lighter but proved more motivating. Users want to feel progress and status, not transactional rewards.</span></div>
+        <div class="cs-lesson"><span class="cs-lesson-num">02</span><span class="cs-lesson-text"><strong>Optional features need killer entry points.</strong> Because the quest was voluntary, its placement was critical. Banner on Discover (map view) saw 48% engagement; early prototypes placed on Home saw 8%. For optional features, discoverability is half the game.</span></div>
+        <div class="cs-lesson"><span class="cs-lesson-num">03</span><span class="cs-lesson-text"><strong>Scope negotiations revealed the design discipline.</strong> PM wanted 10 tasks, Engineering wanted 3, I advocated for 5. The negotiations forced clarity: which 5 actions actually predict conversion? This constraint-driven approach was tighter than expansionist thinking.</span></div>
       </div>
     </div>
     <div class="cs-next-steps" style="margin-top:48px;">
       <div class="cs-next-step">
         <div class="cs-next-step-num">01</div>
-        <div class="cs-next-step-title">Social quests</div>
-        <div class="cs-next-step-text">Shared challenges between friends or cohorts. The v1 infrastructure was designed with this in mind — the addition requires only a new quest type and notification layer, not a system rebuild.</div>
+        <div class="cs-next-step-title">Levels beyond deal redemptions</div>
+        <div class="cs-next-step-text">Current levels are tied only to deals redeemed. Research opportunity: do ratings, saved restaurants, or reviews predict retention too? If so, unlock new levels through these actions, making progress less dependent on spending.</div>
       </div>
       <div class="cs-next-step">
         <div class="cs-next-step-num">02</div>
-        <div class="cs-next-step-title">Streak mechanic</div>
-        <div class="cs-next-step-text">Weekly completion streaks tied to deal redemptions, with a recovery window to reduce abandonment on missed days. Early modelling suggested this would strengthen the habit-formation signal for the retention model.</div>
+        <div class="cs-next-step-title">Seasonal/themed quests</div>
+        <div class="cs-next-step-text">v1 quest is permanent. Opportunity to run limited-time themed quests (e.g. "Taco Tuesday Quest" in Q2) to re-engage lapsed users or add seasonal discovery goals.</div>
       </div>
       <div class="cs-next-step">
         <div class="cs-next-step-num">03</div>
-        <div class="cs-next-step-title">Quest-driven personalisation</div>
-        <div class="cs-next-step-text">Users who complete cuisine-discovery quests could be fed tailored restaurant recommendations with higher relevance. The completion data is already collected — this would be an inference layer on top.</div>
+        <div class="cs-next-step-title">Social progression & friendly competition</div>
+        <div class="cs-next-step-text">Users see their own level, but not friends' levels. Experiment with shared leaderboards or "beat your friend" challenges to add social motivation and drive referrals.</div>
       </div>
     </div>
   </div>
