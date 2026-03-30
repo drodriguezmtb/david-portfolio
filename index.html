@@ -1487,7 +1487,7 @@
     });
 
     // Hover states - interactive targets
-    document.querySelectorAll('a, button, .pcard, .skill-pill').forEach(el => {
+    document.querySelectorAll('a, button, .pcard').forEach(el => {
       el.addEventListener('mouseenter', () => {
         document.body.classList.add('is-hovering');
         const t = document.getElementById('cursorLabelText');
