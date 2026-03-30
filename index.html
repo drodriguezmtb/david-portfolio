@@ -45,6 +45,7 @@
       --fg:        #EDEDE8;
       --muted:     #93938F;
       --border:    rgba(237,237,232,0.09);
+      --border-hover: rgba(237,237,232,0.38);
       --accent:    #FF3D00;
       --accent2:   #FF7A5C;
       --radius:    14px;
@@ -56,6 +57,7 @@
       --fg:        #0C0C0B;
       --muted:     #5B5A57;
       --border:    rgba(12,12,11,0.1);
+      --border-hover: rgba(12,12,11,0.38);
       --accent:    #FF3D00;
       --accent2:   #D93300;
     }
@@ -232,9 +234,10 @@
     }
     nav.scrolled {
       top: 16px;
-      left: 44px;
-      right: 44px;
-      padding: 14px 28px;
+      left: 22%;
+      right: 22%;
+      gap: 48px;
+      padding: 14px 36px;
       border-radius: 100px;
       background: rgba(12,12,11,0.80);
       backdrop-filter: blur(20px);
@@ -333,6 +336,8 @@
     }
     .hero-title .tl { overflow: hidden; display: block; }
     .hero-title .tl span { display: block; transform: translateY(110%); }
+    .s-title .tl { overflow: hidden; display: block; }
+    .s-title .tl span { display: block; transform: translateY(110%); }
 
     .hero-bottom {
       display: flex;
@@ -513,7 +518,7 @@
       transform: translateY(40px);
       transition: border-color 0.4s ease;
     }
-    .pcard:hover { border-color: rgba(237,237,232,0.28); }
+    .pcard:hover { border-color: var(--border-hover); }
     .pcard-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -528,8 +533,7 @@
     }
     .pcard-top {
       display: flex;
-      align-items: center;
-      gap: 14px;
+      align-items: flex-start;
     }
     .pnum {
       font-size: 10px;
@@ -551,12 +555,13 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 8px 0;
+      justify-content: flex-start;
+      gap: 14px;
+      padding: 4px 0;
     }
     .pcompany {
-      font-size: 11px;
-      letter-spacing: 0.1em;
+      font-size: 12px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 8px;
@@ -572,10 +577,10 @@
     .pmetrics { display: flex; gap: 32px; }
     .pmetric { display: flex; flex-direction: column; gap: 3px; }
     .pm-val {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 30px;
       font-weight: 800;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
       color: var(--accent);
     }
     .pm-label { font-size: 11px; color: var(--muted); line-height: 1.35; max-width: 130px; }
@@ -600,6 +605,24 @@
     .p-nt-onboarding .pcard-bg { background: linear-gradient(145deg, #1A0500 0%, #7A2800 55%, #D44A0A 100%); }
     .p-nt-quests     .pcard-bg { background: linear-gradient(145deg, #001A0A 0%, #004A20 55%, #00A854 100%); }
     .p-nt-referral   .pcard-bg { background: linear-gradient(145deg, #0A0415 0%, #2A0A50 55%, #5B21B6 100%); }
+
+    .pcard-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      transition: transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+      z-index: 1;
+    }
+    .pcard:hover .pcard-img { transform: scale(1.06); }
+    .pcard-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%);
+      z-index: 2;
+    }
 
     /* Decorative blobs */
     .blob {
@@ -952,9 +975,8 @@
     <div class="s-header">
       <div>
         <p class="s-label">Selected Projects</p>
-        <h2 class="s-title">Work</h2>
+        <h2 class="s-title"><span class="tl"><span>Work</span></span></h2>
       </div>
-      <span class="s-count">05</span>
     </div>
 
     <div class="projects">
@@ -1165,16 +1187,15 @@
         <div class="pcard-inner">
           <div class="pcard-info">
             <div class="pcard-top">
-              <span class="pnum">02</span>
+              <span class="pnum">01</span>
+            </div>
+            <div class="pcard-mid">
+              <p class="pyear">NeoTaste / 2025 - 2026</p>
+              <h3 class="pname">Turning free trial users into loyal members with a guided quest system</h3>
               <div class="tags">
                 <span class="tag">Retention</span>
                 <span class="tag">Gamification</span>
               </div>
-            </div>
-            <div class="pcard-mid">
-              <p class="pcompany">NeoTaste</p>
-              <h3 class="pname">Turning free trial users into loyal members with a guided quest system</h3>
-              <p class="pyear">2025 - 2026 · Berlin</p>
             </div>
             <div class="pmetrics">
               <div class="pmetric">
@@ -1189,9 +1210,9 @@
           </div>
           <div class="pcard-vis">
             <div class="pcard-bg"></div>
-            <div class="blob blob1"></div>
-            <div class="blob blob2"></div>
-            <div class="p-arrow" aria-hidden="true">
+            <img class="pcard-img" src="images/quest-case.jpg" alt="Quest System case study cover">
+            <div class="pcard-img-overlay"></div>
+            <div class="p-arrow" aria-hidden="true" style="z-index:3;">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1205,16 +1226,15 @@
         <div class="pcard-inner">
           <div class="pcard-info">
             <div class="pcard-top">
-              <span class="pnum">03</span>
+              <span class="pnum">02</span>
+            </div>
+            <div class="pcard-mid">
+              <p class="pyear">NeoTaste / 2025 - 2026</p>
+              <h3 class="pname">Finding the right incentive to double NeoTaste's referral volume</h3>
               <div class="tags">
                 <span class="tag">Growth</span>
                 <span class="tag">A/B Testing</span>
               </div>
-            </div>
-            <div class="pcard-mid">
-              <p class="pcompany">NeoTaste</p>
-              <h3 class="pname">Finding the right incentive to double NeoTaste's referral volume</h3>
-              <p class="pyear">2025 - 2026 · Berlin</p>
             </div>
             <div class="pmetrics">
               <div class="pmetric">
@@ -1229,9 +1249,9 @@
           </div>
           <div class="pcard-vis">
             <div class="pcard-bg"></div>
-            <div class="blob blob1"></div>
-            <div class="blob blob2"></div>
-            <div class="p-arrow" aria-hidden="true">
+            <img class="pcard-img" src="images/referral-case.jpg" alt="Referral A/B Test case study cover">
+            <div class="pcard-img-overlay"></div>
+            <div class="p-arrow" aria-hidden="true" style="z-index:3;">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1262,7 +1282,7 @@
     <div class="s-header">
       <div>
         <p class="s-label">My story</p>
-        <h2 class="s-title">About</h2>
+        <h2 class="s-title"><span class="tl"><span>About</span></span></h2>
       </div>
     </div>
 
@@ -1514,9 +1534,9 @@
 
   /* ---- HERO ENTRANCE ---- */
   function heroIn() {
-    // Nav
+    // Nav — simple fade in
     gsap.to(['.nav-logo', '.nav-right'], {
-      opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out'
+      opacity: 1, duration: 0.7, stagger: 0.12, ease: 'power2.out'
     });
     // Title lines
     gsap.to('.hero-title .tl span', {
@@ -1545,14 +1565,13 @@
 
   /* ---- SCROLL ANIMATIONS ---- */
   function initScroll() {
-    // Section titles
+    // Section titles — clipped line reveal (same as hero)
     gsap.utils.toArray('.s-title').forEach(el => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 32 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 88%' }
-        }
-      );
+      const spans = el.querySelectorAll('.tl span');
+      gsap.to(spans, {
+        y: 0, duration: 1.05, stagger: 0.08, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' }
+      });
     });
 
     // Project cards stagger
@@ -1616,10 +1635,15 @@
     );
   }
 
-  /* ---- NAV SCROLL BG ---- */
+  /* ---- NAV SCROLL STATE ---- */
   const navEl = document.getElementById('nav');
+  let navScrolled = false;
+
   window.addEventListener('scroll', () => {
-    navEl.classList.toggle('scrolled', window.scrollY > 50);
+    const shouldScroll = window.scrollY > 60;
+    if (shouldScroll === navScrolled) return;
+    navScrolled = shouldScroll;
+    navEl.classList.toggle('scrolled', shouldScroll);
   }, { passive: true });
 
   /* ---- SMOOTH ANCHOR SCROLL ---- */
