@@ -253,7 +253,7 @@
 <!-- CONTEXT -->
 <div class="cs-summary">
   <div class="cs-summary-inner" style="grid-template-columns:1fr;">
-    <p class="cs-summary-tldr">NeoTaste is a <strong>platform to discover restaurants, bars and cafés in major cities</strong>, primarily across Germany with growing presence in the UK, Netherlands, and Austria. Users get access to exclusive deals only available through NeoTaste, while partner venues can adjust those deals to their capacity - increasing occupancy, revenue, and reaching new customers who haven't found them yet.</p>
+    <p class="cs-summary-tldr">NeoTaste is a <strong>platform to discover restaurants, bars and cafés in major cities</strong> — mainly across Germany, with a growing presence in the UK, Netherlands, and Austria. Users get exclusive deals you can only find through NeoTaste. Partner venues use it to fill quieter tables and attract new customers.</p>
   </div>
 </div>
 
@@ -265,7 +265,7 @@
     <div class="cs-section-body">
       <p>With 2 million users on the platform, word-of-mouth was already one of NeoTaste's strongest acquisition channels. But the existing referral program - which rewarded both the referrer and the new user with <strong>one free month of subscription</strong> - had a participation rate of just 2.1%.</p>
       <p>The Growth team hypothesised that the subscription reward, while valuable, was too abstract. A user who wasn't already convinced of NeoTaste's ongoing value might not be moved by the promise of more time in an app they're still evaluating. A <em>cash reward</em> - €10 transferred directly to the user's account - might drive significantly higher participation.</p>
-      <p>I was brought in to design both variants and define the UX test framework alongside the Growth Engineer and Data Analyst.</p>
+      <p>I designed both variants and helped set up the test alongside the Growth Engineer and Data Analyst.</p>
     </div>
   </div>
 </section>
@@ -278,8 +278,8 @@
     <div class="cs-section-body">
       <div class="cs-hypothesis">
         <p class="cs-hypothesis-label">Our bet</p>
-        <p class="cs-hypothesis-text">Offering €10 cash per referral (credited immediately) would outperform a 1-month free subscription (deferred value) in referral conversion rates and user acquisition velocity.</p>
-        <p class="cs-hypothesis-rationale">Existing referral program (1-month free) was driving only 2.1% of active users to share. Behavioral economics literature showed immediate monetary incentives consistently outperform delayed value for activation tasks. We hypothesized cash would be more tangible and easier to understand than "free month," breaking through the activation barrier. Additionally, cash is fungible - less friction than redemption steps required for the free month feature.</p>
+        <p class="cs-hypothesis-text">Offering €10 cash per referral (credited immediately) would outperform a 1-month free subscription in referral conversion rates.</p>
+        <p class="cs-hypothesis-rationale">The existing referral program was only getting 2.1% of active users to actually share. Research backs up the intuition: people respond more to a reward they can use right now than a promise of future value. Cash is also simpler to understand — there's no "how do I claim this?" moment. The free month has steps; €10 doesn't.</p>
       </div>
     </div>
 
@@ -293,14 +293,14 @@
         <div class="cs-step-num">→</div>
         <div class="cs-step-content">
           <div class="cs-step-title">Test duration: 30 days</div>
-          <div class="cs-step-text">Long enough to capture full referral cycles, including the time it takes for referred users to sign up and be counted.</div>
+          <div class="cs-step-text">Long enough to capture full referral cycles, including the time it takes for a referred friend to sign up and be counted.</div>
         </div>
       </div>
       <div class="cs-step">
         <div class="cs-step-num">→</div>
         <div class="cs-step-content">
           <div class="cs-step-title">Sample: 24,000 active users - 50/50 split</div>
-          <div class="cs-step-text">12,000 users in each variant, randomly assigned. Stratified by user tenure and activity level to ensure comparability.</div>
+          <div class="cs-step-text">12,000 users in each variant, randomly assigned. Balanced by how long users had been on the platform and how active they were, to make the comparison fair.</div>
         </div>
       </div>
       <div class="cs-step">
@@ -350,10 +350,10 @@
 <!-- 04 RESEARCH & ANALYSIS -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">03 - Research & Analysis</div>
-    <h2 class="cs-section-title">Coordinating across Growth, Legal, and Product on incentive logistics.</h2>
+    <div class="cs-section-label">03 - Stakeholder Management</div>
+    <h2 class="cs-section-title">Coordinating across Growth, Legal, and Product before a single pixel was touched.</h2>
     <div class="cs-section-body">
-      <p>This test required alignment across multiple stakeholder groups with competing interests. The Growth team owned the KPIs and wanted to move fast; Legal had compliance concerns about cash incentives; Engineering needed to scope the payment crediting infrastructure; and Product wanted to protect brand positioning. The friction differential between redemption paths (instant cash vs. confirmation-step subscription) was also a design trade-off we had to acknowledge upfront.</p>
+      <p>This test required alignment across teams with very different priorities. Growth wanted to move fast; Legal had compliance concerns about cash incentives; Engineering needed to scope the payment infrastructure; and Product wanted to protect the brand. One thing we had to acknowledge upfront: claiming cash was instant, while claiming the free month had extra steps — that difference in experience was itself a variable we couldn't fully control.</p>
       <div class="cs-stakeholders">
         <div class="cs-stakeholder-card">
           <p class="cs-stakeholder-role">Growth Team (Referral Program Owner)</p>
@@ -383,7 +383,7 @@
 <!-- 03 STAKEHOLDER MANAGEMENT -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">04 - Stakeholder Management</div>
+    <div class="cs-section-label">04 - A/B Test Results</div>
     <h2 class="cs-section-title">€10 drove twice as many referrals. But the free month brought better users.</h2>
     <div class="cs-section-body">
       <p>The results after 30 days were clear on the primary metric - and nuanced on the secondary ones. Variant B (€10 cash) dramatically outperformed on conversion rate. But the referred users it attracted showed meaningfully lower retention and engagement at Day 30.</p>
@@ -394,7 +394,7 @@
       <div class="cs-ab-card control">
         <div class="cs-ab-badge">Variant A - Control</div>
         <div class="cs-ab-title">1 Month Free</div>
-        <div class="cs-ab-subtitle">Reward existing subscribers feel is meaningful to their ongoing use</div>
+        <div class="cs-ab-subtitle">A reward that existing subscribers already value</div>
         <div class="cs-ab-stat">
           <span class="cs-ab-stat-label">Referral conversion rate</span>
           <span class="cs-ab-stat-val">2.1%</span>
@@ -454,7 +454,7 @@
     <div class="cs-section-label">05 - Design Process</div>
     <h2 class="cs-section-title">From A/B results to a hybrid recommendation.</h2>
     <div class="cs-section-body">
-      <p>The test revealed a clear trade-off: the €10 cash variant drove 5.2% referral rate but attracted deal-chasing users with lower LTV. The 1-month free subscription variant saw only 2.3% referral rate, but those referred users had 52% D7 retention vs. 38% for cash-referred users.</p>
+      <p>The test revealed a clear trade-off: the €10 cash variant drove a 5.2% referral rate but attracted users who weren't sticking around long-term. The 1-month free subscription variant saw only 2.3% referral rate, but 52% of those referred users were still active after 7 days — vs. 38% for the cash group.</p>
       <p>Rather than choosing the "winner," we designed a <strong>combined incentive</strong>: €10 cash credit for the referrer (addressing the activation barrier) plus one free month for the new user (ensuring product exposure and quality). This addressed both sides of the trade-off.</p>
       <p>The combined approach was prototyped in the existing referral UI framework, tested with 15 users in moderated sessions, and launched to 100% in Q4 2024.</p>
 
@@ -463,7 +463,7 @@
         <ul class="cs-impl-steps">
           <li class="cs-impl-step"><span class="cs-impl-step-num">1</span><span class="cs-impl-step-text">Updated referral flow copy and reward display to show both incentives (€10 for referrer + free month for new user). Minimal code changes leveraged existing variant infrastructure from the A/B test.</span></li>
           <li class="cs-impl-step"><span class="cs-impl-step-num">2</span><span class="cs-impl-step-text">Coordinated payment crediting: €10 credited to referrer account on referred friend's first login (asynchronous, as engineered for test). Subscription added automatically to new user account on signup.</span></li>
-          <li class="cs-impl-step"><span class="cs-impl-step-num">3</span><span class="cs-impl-step-text">Launched with clear success tracking: referral rate as primary KPI, with secondary tracking on CAC per acquired user and D7 retention of referred cohort. Attributed 148% growth in total referral volume to combined approach.</span></li>
+          <li class="cs-impl-step"><span class="cs-impl-step-num">3</span><span class="cs-impl-step-text">Launched with clear success tracking: referral rate as primary metric, with secondary tracking on cost per acquired user and 7-day retention of referred users. The combined approach drove a 148% increase in total referrals compared to the original program.</span></li>
         </ul>
       </div>
     </div>
@@ -476,7 +476,7 @@
     <div class="cs-section-label">06 - Metrics & KPIs</div>
     <h2 class="cs-section-title">The combined incentive outperformed both single approaches.</h2>
     <div class="cs-section-body">
-      <p>After 60 days of tracking following the launch of the combined incentive, the results showed:</p>
+      <p>60 days after the combined incentive launched:</p>
     </div>
 
     <div class="cs-metrics">
@@ -486,11 +486,11 @@
       </div>
       <div class="cs-metric">
         <div class="cs-metric-val">−19%</div>
-        <div class="cs-metric-label">CAC reduction vs Variant B alone</div>
+        <div class="cs-metric-label">Lower cost to acquire each new user (vs. cash-only)</div>
       </div>
       <div class="cs-metric">
         <div class="cs-metric-val">46%</div>
-        <div class="cs-metric-label">D7 retention of referred users in combined variant</div>
+        <div class="cs-metric-label">Of referred users still active after 7 days</div>
       </div>
       <div class="cs-metric">
         <div class="cs-metric-val">+148%</div>
@@ -506,9 +506,9 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">07 - Conclusion</div>
-    <h2 class="cs-section-title">A/B testing revealed the power of addressing both sides of a trade-off.</h2>
+    <h2 class="cs-section-title">Sometimes the right answer is: test both, then take the best of each.</h2>
     <div class="cs-section-body">
-      <p style="margin-bottom:40px;">This project proved that win-win solutions exist when you measure both sides of a trade-off clearly. The cash incentive drove volume but at the cost of user quality. The subscription incentive preserved quality but failed to move the needle on activation. By testing both and analyzing the data rigorously, we designed a combined approach that achieved 5.2% referral rate (2.5x baseline) while maintaining 46% D7 retention - best-in-class for a referral acquisition channel.</p>
+      <p style="margin-bottom:40px;">This project showed that better solutions exist when you measure both sides of a trade-off. Cash drove volume but brought users who didn't stick around. The free month preserved quality but didn't move enough people to act. By testing both and reading the data carefully, we designed a combined approach that hit 5.2% referral rate (2.5× the original baseline) while keeping 46% of referred users still active after 7 days.</p>
     </div>
     <div class="cs-lessons">
       <p class="cs-lessons-label">Lessons Learned</p>
@@ -539,12 +539,12 @@
 </section>
 
 <!-- NEXT -->
-<a href="gymondo-premium.html" class="cs-next">
-  <p class="cs-next-label">Back to start</p>
+<a href="neotaste-quests.html" class="cs-next">
+  <p class="cs-next-label">Back to case study 01</p>
   <div class="cs-next-inner">
     <div>
-      <div class="cs-next-name">Go Premium Screen</div>
-      <div class="cs-next-company">Gymondo</div>
+      <div class="cs-next-name">Turning free trial users into loyal members</div>
+      <div class="cs-next-company">NeoTaste</div>
     </div>
     <div class="cs-next-arrow">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H5M15 3V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
