@@ -122,6 +122,9 @@
     .cs-visual.wide{aspect-ratio:16/9;}
     .cs-visual-inner{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
     .cs-visual-label{position:absolute;bottom:20px;left:20px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);z-index:2;}
+    .cs-visual img{width:100%;display:block;object-fit:cover;}
+    .cs-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;}
+    .cs-img-caption{font-size:11px;color:var(--muted);margin-top:10px;letter-spacing:.03em;line-height:1.5;}
     .cs-quote{margin:60px 0;padding:40px 44px;border-left:3px solid var(--accent);background:var(--bg2);border-radius:0 12px 12px 0;}
     .cs-quote p{font-family:'Inter',sans-serif;font-size:clamp(20px,2.5vw,30px);font-weight:700;letter-spacing:-.02em;line-height:1.35;color:var(--fg);}
     .cs-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;}
@@ -163,6 +166,7 @@
       .cs-findings{grid-template-columns:1fr;}
       .cs-quests{grid-template-columns:1fr;}
       .cs-result-grid{grid-template-columns:1fr;}
+      .cs-img-grid{grid-template-columns:1fr;}
       .cs-metrics{flex-direction:column;}
       .cs-metric{border-right:none;border-bottom:1px solid var(--border);}
       .cs-metric:last-child{border-bottom:none;}
@@ -260,15 +264,10 @@
   </div>
 </section>
 
-<!-- SUMMARY -->
+<!-- CONTEXT -->
 <div class="cs-summary">
-  <div class="cs-summary-inner">
-    <p class="cs-summary-tldr">Designed a <strong>guided quest system with a levels mechanic</strong> to convert free trial users to paying members by building habit loops through progressive feature discovery. Trial-to-paid conversion improved by 22%.</p>
-    <div class="cs-summary-stats">
-      <div class="cs-summary-stat"><div class="cs-summary-stat-val">+22%</div><div class="cs-summary-stat-label">Trial-to-paid conversion uplift</div></div>
-      <div class="cs-summary-stat"><div class="cs-summary-stat-val">~48%</div><div class="cs-summary-stat-label">Quest completion rate</div></div>
-      <div class="cs-summary-stat"><div class="cs-summary-stat-val">3×</div><div class="cs-summary-stat-label">More deals redeemed by quest completers in month 1</div></div>
-    </div>
+  <div class="cs-summary-inner" style="grid-template-columns:1fr;">
+    <p class="cs-summary-tldr">NeoTaste is a <strong>platform to discover restaurants, bars and cafés in major cities</strong>, primarily across Germany with growing presence in the UK, Netherlands, and Austria. Users get access to exclusive deals only available through NeoTaste, while partner venues can adjust those deals to their capacity - increasing occupancy, revenue, and reaching new customers who haven't found them yet.</p>
   </div>
 </div>
 
@@ -392,6 +391,10 @@
           <p class="cs-stakeholder-resolution">Partnered early to define 10 new tokens (2 per level: badge color + confetti animation color). Kept the design system clean and scalable. This became a precedent for future gamification features.</p>
         </div>
       </div>
+      <div class="cs-visual" style="margin-top:48px;">
+        <img src="images/neotaste-quest/design-system-updates.jpg" alt="Umami design system updates - new semantic color tokens for quest levels" style="max-height:560px;object-position:top;">
+      </div>
+      <p class="cs-img-caption">Umami design system update - 10 new semantic color tokens (badge + confetti colour per level)</p>
     </div>
   </div>
 </section>
@@ -452,32 +455,27 @@
       </div>
     </div>
 
-    <div class="cs-visual full">
-      <div class="cs-visual-inner" style="background:linear-gradient(145deg,#001A0A,#004A20);">
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:20px;padding:48px;">
-          <div style="flex:1.2;height:100%;background:rgba(0,201,107,.1);border-radius:20px;border:1px solid rgba(0,201,107,.2);padding:24px;display:flex;flex-direction:column;gap:10px;">
-            <div style="width:50%;height:7px;background:rgba(255,255,255,.2);border-radius:4px;"></div>
-            <div style="width:35%;height:5px;background:rgba(255,255,255,.1);border-radius:3px;"></div>
-            <div style="margin-top:8px;width:100%;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;"><div style="width:60%;height:100%;background:var(--accent);border-radius:3px;"></div></div>
-            <div style="font-size:10px;color:rgba(0,201,107,.6);margin-top:2px;">3 / 5 quests complete</div>
-            <div style="flex:1;display:flex;flex-direction:column;gap:8px;margin-top:8px;">
-              <div style="width:100%;height:36px;background:rgba(0,201,107,.15);border-radius:8px;border:1px solid rgba(0,201,107,.2);"></div>
-              <div style="width:100%;height:36px;background:rgba(0,201,107,.15);border-radius:8px;border:1px solid rgba(0,201,107,.2);"></div>
-              <div style="width:100%;height:36px;background:rgba(255,255,255,.05);border-radius:8px;"></div>
-              <div style="width:100%;height:36px;background:rgba(255,255,255,.05);border-radius:8px;"></div>
-            </div>
-          </div>
-          <div style="flex:1;height:80%;background:rgba(0,201,107,.08);border-radius:20px;border:1px solid rgba(0,201,107,.15);padding:20px;display:flex;flex-direction:column;gap:8px;">
-            <div style="width:60%;height:40px;background:rgba(0,201,107,.2);border-radius:12px;"></div>
-            <div style="flex:1;background:rgba(255,255,255,.04);border-radius:12px;margin-top:8px;"></div>
-            <div style="width:100%;height:40px;background:rgba(0,201,107,.3);border-radius:100px;"></div>
-          </div>
+    <div class="cs-img-grid">
+      <div>
+        <div class="cs-visual">
+          <img src="images/neotaste-quest/set-food-preferences.jpg" alt="Set food preferences flow - Quest 02" style="max-height:340px;object-position:top left;">
         </div>
-        <div class="cs-visual-label">Quest system UI - replace with Figma exports</div>
+        <p class="cs-img-caption">Quest 02 - Food preferences selection flow and edit state</p>
+      </div>
+      <div>
+        <div class="cs-visual">
+          <img src="images/neotaste-quest/entry-point.jpg" alt="Quest entry point on Discover screen with banner states" style="max-height:340px;object-position:top left;">
+        </div>
+        <p class="cs-img-caption">Quest entry point - non-dismissable banner on Discover, all states</p>
       </div>
     </div>
 
-    <div style="margin-top:60px;margin-bottom:60px;">
+    <div class="cs-visual" style="margin-top:48px;">
+      <img src="images/neotaste-quest/main-flow.jpg" alt="Complete quest system flow - all 5 tasks and screen states" style="max-height:640px;object-position:top center;">
+    </div>
+    <p class="cs-img-caption">Full quest system flow - all 5 tasks, transitions and screen states</p>
+
+    <div style="margin-top:60px;margin-bottom:0;">
       <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Key Design Decisions</p>
       <div class="cs-steps">
         <div class="cs-step">
@@ -511,7 +509,31 @@
       </div>
     </div>
 
-    <div style="margin-top:60px;">
+    <div class="cs-img-grid" style="margin-top:48px;margin-bottom:60px;">
+      <div>
+        <div class="cs-visual">
+          <img src="images/neotaste-quest/levels-screen.jpg" alt="Levels screen - 5 level system with badges and new level celebration screens" style="max-height:380px;object-position:top;">
+        </div>
+        <p class="cs-img-caption">Levels screen - main view, new level celebrations and badge assets</p>
+      </div>
+      <div>
+        <div class="cs-visual">
+          <img src="images/neotaste-quest/badge-ideas.jpg" alt="Badge placement on user profile and restaurant reviews" style="max-height:380px;object-position:top;">
+        </div>
+        <p class="cs-img-caption">Badge placement - visible on profile page and restaurant reviews</p>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;display:flex;flex-direction:column;align-items:center;">
+      <div class="cs-visual" style="width:100%;max-width:400px;">
+        <video autoplay muted loop playsinline style="width:100%;display:block;">
+          <source src="images/neotaste-quest/badge-animation.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="cs-img-caption" style="text-align:center;">Badge unlock animation - confetti celebration on level up</p>
+    </div>
+
+    <div style="margin-top:0;">
       <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Implementation Plan</p>
       <ul class="cs-impl-steps">
         <li class="cs-impl-step"><span class="cs-impl-step-num">1</span><span class="cs-impl-step-text">A/B test on small % of users (25%) for 3 weeks before full rollout. Validated trial-to-paid conversion lift with control group. Data team set up tracking from day one.</span></li>
@@ -524,7 +546,7 @@
 </section>
 
 <!-- 06 METRICS & KPIs -->
-<section class="cs-section" style="padding-bottom:0;">
+<section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">06 - Metrics & KPIs</div>
     <h2 class="cs-section-title">Trial-to-paid conversion improved by 22%. Deal redemptions tripled in month 1.</h2>
@@ -548,16 +570,6 @@
       </div>
     </div>
 
-    <div class="cs-result-grid" style="margin-top:24px;">
-      <div class="cs-result-card">
-        <div class="cs-result-val">+22%</div>
-        <div class="cs-result-label">Trial-to-paid conversion: From 14% to 17% among engaged users. Modest but meaningful at scale.</div>
-      </div>
-      <div class="cs-result-card">
-        <div class="cs-result-val">3×</div>
-        <div class="cs-result-label">Deal redemptions in month 1: Quest completers averaged 3+ deals vs 1 for non-completers. Proved the 2-deal hypothesis worked.</div>
-      </div>
-    </div>
   </div>
 </section>
 
