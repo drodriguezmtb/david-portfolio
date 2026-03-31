@@ -82,10 +82,10 @@
     .cs-section-body p{font-size:17px;line-height:1.7;font-weight:300;color:var(--fg);margin-bottom:20px;}
     .cs-section-body p:last-child{margin-bottom:0;}
     .cs-section-body strong{font-weight:600;}
-    .cs-section-body em{font-style:normal;color:var(--accent);}
+    .cs-section-body em{font-style:normal;font-weight:700;color:var(--fg);}
     .cs-two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:48px;}
     .cs-findings{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;}
-    .cs-finding{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:28px;}
+    .cs-finding{background:var(--bg2);border-radius:12px;padding:28px;}
     .cs-finding-icon{font-size:22px;margin-bottom:12px;}
     .cs-finding-title{font-family:'Inter',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;}
     .cs-finding-text{font-size:13px;color:var(--muted);line-height:1.6;}
@@ -98,7 +98,7 @@
 
     /* QUEST CARDS */
     .cs-quests{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
-    .cs-quest-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px;}
+    .cs-quest-card{background:var(--bg2);border-radius:16px;padding:28px;}
     .cs-quest-num{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:12px;}
     .cs-quest-icon{font-size:28px;margin-bottom:14px;}
     .cs-quest-title{font-family:'Inter',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;}
@@ -106,7 +106,7 @@
     .cs-quest-xp{display:inline-block;margin-top:12px;font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--accent);background:rgba(0,201,107,.1);border:1px solid rgba(0,201,107,.2);border-radius:100px;padding:4px 12px;}
 
     /* RETENTION CHART */
-    .cs-chart{margin-top:48px;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:40px;}
+    .cs-chart{margin-top:48px;background:var(--bg2);border-radius:16px;padding:40px;}
     .cs-chart-title{font-family:'Inter',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;}
     .cs-chart-sub{font-size:13px;color:var(--muted);margin-bottom:32px;}
     .cs-chart-bars{display:flex;align-items:flex-end;gap:8px;height:140px;}
@@ -118,7 +118,7 @@
     .cs-chart-legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);}
     .cs-chart-legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
 
-    .cs-metrics{display:flex;gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:60px;}
+    .cs-metrics{display:flex;gap:0;border-radius:16px;overflow:hidden;margin-top:60px;}
     .cs-metric{flex:1;padding:40px 32px;border-right:1px solid var(--border);text-align:center;}
     .cs-metric:last-child{border-right:none;}
     .cs-metric-val{font-family:'Inter',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-.04em;color:var(--accent);line-height:1;margin-bottom:8px;}
@@ -134,7 +134,7 @@
     .cs-quote{margin:60px 0;padding:40px 44px;border-left:3px solid var(--accent);background:var(--bg2);border-radius:0 12px 12px 0;}
     .cs-quote p{font-family:'Inter',sans-serif;font-size:clamp(20px,2.5vw,30px);font-weight:700;letter-spacing:-.02em;line-height:1.35;color:var(--fg);}
     .cs-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;}
-    .cs-result-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:32px;}
+    .cs-result-card{background:var(--bg2);border-radius:14px;padding:32px;}
     .cs-result-val{font-family:'Inter',sans-serif;font-size:clamp(36px,4.5vw,56px);font-weight:800;letter-spacing:-.04em;color:var(--accent);line-height:1;margin-bottom:10px;}
     .cs-result-label{font-size:13px;color:var(--muted);line-height:1.5;}
     .cs-next{display:block;padding:80px 44px;margin-top:80px;border-top:1px solid var(--border);background:var(--bg2);transition:background .3s;text-decoration:none;}
@@ -160,7 +160,7 @@
     .cs-summary-stat-label { font-size:11px; color:var(--muted); margin-top:4px; line-height:1.4; }
     /* NEXT STEPS */
     .cs-next-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px; }
-    .cs-next-step { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:28px; }
+    .cs-next-step { background:var(--bg2); border-radius:14px; padding:28px; }
     .cs-next-step-num { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
     .cs-next-step-title { font-size:15px; font-weight:700; margin-bottom:8px; letter-spacing:-.01em; }
     .cs-next-step-text { font-size:13px; color:var(--muted); line-height:1.6; }
@@ -192,7 +192,7 @@
     .cs-stakeholder-resolution { font-size:14px; color:var(--muted); line-height:1.5; }
 
     /* Hypothesis */
-    .cs-hypothesis { background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--fg); border-radius:12px; padding:32px; margin-top:32px; }
+    .cs-hypothesis { background:var(--bg2); border-radius:12px; padding:32px; margin-top:32px; }
     .cs-hypothesis-label { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
     .cs-hypothesis-text { font-size:clamp(18px,2.2vw,24px); font-weight:600; line-height:1.4; color:var(--fg); margin-bottom:16px; }
     .cs-hypothesis-rationale { font-size:15px; color:var(--muted); line-height:1.6; }
@@ -284,13 +284,12 @@
     <h2 class="cs-section-title">Many users on trial were redeeming just one deal</h2>
     <div class="cs-two-col">
       <div class="cs-section-body">
-        <p>NeoTaste acquires users primarily through a 1-month free trial. But cohort analysis showed a clear bottleneck: <strong>most new users redeemed just 1 deal in their trial period, then uninstalled or disengaged</strong>.</p>
-        <p>This wasn't a product quality problem. The issue was that new users weren't understanding the app's full value quickly enough. They'd discover one deal, use it, and see no reason to return - missing personalisation, saved restaurants, the map view, reviews, and the full range of what NeoTaste offered.</p>
-        <p>The business problem was conversion. The user problem was that they weren't discovering enough of what the app had to offer. <em>How do we show new users the features that keep people coming back — before their trial runs out?</em></p>
-        <p>I led the feature design in partnership with the UX Researcher, Data team, and PM. We grounded the entire solution in behavioural data, not assumptions.</p>
+        <p>Cohort data pointed to a clear pattern: <strong>a significant portion of trial users redeemed only one deal and didn't convert</strong>. Reaching a second deal was one of the main friction points in the funnel.</p>
+        <p>The business needed users to convert before their first payment. For users, the problem was simpler: the app's real value was invisible if you'd only tried one thing. <em>How do we help new users discover what the app is actually for, before their trial runs out?</em></p>
+        <p>I led the feature design alongside the UX Researcher, Data team, and PM. Every decision was grounded in behavioural data, not assumptions.</p>
       </div>
       <div>
-        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;">
+        <div style="background:var(--bg2);border-radius:16px;padding:32px;">
           <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:40px;">Deal redemptions per user - trial period</div>
           <div style="display:flex;align-items:flex-end;gap:6px;height:100px;">
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
@@ -306,7 +305,7 @@
               <span style="font-size:10px;color:var(--muted);">3+ deals</span>
             </div>
           </div>
-          <div style="font-size:12px;color:var(--muted);margin-top:16px;line-height:1.5;">Data showed most users stopped after 1 deal. Those who redeemed 2+ in the trial converted to paid at significantly higher rates.</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:16px;line-height:1.5;">Reaching a second deal was a key friction point. Users who redeemed 2+ during the trial converted to paid at 4× the rate.</div>
         </div>
       </div>
     </div>
@@ -317,12 +316,20 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">02 - Hypothesis</div>
-    <h2 class="cs-section-title">How we tackled the problem</h2>
-    <div class="cs-section-body">
-      <div class="cs-hypothesis">
-        <p class="cs-hypothesis-label">Our bet</p>
-        <p class="cs-hypothesis-text">If we guide new users through the app's most important features — setting food preferences, saving restaurants, redeeming deals, leaving reviews — in a structured quest, they'll understand what NeoTaste is actually for. And they'll be more likely to pay for it.</p>
-        <p class="cs-hypothesis-rationale">Our data backed this up: users who redeemed at least 2 deals during their free trial converted to paid members at 4× the rate of those who only redeemed 1. Most users never made it to that second deal — not because the app was bad, but because they never discovered it. The quest would change that.</p>
+    <h2 class="cs-section-title">From habit loops to<br>guided actions</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:0;">
+      <div class="cs-section-body">
+        <p>The team's first instinct was gamification. Streaks, daily check-ins, Duolingo-style mechanics. The idea: reward users for opening the app every day, build a habit, and conversion would follow.</p>
+        <p>But the streak model fell apart quickly. It rewards the wrong thing: opening the app is not the same as using it. A user who forgets on day 29 feels punished after 28 days of effort, not motivated. Streaks create anxiety, not engagement. And for NeoTaste, where the value is in going to restaurants and redeeming deals, daily opens meant nothing.</p>
+        <p>Instead of engineering habits around app opens, we'd guide users toward <em>meaningful actions</em>, the ones that actually led to conversion. The data had already told us what those were.</p>
+      </div>
+
+      <div style="position:sticky;top:100px;">
+        <div style="border-left:3px solid var(--accent);padding-left:28px;">
+          <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;">Our bet</p>
+          <p style="font-size:clamp(16px,1.8vw,22px);font-weight:600;line-height:1.45;color:var(--fg);margin-bottom:16px;">If we guide new users through the app's most important features in a structured quest, they'll understand what NeoTaste is actually for. And they'll be more likely to pay for it.</p>
+          <p style="font-size:14px;color:var(--muted);line-height:1.6;">Users who redeemed at least 2 deals during the trial converted to paid at 4× the rate of those who only redeemed 1. Reaching that second deal was one of the key friction points.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -332,68 +339,108 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">03 - Research & Analysis</div>
-    <h2 class="cs-section-title">Our data and the best apps in the world all pointed the same way</h2>
+    <h2 class="cs-section-title">Our retention data and habit-building patterns from competitors told the same story</h2>
     <div class="cs-section-body">
-      <p>Our UX Researcher looked at how platforms like Airbnb, DoorDash, and Uber introduce new users to their product. The pattern was consistent: all of them guide new users through their key features early, asking for small commitments along the way — reviews, preferences, bookings — so that using the app becomes second nature.</p>
-      <p>Meanwhile, the Data team ran cohort analysis across 6 months of trial data. Key finding: <strong>users who redeemed 2+ deals in their trial period converted to paid at 4× the rate of users who only redeemed 1</strong>. The problem wasn't the app - it was discovery. Only 15% of new users naturally found a second deal during their trial.</p>
-      <p>The UX Researcher and I used these insights to shape the quest structure: each task would guide users toward one of the core features, while the 2-deal nudge would be the critical conversion lever.</p>
+      <p>To structure the quest, the UX Researcher and I started by mapping the activation flow. Every new user passes through the same stages: Sign-up, Set-up, Aha moment, Habit moment, Retention. The gap we needed to close was between the Aha and Habit moments, before the first charge landed.</p>
     </div>
 
-    <div class="cs-findings">
-      <div class="cs-finding">
-        <div class="cs-finding-icon">📊</div>
-        <div class="cs-finding-title">The magic number was 2</div>
-        <div class="cs-finding-text">Cohort data: users who redeemed 2+ deals in trial converted to paid at 4× the baseline rate. Users who only redeemed 1 deal had <5% conversion.</div>
+    <!-- Activation flow diagram -->
+    <div style="margin:40px 0;overflow-x:auto;">
+      <div style="display:flex;align-items:center;gap:0;min-width:600px;">
+
+        <div style="background:var(--fg);color:var(--bg);border-radius:8px;padding:16px 18px;text-align:center;font-size:13px;font-weight:700;line-height:1.3;min-width:96px;flex-shrink:0;">Sign-up</div>
+        <div style="width:32px;height:1px;background:var(--muted);flex-shrink:0;position:relative;">
+          <div style="position:absolute;right:-1px;top:-4px;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid var(--muted);"></div>
+        </div>
+
+        <div style="background:var(--bg2);border-radius:8px;padding:16px 18px;text-align:center;font-size:13px;font-weight:600;line-height:1.3;min-width:96px;flex-shrink:0;">Set-up<br><span style="font-size:10px;font-weight:400;color:var(--muted);">moment</span></div>
+        <div style="width:32px;height:1px;background:var(--muted);flex-shrink:0;position:relative;">
+          <div style="position:absolute;right:-1px;top:-4px;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid var(--muted);"></div>
+        </div>
+
+        <div style="background:var(--bg2);border-radius:8px;padding:16px 18px;text-align:center;font-size:13px;font-weight:600;line-height:1.3;min-width:96px;flex-shrink:0;">Aha<br><span style="font-size:10px;font-weight:400;color:var(--muted);">moment</span></div>
+        <div style="width:32px;height:1px;background:var(--muted);flex-shrink:0;position:relative;">
+          <div style="position:absolute;right:-1px;top:-4px;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid var(--muted);"></div>
+        </div>
+
+        <div style="background:var(--bg2);border-radius:8px;padding:16px 18px;text-align:center;font-size:13px;font-weight:600;line-height:1.3;min-width:96px;flex-shrink:0;">Habit<br><span style="font-size:10px;font-weight:400;color:var(--muted);">moment</span></div>
+        <div style="width:32px;height:1px;background:var(--muted);flex-shrink:0;position:relative;">
+          <div style="position:absolute;right:-1px;top:-4px;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid var(--muted);"></div>
+        </div>
+
+        <div style="background:var(--fg);color:var(--bg);border-radius:8px;padding:16px 18px;text-align:center;font-size:13px;font-weight:700;line-height:1.3;min-width:96px;flex-shrink:0;">Retention</div>
+
       </div>
-      <div class="cs-finding">
-        <div class="cs-finding-icon">🗺️</div>
-        <div class="cs-finding-title">Most users never found a second deal</div>
-        <div class="cs-finding-text">Only 15% of new users discovered a second deal naturally during the 1-month trial. Most never explored beyond the feed or scrolled to find deals outside their immediate area.</div>
-      </div>
-      <div class="cs-finding">
-        <div class="cs-finding-icon">🔁</div>
-        <div class="cs-finding-title">The best apps all do this</div>
-        <div class="cs-finding-text">Airbnb, Uber, DoorDash all use guided onboarding with progressive feature unlocks. They pair education with small commitments (reviews, preferences) to build habit loops.</div>
-      </div>
-      <div class="cs-finding">
-        <div class="cs-finding-icon">🎯</div>
-        <div class="cs-finding-title">Power users all followed the same path</div>
-        <div class="cs-finding-text">Personalisation, favourites, deal redemption, and reviews were the features observed in power users' trial behaviour. The quest would guide all new users through this same path.</div>
-      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:14px;">Activation framework used to structure the quest. Goal: get users from Set-up to Habit before the trial ended.</p>
     </div>
+
+    <div class="cs-section-body">
+      <p>We then looked at how other consumer apps handle this same challenge. From fitness to productivity tools, the pattern was consistent: guided onboarding that pairs education with small, meaningful actions. By the time users finish setup, they've already experienced the value.</p>
+    </div>
+
+    <!-- Competitor research screenshot -->
+    <div style="margin:32px 0;">
+      <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Competitor onboarding research</p>
+      <div style="background:var(--bg2);border-radius:12px;overflow:hidden;">
+        <img src="images/neotaste-quest/research-competitor-onboarding.png" alt="Competitor onboarding research" style="width:100%;display:block;">
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;">Onboarding patterns from leading apps. All of them guide users through key actions early, before expecting any habit to form.</p>
+    </div>
+
+    <div class="cs-section-body">
+      <p>The Data team's cohort analysis confirmed the direction. The key threshold was clear, and it shaped every decision from that point on.</p>
+    </div>
+
   </div>
 </section>
 
 <!-- 04 STAKEHOLDER MANAGEMENT -->
+<!-- 04 DESIGN PROCESS -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">04 - Stakeholder Management</div>
-    <h2 class="cs-section-title">Getting everyone aligned before starting to build</h2>
-    <div class="cs-section-body">
-      <p>We were a core team of three — me, the UX Researcher, and the Data Analyst — working alongside the PM, Engineering, and the design system team.</p>
-      <p>Scope was the constant tension. The PM wanted more tasks to expose more of the app; I pushed to keep it at 5, backed by data showing that users who redeemed 2 deals converted at 4× the rate of those who only redeemed 1. More tasks would risk abandonment before users hit that threshold. We designed for iteration — if data post-launch showed appetite for more, we could add them.</p>
-      <p>Engineering suggested rolling out to 25% of new users first before going wide. That gave us a real control group and the flexibility to adjust before fully committing. It was their idea, and the right call.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 05 DESIGN PROCESS -->
-<section class="cs-section">
-  <div class="cs-section-inner">
-    <div class="cs-section-label">05 - Design Process</div>
+    <div class="cs-section-label">04 - Design Process</div>
     <h2 class="cs-section-title">Five steps to help users discover the app and find their reason to stay</h2>
     <div class="cs-section-body">
-      <p>The core constraint was: <em>which 5 actions would most reliably lead a new user from "interested" to "I see the value"?</em> We mapped our retention data against what the best apps teach new users early, and arrived at a clear sequence.</p>
-      <p>The quest is optional - users can ignore it entirely. But it lives as a non-dismissable banner on Discover (the map view, not Home) for 30 days, because that's where new users naturally land after core onboarding. Users can actually level up without completing the quest - they just need to redeem 2 deals. The quest is an accelerator, not a gate.</p>
-      <p>The 5 tasks, in exact order:</p>
+      <p>The core question was: <em>which 5 actions would most reliably take a new user from "interested" to "I get it now"?</em> We mapped retention data against what leading apps teach users early, and landed on a clear sequence.</p>
+      <p>The quest is optional. Users can ignore it entirely. It lives as a non-dismissable banner on Discover (the map view, not Home) for 30 days, because that's where new users naturally land after onboarding. Users can level up without completing the quest too, they just need to redeem 2 deals. The quest is there to guide, not to block.</p>
+    </div>
+
+    <!-- VISUAL EXPLORATIONS -->
+    <div style="margin-top:56px;">
+      <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:16px;">Early explorations</div>
+      <div class="cs-section-body" style="margin:0 0 28px;"><p>Before landing on the quest format, we explored several directions: 30-day challenges, circular progress rings, and checklist-style home screens. Here's a snapshot of what we iterated through.</p></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+        <div style="background:#EAE9E9;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;">
+          <img src="images/neotaste-quest/visual-exploration/Screenshot%202026-03-31%20at%2013.32.58.png" alt="30-day challenge variants" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+        <div style="background:#EAE9E9;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;">
+          <img src="images/neotaste-quest/visual-exploration/Screenshot%202026-03-31%20at%2013.33.06.png" alt="Two strategic directions" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+        <div style="background:#EAE9E9;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;">
+          <img src="images/neotaste-quest/visual-exploration/Screenshot%202026-03-31%20at%2013.33.19.png" alt="Scrollable task list" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+        <div style="background:#EAE9E9;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;">
+          <img src="images/neotaste-quest/visual-exploration/Screenshot%202026-03-31%20at%2013.33.58.png" alt="Entry point variations" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+        <div style="background:#EAE9E9;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;">
+          <img src="images/neotaste-quest/visual-exploration/Screenshot%202026-03-31%20at%2013.34.04.png" alt="Circular progress ring" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+        <div style="background:#EAE9E9;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;">
+          <img src="images/neotaste-quest/visual-exploration/Screenshot%202026-03-31%20at%2013.34.15.png" alt="Checklist format" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:56px;">
+      <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:16px;">Final solution</div>
     </div>
 
     <div class="cs-quests">
       <div class="cs-quest-card">
         <div class="cs-quest-num">TASK 01</div>
         <div class="cs-quest-icon">👀</div>
-        <div class="cs-quest-title">See how NeoTaste works</div>
-        <div class="cs-quest-text">Scroll through an interactive introduction explaining map discovery, deals, and personalisation. Sets expectations before asking anything of the user.</div>
+        <div class="cs-quest-title">Read the NeoTaste guide</div>
+        <div class="cs-quest-text">A step-by-step guide explaining how deal redemption works: how to book, what to say at the restaurant, and how to redeem. Knowing the process upfront removes one of the key reasons users don't convert.</div>
       </div>
       <div class="cs-quest-card">
         <div class="cs-quest-num">TASK 02</div>
@@ -405,7 +452,7 @@
         <div class="cs-quest-num">TASK 03</div>
         <div class="cs-quest-icon">💚</div>
         <div class="cs-quest-title">Save restaurants you love</div>
-        <div class="cs-quest-text">Bookmark 3 restaurants to your favourites. Start building your own list — the app gets more useful the more it knows about you.</div>
+        <div class="cs-quest-text">Bookmark 3 restaurants to your favourites. Start building your own list. The app gets more useful the more it knows about you.</div>
       </div>
       <div class="cs-quest-card">
         <div class="cs-quest-num">TASK 04</div>
@@ -417,9 +464,9 @@
         <div class="cs-quest-num">TASK 05</div>
         <div class="cs-quest-icon">⭐</div>
         <div class="cs-quest-title">Rate & review your experience</div>
-        <div class="cs-quest-text">Leave a review after redeeming a deal. Builds community and turns you from someone who takes deals into someone who helps others find them.</div>
+        <div class="cs-quest-text">Leave a review after redeeming a deal. Helps others find good spots, and builds the community you're part of.</div>
       </div>
-      <div class="cs-quest-card" style="background:transparent;border-style:dashed;display:flex;align-items:center;justify-content:center;">
+      <div class="cs-quest-card" style="display:flex;align-items:center;justify-content:center;">
         <div style="text-align:center;">
           <div style="font-size:32px;margin-bottom:12px;">🏆</div>
           <div style="font-family:'Inter',sans-serif;font-size:15px;font-weight:700;margin-bottom:8px;">Complete all 5</div>
@@ -479,36 +526,72 @@
         <div class="cs-step">
           <div class="cs-step-num">01</div>
           <div class="cs-step-content">
-            <div class="cs-step-title">Why 5 tasks — not 3 or 10</div>
-            <div class="cs-step-text">We debated 3 tasks vs 5 vs 10. PM pushed for more coverage, Engineering wanted fewer for simplicity. We settled on 5: enough to guide through key features (personalisation, saving, deal redemption, review), achievable within trial window, and easily scalable if needed later.</div>
+            <div class="cs-step-title">Why 5 tasks, not 3 or 10</div>
+            <div class="cs-step-text">5 was the sweet spot. Enough tasks to walk users through the app's core features, but short enough to feel achievable. Too few and the quest wouldn't cover what mattered. Too many and completion would drop. We wanted users to finish it.</div>
           </div>
         </div>
         <div class="cs-step">
           <div class="cs-step-num">02</div>
           <div class="cs-step-content">
-            <div class="cs-step-title">The reward debate: No free month, confetti wins</div>
-            <div class="cs-step-text">Initial options included an extra free month subscription (discarded - too costly for company, trains users to expect rewards for basic actions). Final: confetti animation on completion + connection to the levels system (badge on profile, visible status). Lightweight but meaningful.</div>
+            <div class="cs-step-title">The reward debate</div>
+            <div class="cs-step-text">We considered a free month for completing the quest, but dropped it. The goal was to build a habit around the app's value, not to offer a financial incentive. Confetti on completion plus a badge through the Levels system felt more aligned: it signals achievement without creating a transactional dynamic.</div>
           </div>
         </div>
         <div class="cs-step">
           <div class="cs-step-num">03</div>
           <div class="cs-step-content">
             <div class="cs-step-title">The levels system: how you earn your badge</div>
-            <div class="cs-step-text">Thresholds based on our retention data: Taster (2 deals), Foodie (5), Culinary Star (15), Gourmet (30), Food Legend (55). Users earn levels by redeeming deals, not just completing the quest — so anyone can progress. Quest completers naturally hit Taster. Future ideas in the backlog: ratings and saved restaurants could unlock levels too.</div>
+            <div class="cs-step-text">Thresholds based on retention data: Taster (2 deals), Foodie (5), Culinary Star (15), Gourmet (30), Food Legend (55). Users earn levels by redeeming deals, not just by completing the quest, so anyone can progress. Quest completers naturally hit Taster. Future idea: ratings and saved restaurants could unlock levels too.</div>
           </div>
         </div>
         <div class="cs-step">
           <div class="cs-step-num">04</div>
           <div class="cs-step-content">
             <div class="cs-step-title">Quest is optional, but well-placed</div>
-            <div class="cs-step-text">Not forced into the critical path. Banner on Discover (map view), not Home, because that's where new users land post-onboarding. Non-dismissable for 30 days (enough time to build habit), then users can hide it. Entry point matters enormously for optional features.</div>
+            <div class="cs-step-text">Not forced into the critical path. Banner on Discover (the map view), not Home, because that's where new users land after onboarding. It stays visible for 30 days, then users can hide it. Where you put optional features matters as much as what they do.</div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Side quest 01: Food Preferences -->
     <div style="margin-top:60px;">
-      <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Side quests</p>
+      <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Side quest 01: Food Preferences</p>
+      <div class="cs-section-body" style="margin:0 0 28px;"><p>One of the quest tasks prompts users to set their food preferences: where they like to eat, any dietary restrictions, and which cuisines they enjoy. The goal was to collect enough signal early to personalise their home feed and surface restaurant recommendations that actually matched their taste. A user who sees relevant deals from day one is far more likely to redeem one.</p></div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:32px;">
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <img src="images/neotaste-quest/screen-preferences01.png" alt="Food preferences step 1" style="width:100%;display:block;">
+          <span style="font-size:11px;color:var(--muted);line-height:1.4;">Step 1: eating location preference</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <img src="images/neotaste-quest/screen-preferences02.png" alt="Food preferences step 2" style="width:100%;display:block;">
+          <span style="font-size:11px;color:var(--muted);line-height:1.4;">Step 2: dietary restrictions</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <img src="images/neotaste-quest/screen-preferences03.png" alt="Food preferences step 3" style="width:100%;display:block;">
+          <span style="font-size:11px;color:var(--muted);line-height:1.4;">Step 3: food category selection</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <img src="images/neotaste-quest/screen-preferences04.png" alt="Food preferences entry point in profile" style="width:100%;display:block;">
+          <span style="font-size:11px;color:var(--muted);line-height:1.4;">Profile: entry point to edit preferences</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <img src="images/neotaste-quest/screen-preferences05.png" alt="Food preferences edit screen" style="width:100%;display:block;">
+          <span style="font-size:11px;color:var(--muted);line-height:1.4;">Edit view: update saved categories</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Side quest 02: Levels Refresh -->
+    <div style="margin-top:60px;">
+      <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Side quest 02: Levels Refresh</p>
+      <div class="cs-section-body" style="margin:0 0 28px;"><p>The Levels screen already existed, tied to deals redeemed, but almost nobody knew about it. By redesigning it with new level names, badges, and a celebration screen, we kept the gamification element where it actually made sense: as a reward for real actions, not app opens. The quest and the Levels refresh became one connected project.</p></div>
 
       <!-- Row 1: Levels screens -->
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:32px;">
@@ -518,11 +601,12 @@
           <span style="font-size:11px;color:var(--muted);line-height:1.4;">Before: original levels screen</span>
         </div>
 
-        <!-- Empty slot: visual separator between old and new -->
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="width:100%;aspect-ratio:9/19.5;border-radius:12px;border:1px dashed var(--border);display:flex;align-items:center;justify-content:center;">
-            <span style="font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;writing-mode:vertical-rl;opacity:.5;">Redesign</span>
-          </div>
+        <!-- Separator: arrow + label -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:9/19.5;gap:10px;">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;opacity:.5;">Refresh</span>
         </div>
 
         <div style="display:flex;flex-direction:column;gap:10px;">
@@ -579,13 +663,30 @@
     </div>
 
     <div style="margin-top:60px;">
-      <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Implementation Plan</p>
-      <ul class="cs-impl-steps">
-        <li class="cs-impl-step"><span class="cs-impl-step-num">1</span><span class="cs-impl-step-text">A/B test on small % of users (25%) for 3 weeks before full rollout. Validated trial-to-paid conversion lift with control group. Data team set up tracking from day one.</span></li>
-        <li class="cs-impl-step"><span class="cs-impl-step-num">2</span><span class="cs-impl-step-text">Quest progress tracked through the existing analytics pipeline — no new backend infrastructure needed.</span></li>
-        <li class="cs-impl-step"><span class="cs-impl-step-num">3</span><span class="cs-impl-step-text">Design system: 10 new colors added to Umami (NeoTaste's component library) — two per level, one for the badge and one for the confetti animation. Designed to scale if new levels are added later.</span></li>
-        <li class="cs-impl-step"><span class="cs-impl-step-num">4</span><span class="cs-impl-step-text">Timeline: ~2 months from initial brief to shipped feature. Scope negotiations and level system work consumed the bulk; UI/interactions were faster.</span></li>
-      </ul>
+      <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Implementation Plan</p>
+      <div class="cs-steps">
+        <div class="cs-step">
+          <div class="cs-step-num">01</div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">A/B test rollout</div>
+            <div class="cs-step-text">Launched to 25% of new users, compared against a control group that saw nothing. Data team had tracking in place from day one.</div>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">02</div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">Design system updates</div>
+            <div class="cs-step-text">10 new colours added to Umami (NeoTaste's component library): two per level, one for the badge, one for the confetti animation. Built to scale if new levels are added later.</div>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">03</div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">Timeline</div>
+            <div class="cs-step-text">About 2 months from brief to shipped. Scope negotiations and the Levels redesign took most of that time. The UI and interactions came together faster.</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -593,24 +694,24 @@
 <!-- 06 METRICS & KPIs -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">06 - Metrics & KPIs</div>
-    <h2 class="cs-section-title">Trial-to-paid conversion improved by 22%. Deal redemptions tripled in month 1</h2>
+    <div class="cs-section-label">05 - Metrics & KPIs</div>
+    <h2 class="cs-section-title">Trial-to-paid conversion improved by 22%. Deal redemptions doubled in month 1</h2>
     <div class="cs-section-body">
-      <p>The Quest launched to 25% of new users first — tested against a group that saw nothing. After 60 days, the results were clear.</p>
-      <p>The primary goal was trial-to-paid conversion. Secondary: increase deal redemptions in the trial period (we hypothesized this would naturally follow from better feature discovery). The results validated both.</p>
+      <p>The Quest launched to 25% of new users, tested against a group that saw nothing. After 60 days, the results were clear.</p>
+      <p>The main goal was trial-to-paid conversion. The second bet was that better feature discovery would naturally lead to more deal redemptions during the trial. Both improved.</p>
     </div>
 
     <div class="cs-metrics">
       <div class="cs-metric">
         <div class="cs-metric-val">+22%</div>
-        <div class="cs-metric-label">More free trial users converted to paid — among those who used the quest</div>
+        <div class="cs-metric-label">More free trial users converted to paid, among those who used the quest</div>
       </div>
       <div class="cs-metric">
         <div class="cs-metric-val">~48%</div>
         <div class="cs-metric-label">Quest completion rate (optional feature, 30-day window)</div>
       </div>
       <div class="cs-metric">
-        <div class="cs-metric-val">3×</div>
+        <div class="cs-metric-val">2×</div>
         <div class="cs-metric-label">More deals redeemed in month 1 by quest completers vs non-completers</div>
       </div>
     </div>
@@ -621,29 +722,47 @@
 <!-- CONCLUSION -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">07 - Conclusion</div>
+    <div class="cs-section-label">06 - Conclusion</div>
     <h2 class="cs-section-title">User motivation doesn't require expensive incentives. It requires clarity and small wins</h2>
     <div class="cs-section-body">
-      <p style="margin-bottom:40px;">The Quest system converted 22% more trial users to paid members - not through discounts or free months, but through guided discovery. The insight that stuck with me: most users didn't need better features. They needed to understand why the features existed and how they'd benefit. The quest is just scaffolding to help them climb faster.</p>
+      <p style="margin-bottom:40px;">The Quest converted 22% more trial users to paid members, with no discounts or free months involved. Just guided discovery. The thing that stuck with me: most users didn't need better features. They needed to understand why the features existed and how they'd benefit. The quest is scaffolding to help them get there faster.</p>
     </div>
-    <div class="cs-lessons">
-      <p class="cs-lessons-label">Lessons Learned</p>
-      <div class="cs-lessons-list">
-        <div class="cs-lesson"><span class="cs-lesson-num">01</span><span class="cs-lesson-text"><strong>Reward design: achievement systems beat discounts.</strong> The initial instinct was to offer an extra free month for completing the quest. We discarded this - too costly, trains users to expect payoffs for basic actions. The confetti animation + levels badge felt lighter but proved more motivating. Users want to feel progress and status, not transactional rewards.</span></div>
-        <div class="cs-lesson"><span class="cs-lesson-num">02</span><span class="cs-lesson-text"><strong>Optional features need killer entry points.</strong> Because the quest was voluntary, its placement was critical. Banner on Discover (map view) saw 48% engagement; early prototypes placed on Home saw 8%. For optional features, discoverability is half the game.</span></div>
-        <div class="cs-lesson"><span class="cs-lesson-num">03</span><span class="cs-lesson-text"><strong>The best constraints came from the negotiations, not the brief.</strong> PM wanted 10 tasks, Engineering wanted 3, I advocated for 5. Having to justify every task forced clarity: which 5 actions actually predict whether someone stays? That pressure made the design tighter.</span></div>
+    <div style="margin-top:48px;">
+      <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Lessons Learned</p>
+      <div class="cs-steps">
+        <div class="cs-step">
+          <div class="cs-step-num">01</div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">Achievement beats discounts</div>
+            <div class="cs-step-text">The first idea was an extra free month for completing the quest. We dropped it: too costly, and it teaches users to expect payoffs for basic actions. Confetti plus a badge on your profile proved more motivating. People respond to progress and status more than cash-value incentives.</div>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">02</div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">Optional features need a great entry point</div>
+            <div class="cs-step-text">Because the quest was voluntary, placement was everything. The banner on Discover saw 48% engagement. Early prototypes on Home saw 8%. Where you put optional features matters as much as what they do.</div>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-num">03</div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">Constraints sharpen decisions</div>
+            <div class="cs-step-text">Having to justify every task forced a sharper question: which 5 actions actually predict whether someone stays? That pressure made the design tighter.</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="cs-next-steps" style="margin-top:48px;">
       <div class="cs-next-step">
         <div class="cs-next-step-num">01</div>
         <div class="cs-next-step-title">Levels beyond deal redemptions</div>
-        <div class="cs-next-step-text">Current levels are tied only to deals redeemed. Research opportunity: do ratings, saved restaurants, or reviews predict retention too? If so, unlock new levels through these actions, making progress less dependent on spending.</div>
+        <div class="cs-next-step-text">Right now levels are tied only to deals redeemed. Worth exploring: do ratings, saved restaurants, or reviews predict retention too? If so, those could unlock levels as well, making progress less dependent on spending.</div>
       </div>
       <div class="cs-next-step">
         <div class="cs-next-step-num">02</div>
         <div class="cs-next-step-title">Seasonal/themed quests</div>
-        <div class="cs-next-step-text">v1 quest is permanent. Opportunity to run limited-time themed quests (e.g. "Taco Tuesday Quest" in Q2) to re-engage lapsed users or add seasonal discovery goals.</div>
+        <div class="cs-next-step-text">The current quest doesn't change. A natural next step would be limited-time themed quests to re-engage lapsed users or add seasonal discovery goals.</div>
       </div>
       <div class="cs-next-step">
         <div class="cs-next-step-num">03</div>
