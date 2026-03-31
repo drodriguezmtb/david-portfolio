@@ -82,10 +82,10 @@
     .cs-section-body p{font-size:17px;line-height:1.7;font-weight:300;color:var(--fg);margin-bottom:20px;}
     .cs-section-body p:last-child{margin-bottom:0;}
     .cs-section-body strong{font-weight:600;}
-    .cs-section-body em{font-style:normal;color:var(--accent);}
+    .cs-section-body em{font-style:normal;font-weight:700;color:var(--fg);}
     .cs-two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:48px;}
     .cs-findings{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;}
-    .cs-finding{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:28px;transition:border-color .3s;}
+    .cs-finding{background:var(--bg2);border-radius:12px;padding:28px;}
     .cs-finding:hover{border-color:rgba(237,237,232,.25);}
     .cs-finding-icon{font-size:22px;margin-bottom:12px;}
     .cs-finding-title{font-family:'Inter',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;}
@@ -93,7 +93,7 @@
 
     /* AB TEST CARDS */
     .cs-ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;}
-    .cs-ab-card{border-radius:16px;padding:36px;border:1px solid var(--border);}
+    .cs-ab-card{border-radius:16px;padding:36px;}
     .cs-ab-card.control{background:var(--bg2);}
     .cs-ab-card.variant{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(139,92,246,.03));border-color:rgba(139,92,246,.25);}
     .cs-ab-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:20px;}
@@ -108,7 +108,7 @@
     .cs-ab-card.variant .cs-ab-stat-val{color:var(--accent);}
     .cs-ab-winner{display:flex;align-items:center;gap:8px;margin-top:20px;font-size:12px;font-weight:600;color:var(--accent);}
 
-    .cs-metrics{display:flex;gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:60px;}
+    .cs-metrics{display:flex;gap:0;border-radius:16px;overflow:hidden;margin-top:60px;}
     .cs-metric{flex:1;padding:40px 32px;border-right:1px solid var(--border);text-align:center;}
     .cs-metric:last-child{border-right:none;}
     .cs-metric-val{font-family:'Inter',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-.04em;color:var(--accent);line-height:1;margin-bottom:8px;}
@@ -120,7 +120,7 @@
     .cs-quote{margin:60px 0;padding:40px 44px;border-left:3px solid var(--accent);background:var(--bg2);border-radius:0 12px 12px 0;}
     .cs-quote p{font-family:'Inter',sans-serif;font-size:clamp(20px,2.5vw,30px);font-weight:700;letter-spacing:-.02em;line-height:1.35;color:var(--fg);}
     .cs-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;}
-    .cs-result-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:32px;}
+    .cs-result-card{background:var(--bg2);border-radius:14px;padding:32px;}
     .cs-result-val{font-family:'Inter',sans-serif;font-size:clamp(36px,4.5vw,56px);font-weight:800;letter-spacing:-.04em;color:var(--accent);line-height:1;margin-bottom:10px;}
     .cs-result-label{font-size:13px;color:var(--muted);line-height:1.5;}
     .cs-steps{display:flex;flex-direction:column;gap:0;margin-top:40px;}
@@ -152,7 +152,7 @@
     .cs-summary-stat-label { font-size:11px; color:var(--muted); margin-top:4px; line-height:1.4; }
     /* NEXT STEPS */
     .cs-next-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px; }
-    .cs-next-step { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:28px; }
+    .cs-next-step { background:var(--bg2); border-radius:14px; padding:28px; }
     .cs-next-step-num { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
     .cs-next-step-title { font-size:15px; font-weight:700; margin-bottom:8px; letter-spacing:-.01em; }
     .cs-next-step-text { font-size:13px; color:var(--muted); line-height:1.6; }
@@ -180,7 +180,7 @@
     .cs-stakeholder-resolution { font-size:14px; color:var(--muted); line-height:1.5; }
 
     /* Hypothesis */
-    .cs-hypothesis { background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--fg); border-radius:12px; padding:32px; margin-top:32px; }
+    .cs-hypothesis { background:var(--bg2); border-radius:12px; padding:32px; margin-top:32px; }
     .cs-hypothesis-label { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
     .cs-hypothesis-text { font-size:clamp(18px,2.2vw,24px); font-weight:600; line-height:1.4; color:var(--fg); margin-bottom:16px; }
     .cs-hypothesis-rationale { font-size:15px; color:var(--muted); line-height:1.6; }
@@ -355,43 +355,10 @@
   </div>
 </section>
 
-<!-- 04 RESEARCH & ANALYSIS -->
+<!-- 03 A/B TEST RESULTS -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">03 - Stakeholder Management</div>
-    <h2 class="cs-section-title">Coordinating across Growth, Legal, and Product before a single pixel was touched</h2>
-    <div class="cs-section-body">
-      <p>This test required alignment across teams with very different priorities. Growth wanted to move fast; Legal had compliance concerns about cash incentives; Engineering needed to scope the payment infrastructure; and Product wanted to protect the brand. One thing we had to acknowledge upfront: claiming cash was instant, while claiming the free month had extra steps — that difference in experience was itself a variable we couldn't fully control.</p>
-      <div class="cs-stakeholders">
-        <div class="cs-stakeholder-card">
-          <p class="cs-stakeholder-role">Growth Team (Referral Program Owner)</p>
-          <p class="cs-stakeholder-need">Wanted to move fast with test launch; believed cash would be unambiguous winner</p>
-          <p class="cs-stakeholder-resolution">Coordinated weekly test planning syncs with all teams upfront. Legal review timeline was identified as critical path and escalated early to compress the 2-week delay to 10 days. Clear success criteria documented before launch.</p>
-        </div>
-        <div class="cs-stakeholder-card">
-          <p class="cs-stakeholder-role">Legal</p>
-          <p class="cs-stakeholder-need">Needed to sign off on cash incentive variant; required compliance review</p>
-          <p class="cs-stakeholder-resolution">Prepared detailed test spec and use cases upfront so Legal could review async. Positioned test as time-boxed and reversible if issues arose. Legal approved in 10 days with contingency clauses documented.</p>
-        </div>
-        <div class="cs-stakeholder-card">
-          <p class="cs-stakeholder-role">Engineering</p>
-          <p class="cs-stakeholder-need">Flagged complexity of real-time payment crediting system; estimated 2-week implementation</p>
-          <p class="cs-stakeholder-resolution">Scoped a simplified v1: cash credited asynchronously to user account on next login, rather than real-time. Reduced implementation to 5 days. Documented as limitation in test results readout.</p>
-        </div>
-        <div class="cs-stakeholder-card">
-          <p class="cs-stakeholder-role">Product & Marketing</p>
-          <p class="cs-stakeholder-need">Concerned about brand positioning; wanted incentive framed around discovery and community, not commoditized cash</p>
-          <p class="cs-stakeholder-resolution">Agreed on messaging: €10 positioned as "money to explore" (toward deals/meals) rather than generic "cashback." Test positioned as exploring incentive mechanics, not locking brand strategy long-term.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 03 STAKEHOLDER MANAGEMENT -->
-<section class="cs-section">
-  <div class="cs-section-inner">
-    <div class="cs-section-label">04 - A/B Test Results</div>
+    <div class="cs-section-label">03 - A/B Test Results</div>
     <h2 class="cs-section-title">€10 drove twice as many referrals. But the free month brought better users</h2>
     <div class="cs-section-body">
       <p>The results after 30 days were clear on the primary metric - and nuanced on the secondary ones. Variant B (€10 cash) dramatically outperformed on conversion rate. But the referred users it attracted showed meaningfully lower retention and engagement at Day 30.</p>
@@ -459,7 +426,7 @@
     <!-- 05 DESIGN PROCESS -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">05 - Design Process</div>
+    <div class="cs-section-label">04 - Design Process</div>
     <h2 class="cs-section-title">From A/B results to a hybrid recommendation</h2>
     <div class="cs-section-body">
       <p>The test revealed a clear trade-off: the €10 cash variant drove a 5.2% referral rate but attracted users who weren't sticking around long-term. The 1-month free subscription variant saw only 2.3% referral rate, but 52% of those referred users were still active after 7 days — vs. 38% for the cash group.</p>
@@ -481,7 +448,7 @@
 <!-- 06 METRICS & KPIs -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">06 - Metrics & KPIs</div>
+    <div class="cs-section-label">05 - Metrics & KPIs</div>
     <h2 class="cs-section-title">The combined incentive outperformed both single approaches</h2>
     <div class="cs-section-body">
       <p>60 days after the combined incentive launched:</p>
@@ -513,7 +480,7 @@
 <!-- 07 CONCLUSION -->
 <section class="cs-section">
   <div class="cs-section-inner">
-    <div class="cs-section-label">07 - Conclusion</div>
+    <div class="cs-section-label">06 - Conclusion</div>
     <h2 class="cs-section-title">Sometimes the right answer is: test both, then take the best of each</h2>
     <div class="cs-section-body">
       <p style="margin-bottom:40px;">This project showed that better solutions exist when you measure both sides of a trade-off. Cash drove volume but brought users who didn't stick around. The free month preserved quality but didn't move enough people to act. By testing both and reading the data carefully, we designed a combined approach that hit 5.2% referral rate (2.5× the original baseline) while keeping 46% of referred users still active after 7 days.</p>
@@ -592,14 +559,15 @@
     gsap.to('.cs-title .tl span',{y:0,duration:1,stagger:.1,ease:'power3.out',delay:.05});
     gsap.to('.cs-meta-strip',{opacity:1,y:0,duration:.7,ease:'power2.out',delay:.6});
     gsap.to('.scroll-hint',{opacity:1,duration:.5,delay:1.1});
-    gsap.utils.toArray('.cs-section-title').forEach(el=>{gsap.fromTo(el,{opacity:0,y:28},{opacity:1,y:0,duration:.75,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 95%'}});});
-    gsap.utils.toArray('.cs-section-body p').forEach((el,i)=>{gsap.fromTo(el,{opacity:0,y:18},{opacity:1,y:0,duration:.6,delay:i*.06,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 98%'}});});
-    gsap.utils.toArray('.cs-finding,.cs-step,.cs-result-card,.cs-ab-card').forEach((el,i)=>{gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.6,delay:i*.07,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 98%'}});});
-    gsap.utils.toArray('.cs-visual').forEach(el=>{gsap.to(el,{opacity:1,y:0,duration:.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 92%'}});});
-    gsap.utils.toArray('.cs-metric-val').forEach(el=>{gsap.fromTo(el,{opacity:0,y:16},{opacity:1,y:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 95%'}});});
-    gsap.utils.toArray('.cs-quote').forEach(el=>{gsap.fromTo(el,{opacity:0,x:-20},{opacity:1,x:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 95%'}});});
-    // Refresh positions after images load and layout settles
-    setTimeout(()=>ScrollTrigger.refresh(),800);
+    const st=(el,start)=>({trigger:el,start});
+    gsap.utils.toArray('.cs-section-title').forEach(el=>{gsap.fromTo(el,{opacity:0,y:28},{opacity:1,y:0,duration:.75,ease:'power2.out',scrollTrigger:st(el,'top 95%')});});
+    gsap.utils.toArray('.cs-section-body p').forEach(el=>{gsap.fromTo(el,{opacity:0,y:18},{opacity:1,y:0,duration:.6,ease:'power2.out',scrollTrigger:st(el,'top 92%')});});
+    gsap.utils.toArray('.cs-finding,.cs-step,.cs-result-card,.cs-ab-card').forEach(el=>{gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.6,ease:'power2.out',scrollTrigger:st(el,'top 92%')});});
+    gsap.utils.toArray('.cs-visual').forEach(el=>{gsap.to(el,{opacity:1,y:0,duration:.8,ease:'power2.out',scrollTrigger:st(el,'top 90%')});});
+    gsap.utils.toArray('.cs-metric-val').forEach(el=>{gsap.fromTo(el,{opacity:0,y:16},{opacity:1,y:0,duration:.7,ease:'power2.out',scrollTrigger:st(el,'top 92%')});});
+    gsap.utils.toArray('.cs-quote').forEach(el=>{gsap.fromTo(el,{opacity:0,x:-20},{opacity:1,x:0,duration:.7,ease:'power2.out',scrollTrigger:st(el,'top 92%')});});
+    setTimeout(()=>ScrollTrigger.refresh(),400);
+    window.addEventListener('load',()=>ScrollTrigger.refresh());
   }
   const navEl=document.getElementById('nav');
   let navScrolled=false;

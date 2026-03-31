@@ -499,7 +499,7 @@
       cursor: none;
     }
     .cv-btn:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-    .cv-btn:hover svg { stroke: var(--bg); transform: translateY(2px); }
+    .cv-btn:hover svg { stroke: var(--bg); transform: translateX(3px); }
     .cv-btn svg { flex-shrink: 0; transition: stroke 0.3s ease, transform 0.3s ease; }
 
     /* ============================================
@@ -507,7 +507,7 @@
     ============================================ */
     #work { padding: 120px 44px; }
 
-    .projects { display: flex; flex-direction: column; gap: 3px; }
+    .projects { display: flex; flex-direction: column; gap: 16px; }
 
     .pcard {
       border: 1px solid var(--border);
@@ -519,6 +519,10 @@
       transition: border-color 0.4s ease;
     }
     .pcard:hover { border-color: var(--border-hover); }
+    .pcard--wip { pointer-events: none; }
+    .pcard--wip .p-arrow { display: none; }
+    .wip-badge { display:inline-flex; align-items:center; gap:7px; font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#F59E0B; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3); border-radius:100px; padding:5px 12px; }
+    .wip-badge-dot { width:6px; height:6px; border-radius:50%; background:#F59E0B; flex-shrink:0; }
     .pcard-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1200,7 +1204,7 @@
             <div class="pmetrics">
               <div class="pmetric">
                 <span class="pm-val">+22%</span>
-                <span class="pm-label">Trial-to-paid conversion uplift</span>
+                <span class="pm-label">Trial-to-paid<br>conversion uplift</span>
               </div>
               <div class="pmetric">
                 <span class="pm-val">~48%</span>
@@ -1222,11 +1226,12 @@
       </article>
 
       <!-- 03 - NeoTaste Referral -->
-      <article class="pcard p-nt-referral" data-index="2" onclick="window.location='neotaste-referral.html'" style="cursor:none;">
+      <article class="pcard p-nt-referral pcard--wip" data-index="2" style="cursor:none;">
         <div class="pcard-inner">
           <div class="pcard-info">
-            <div class="pcard-top">
+            <div class="pcard-top" style="display:flex;align-items:center;gap:14px;">
               <span class="pnum">02</span>
+              <span class="wip-badge"><span class="wip-badge-dot"></span>Work in progress</span>
             </div>
             <div class="pcard-mid">
               <p class="pyear">NeoTaste / 2025 - 2026</p>
@@ -1239,11 +1244,11 @@
             <div class="pmetrics">
               <div class="pmetric">
                 <span class="pm-val">+148%</span>
-                <span class="pm-label">Total referral volume growth</span>
+                <span class="pm-label">Total referral<br>volume growth</span>
               </div>
               <div class="pmetric">
                 <span class="pm-val">5.2%</span>
-                <span class="pm-label">Final referral rate (was 2.1%)</span>
+                <span class="pm-label">Final referral rate<br>(was 2.1%)</span>
               </div>
             </div>
           </div>
@@ -1487,7 +1492,7 @@
     });
 
     // Hover states - interactive targets
-    document.querySelectorAll('a, button, .pcard').forEach(el => {
+    document.querySelectorAll('a, button, .pcard:not(.pcard--wip)').forEach(el => {
       el.addEventListener('mouseenter', () => {
         document.body.classList.add('is-hovering');
         const t = document.getElementById('cursorLabelText');
@@ -1514,23 +1519,29 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Animate preloader name in
-  gsap.to(plName, { y: 0, duration: 0.7, ease: 'power3.out', delay: 0.1 });
-
-  window.addEventListener('load', () => {
-    setTimeout(() => { plBar.style.width = '100%'; }, 150);
-    setTimeout(() => {
-      gsap.to(preloader, {
-        yPercent: -100,
-        duration: 0.9,
-        ease: 'power3.inOut',
-        onComplete: () => {
-          preloader.style.display = 'none';
-          heroIn();
-        }
-      });
-    }, 1300);
-  });
+  if (sessionStorage.getItem('dvdrod_visited')) {
+    // Returning visitor — skip preloader, play hero + scroll animations immediately
+    preloader.style.display = 'none';
+    heroIn();
+  } else {
+    // First visit — run full intro
+    sessionStorage.setItem('dvdrod_visited', '1');
+    gsap.to(plName, { y: 0, duration: 0.7, ease: 'power3.out', delay: 0.1 });
+    window.addEventListener('load', () => {
+      setTimeout(() => { plBar.style.width = '100%'; }, 150);
+      setTimeout(() => {
+        gsap.to(preloader, {
+          yPercent: -100,
+          duration: 0.9,
+          ease: 'power3.inOut',
+          onComplete: () => {
+            preloader.style.display = 'none';
+            heroIn();
+          }
+        });
+      }, 1300);
+    });
+  }
 
   /* ---- HERO ENTRANCE ---- */
   function heroIn() {
@@ -1574,12 +1585,11 @@
       });
     });
 
-    // Project cards stagger
-    gsap.utils.toArray('.pcard').forEach((el, i) => {
+    // Project cards — visible only, animate from CSS initial state
+    gsap.utils.toArray('.pcard:not([hidden])').forEach((el, i) => {
       gsap.to(el, {
-        opacity: 1, y: 0, duration: 0.75,
-        ease: 'power2.out',
-        delay: i * 0.05,
+        opacity: 1, y: 0, duration: 0.75, ease: 'power2.out',
+        delay: i * 0.08,
         scrollTrigger: { trigger: el, start: 'top 88%' }
       });
     });
@@ -1633,6 +1643,10 @@
         scrollTrigger: { trigger: '.contact-footer', start: 'top 90%' }
       }
     );
+
+    // Refresh trigger positions once early, then again after all images are loaded
+    setTimeout(() => ScrollTrigger.refresh(), 400);
+    window.addEventListener('load', () => ScrollTrigger.refresh());
   }
 
   /* ---- NAV SCROLL STATE ---- */
