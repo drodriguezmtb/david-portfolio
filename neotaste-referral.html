@@ -49,12 +49,21 @@
     .theme-btn:hover{background:var(--fg);color:var(--bg);border-color:var(--fg);}
     #preloader{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;pointer-events:none;}
     .pl-panel{flex:1;background:var(--bg);}
-    .cs-hero{min-height:100svh;padding:0 44px max(60px,calc(60px + env(safe-area-inset-bottom)));display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
+    .cs-hero{min-height:100svh;padding:0 44px max(60px,calc(60px + env(safe-area-inset-bottom)));display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;background:#0C0C0B;}
     .cs-hero-bg{position:absolute;inset:0;z-index:0;opacity:.18;}
-    .cs-hero-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:.45;}
+    .cs-hero-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:.55;}
     .cs-hero-cover-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.72) 100%);z-index:0;}
+    /* Hero always sits on a dark image — lock text to light regardless of theme */
+    .cs-hero,.cs-hero .cs-title .tl span,.cs-hero .cs-meta-value,.cs-hero .cs-meta-label{color:#EDEDE8;}
+    .cs-hero .cs-meta-strip,.cs-hero .cs-meta-item{border-color:rgba(237,237,232,0.09);}
+    /* Nav unscrolled sits over the dark hero — always light until pill appears */
+    #nav:not(.scrolled){color:#EDEDE8;}
+    #nav:not(.scrolled) .theme-btn{color:#EDEDE8;border-color:rgba(237,237,232,0.22);}
+    /* Scroll hint always on dark hero */
+    .scroll-hint span{color:rgba(237,237,232,0.5) !important;}
+    .scroll-hint>div{background:rgba(237,237,232,0.18) !important;}
     .cs-hero-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;}
-    .cs-hero-number{position:absolute;top:50%;right:44px;transform:translateY(-50%);font-family:'Syne',sans-serif;font-size:clamp(100px,16vw,220px);font-weight:800;letter-spacing:-.05em;line-height:1;color:transparent;-webkit-text-stroke:1px var(--border);pointer-events:none;user-select:none;z-index:0;}
+    .cs-hero-number{position:absolute;top:50%;right:44px;transform:translateY(-50%);font-family:'Syne',sans-serif;font-size:clamp(100px,16vw,220px);font-weight:800;letter-spacing:-.05em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(237,237,232,0.12);pointer-events:none;user-select:none;z-index:0;}
     .cs-title-wrap{position:relative;z-index:1;margin-bottom:48px;}
     .cs-company{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
     .cs-title{font-family:'Inter',sans-serif;font-size:clamp(52px,9vw,130px);font-weight:800;letter-spacing:-.045em;line-height:.9;}
@@ -68,7 +77,6 @@
     .cs-section{padding:100px 44px;border-top:1px solid var(--border);}
     .cs-section-inner{max-width:1200px;margin:0 auto;}
     .cs-section-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
-    .cs-section-label::after{content:'';flex:1;height:1px;background:var(--border);}
     .cs-section-title{font-family:'Inter',sans-serif;font-size:clamp(32px,4.5vw,60px);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin-bottom:32px;max-width:760px;}
     .cs-section-body{max-width:640px;}
     .cs-section-body p{font-size:17px;line-height:1.7;font-weight:300;color:var(--fg);margin-bottom:20px;}
@@ -261,7 +269,7 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">01 - Context</div>
-    <h2 class="cs-section-title">NeoTaste's referral program was working - just not well enough.</h2>
+    <h2 class="cs-section-title">NeoTaste's referral program was working - just not well enough</h2>
     <div class="cs-section-body">
       <p>With 2 million users on the platform, word-of-mouth was already one of NeoTaste's strongest acquisition channels. But the existing referral program - which rewarded both the referrer and the new user with <strong>one free month of subscription</strong> - had a participation rate of just 2.1%.</p>
       <p>The Growth team hypothesised that the subscription reward, while valuable, was too abstract. A user who wasn't already convinced of NeoTaste's ongoing value might not be moved by the promise of more time in an app they're still evaluating. A <em>cash reward</em> - €10 transferred directly to the user's account - might drive significantly higher participation.</p>
@@ -274,7 +282,7 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">02 - Hypothesis</div>
-    <h2 class="cs-section-title">Immediate cash incentives would drive more referrals than delayed value.</h2>
+    <h2 class="cs-section-title">Immediate cash incentives would drive more referrals than delayed value</h2>
     <div class="cs-section-body">
       <div class="cs-hypothesis">
         <p class="cs-hypothesis-label">Our bet</p>
@@ -351,7 +359,7 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">03 - Stakeholder Management</div>
-    <h2 class="cs-section-title">Coordinating across Growth, Legal, and Product before a single pixel was touched.</h2>
+    <h2 class="cs-section-title">Coordinating across Growth, Legal, and Product before a single pixel was touched</h2>
     <div class="cs-section-body">
       <p>This test required alignment across teams with very different priorities. Growth wanted to move fast; Legal had compliance concerns about cash incentives; Engineering needed to scope the payment infrastructure; and Product wanted to protect the brand. One thing we had to acknowledge upfront: claiming cash was instant, while claiming the free month had extra steps — that difference in experience was itself a variable we couldn't fully control.</p>
       <div class="cs-stakeholders">
@@ -384,7 +392,7 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">04 - A/B Test Results</div>
-    <h2 class="cs-section-title">€10 drove twice as many referrals. But the free month brought better users.</h2>
+    <h2 class="cs-section-title">€10 drove twice as many referrals. But the free month brought better users</h2>
     <div class="cs-section-body">
       <p>The results after 30 days were clear on the primary metric - and nuanced on the secondary ones. Variant B (€10 cash) dramatically outperformed on conversion rate. But the referred users it attracted showed meaningfully lower retention and engagement at Day 30.</p>
       <p>The PM, Data Analyst, and I reviewed the findings together - the tension between volume and user quality wasn't immediately obvious in the raw numbers, and needed careful framing before we took it to the leadership team.</p>
@@ -452,7 +460,7 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">05 - Design Process</div>
-    <h2 class="cs-section-title">From A/B results to a hybrid recommendation.</h2>
+    <h2 class="cs-section-title">From A/B results to a hybrid recommendation</h2>
     <div class="cs-section-body">
       <p>The test revealed a clear trade-off: the €10 cash variant drove a 5.2% referral rate but attracted users who weren't sticking around long-term. The 1-month free subscription variant saw only 2.3% referral rate, but 52% of those referred users were still active after 7 days — vs. 38% for the cash group.</p>
       <p>Rather than choosing the "winner," we designed a <strong>combined incentive</strong>: €10 cash credit for the referrer (addressing the activation barrier) plus one free month for the new user (ensuring product exposure and quality). This addressed both sides of the trade-off.</p>
@@ -474,7 +482,7 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">06 - Metrics & KPIs</div>
-    <h2 class="cs-section-title">The combined incentive outperformed both single approaches.</h2>
+    <h2 class="cs-section-title">The combined incentive outperformed both single approaches</h2>
     <div class="cs-section-body">
       <p>60 days after the combined incentive launched:</p>
     </div>
@@ -506,7 +514,7 @@
 <section class="cs-section">
   <div class="cs-section-inner">
     <div class="cs-section-label">07 - Conclusion</div>
-    <h2 class="cs-section-title">Sometimes the right answer is: test both, then take the best of each.</h2>
+    <h2 class="cs-section-title">Sometimes the right answer is: test both, then take the best of each</h2>
     <div class="cs-section-body">
       <p style="margin-bottom:40px;">This project showed that better solutions exist when you measure both sides of a trade-off. Cash drove volume but brought users who didn't stick around. The free month preserved quality but didn't move enough people to act. By testing both and reading the data carefully, we designed a combined approach that hit 5.2% referral rate (2.5× the original baseline) while keeping 46% of referred users still active after 7 days.</p>
     </div>
