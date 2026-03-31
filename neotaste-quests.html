@@ -36,9 +36,9 @@
     .cursor-arrow{position:absolute;top:0;left:0;width:22px;height:26px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));transition:transform .2s cubic-bezier(.25,.46,.45,.94);}
     .cursor-arrow svg{display:block;}
     .cursor-label{position:absolute;top:18px;left:16px;background:#1A1A19;color:#EDEDE8;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.04em;padding:4px 10px 4px 8px;border-radius:100px;white-space:nowrap;display:flex;align-items:center;gap:5px;box-shadow:0 2px 8px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.07);transition:background .25s ease,transform .2s cubic-bezier(.25,.46,.45,.94);}
-    .cursor-label-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+    .cursor-label-dot{width:6px;height:6px;border-radius:50%;background:#FF3D00;flex-shrink:0;}
     body.is-hovering .cursor-arrow{transform:rotate(-12deg) scale(.92);}
-    body.is-hovering .cursor-label{background:var(--accent);color:#fff;animation:pill-bounce 0.42s cubic-bezier(.36,.07,.19,.97);}
+    body.is-hovering .cursor-label{background:#FF3D00;color:#fff;animation:pill-bounce 0.42s cubic-bezier(.36,.07,.19,.97);}
     body.is-hovering .cursor-label-dot{background:rgba(255,255,255,.6);}
     nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:22px 44px;display:flex;justify-content:space-between;align-items:center;transition:padding .45s cubic-bezier(.4,0,.2,1),top .45s cubic-bezier(.4,0,.2,1),left .45s cubic-bezier(.4,0,.2,1),right .45s cubic-bezier(.4,0,.2,1),border-radius .45s cubic-bezier(.4,0,.2,1),background .4s ease,backdrop-filter .4s ease,box-shadow .4s ease;}
     nav.scrolled{top:16px;left:22%;right:22%;gap:48px;padding:14px 36px;border-radius:100px;background:rgba(12,12,11,.80);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 4px 24px rgba(0,0,0,.25);}
@@ -59,6 +59,7 @@
     /* Nav unscrolled sits over the dark hero — always light until pill appears */
     #nav:not(.scrolled){color:#EDEDE8;}
     #nav:not(.scrolled) .theme-btn{color:#EDEDE8;border-color:rgba(237,237,232,0.22);}
+    #nav:not(.scrolled) .theme-btn:hover{background:#EDEDE8;color:#0C0C0B;border-color:#EDEDE8;}
     /* Scroll hint always on dark hero */
     .scroll-hint span{color:rgba(237,237,232,0.5) !important;}
     .scroll-hint>div{background:rgba(237,237,232,0.18) !important;}
@@ -168,6 +169,11 @@
     .cs-next-step-num { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
     .cs-next-step-title { font-size:15px; font-weight:700; margin-bottom:8px; letter-spacing:-.01em; }
     .cs-next-step-text { font-size:13px; color:var(--muted); line-height:1.6; }
+    /* Responsive grid utilities — replaces inline grid-template-columns */
+    .cs-grid-2col { display:grid; grid-template-columns:1fr 1fr; }
+    .cs-grid-3col { display:grid; grid-template-columns:repeat(3,1fr); }
+    .cs-grid-5col { display:grid; grid-template-columns:repeat(5,1fr); }
+
     @media(max-width:900px){
       nav{padding:18px 24px;}nav.scrolled{top:12px;left:16px;right:16px;padding:12px 20px;}
       .cs-hero{padding:0 24px max(48px,calc(48px + env(safe-area-inset-bottom)));}
@@ -186,6 +192,8 @@
       .cs-footer{flex-direction:column;gap:12px;text-align:center;}
       .scroll-hint{top:auto;bottom:56px;}
       .cs-summary-inner{grid-template-columns:1fr;gap:32px;} .cs-summary-stat{text-align:left;} .cs-summary-stats{gap:24px;flex-wrap:wrap;} .cs-next-steps{grid-template-columns:1fr;}
+      .cs-grid-2col,.cs-grid-3col{ grid-template-columns:1fr; }
+      .cs-grid-5col{ grid-template-columns:repeat(2,1fr); }
     }
 
     /* Shared button style */
@@ -223,6 +231,7 @@
 
     @media(max-width:640px){
       .cs-stakeholders { grid-template-columns:1fr; }
+      .cs-grid-5col{ grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -328,7 +337,7 @@
   <div class="cs-section-inner">
     <div class="cs-section-label">02 - Hypothesis</div>
     <h2 class="cs-section-title">Why we dropped streaks and built a quest instead</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:0;">
+    <div class="cs-grid-2col" style="gap:48px;align-items:start;margin-top:0;">
       <div class="cs-section-body">
         <p>The team's first instinct was gamification. Streaks, daily check-ins, Duolingo-style mechanics. The idea: reward users for opening the app every day, build a habit, and conversion would follow.</p>
         <p>But the streak model fell apart quickly. It rewards the wrong thing: opening the app is not the same as using it. A user who forgets on day 29 feels punished after 28 days of effort, not motivated. Streaks create anxiety, not engagement. And for NeoTaste, where the value is in going to restaurants and redeeming deals, daily opens meant nothing.</p>
@@ -352,7 +361,7 @@
     <div class="cs-section-label">03 - Research & Analysis</div>
     <h2 class="cs-section-title">Two sources of evidence pointing in the same direction</h2>
     <!-- Research workstreams -->
-    <div class="cs-anim" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px;">
+    <div class="cs-anim cs-grid-3col" style="gap:20px;margin-bottom:40px;">
 
       <div style="background:var(--bg2);border-radius:12px;padding:24px;">
         <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;">Concept validation</p>
@@ -419,7 +428,7 @@
     <div style="margin-top:56px;">
       <div class="cs-sublabel" style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:16px;">Early explorations</div>
       <div class="cs-section-body" style="margin:0 0 28px;"><p>Before landing on the quest format, we explored several directions: 30-day challenges, circular progress rings, and checklist-style home screens. Here's a snapshot of what we iterated through.</p></div>
-      <div class="cs-anim" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div class="cs-anim cs-grid-3col" style="gap:10px;">
         <div style="background:#EAE9E9;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;">
           <img src="images/neotaste-quest/visual-exploration/Screenshot%202026-03-31%20at%2013.32.58.png" alt="30-day challenge variants" style="width:100%;height:100%;object-fit:contain;">
         </div>
@@ -496,7 +505,7 @@
 
     <div class="cs-anim" style="margin-top:64px;">
       <p class="cs-sublabel" style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">The design solution</p>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;align-items:start;">
+      <div class="cs-grid-5col" style="gap:16px;align-items:start;">
 
         <div style="display:flex;flex-direction:column;gap:10px;">
           <img src="images/neotaste-quest/screen-entry-point.png" alt="Quest entry point screen" style="width:100%;display:block;">
@@ -578,7 +587,7 @@
     <div style="margin-top:60px;">
       <p class="cs-sublabel" style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Side quest 01: Food Preferences</p>
       <div class="cs-section-body" style="margin:0 0 28px;"><p>One of the quest tasks prompts users to set their food preferences: where they like to eat, any dietary restrictions, and which cuisines they enjoy. The goal was to collect enough signal early to personalise their home feed and surface restaurant recommendations that actually matched their taste. A user who sees relevant deals from day one is far more likely to redeem one.</p></div>
-      <div class="cs-anim" style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:32px;">
+      <div class="cs-anim cs-grid-5col" style="gap:16px;margin-bottom:32px;">
 
         <div style="display:flex;flex-direction:column;gap:10px;">
           <img src="images/neotaste-quest/screen-preferences01.png" alt="Food preferences step 1" style="width:100%;display:block;">
@@ -614,7 +623,7 @@
       <div class="cs-section-body" style="margin:0 0 28px;"><p>The Levels screen already existed, tied to deals redeemed, but almost nobody knew about it. By redesigning it with new level names, badges, and a celebration screen, we kept the gamification element where it actually made sense: as a reward for real actions, not app opens. The quest and the Levels refresh became one connected project.</p></div>
 
       <!-- Row 1: Levels screens -->
-      <div class="cs-anim" style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:32px;">
+      <div class="cs-anim cs-grid-5col" style="gap:16px;margin-bottom:32px;">
 
         <div style="display:flex;flex-direction:column;gap:10px;">
           <img src="images/neotaste-quest/screen-old-levels.png" alt="Old levels screen" style="width:100%;display:block;">
@@ -651,7 +660,7 @@
     <!-- Design system updates -->
     <div style="margin-top:60px;">
       <p class="cs-sublabel" style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Design system updates</p>
-      <div class="cs-anim" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
+      <div class="cs-anim cs-grid-2col" style="gap:40px;align-items:center;">
         <div style="background:var(--bg2);border-radius:12px;overflow:hidden;">
           <img src="images/neotaste-quest/design-system-updates.jpg" alt="Design system colour updates for Levels" style="width:100%;display:block;">
         </div>
@@ -663,7 +672,7 @@
 
     <div style="margin-top:60px;">
       <p class="cs-sublabel" style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Interactions</p>
-      <div class="cs-anim" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div class="cs-anim cs-grid-3col" style="gap:24px;">
 
         <div style="display:flex;flex-direction:column;gap:10px;align-items:center;">
           <div style="width:100%;max-width:280px;border-radius:24px;overflow:hidden;border:1px solid var(--border);">
