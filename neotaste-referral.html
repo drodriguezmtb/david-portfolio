@@ -59,6 +59,13 @@
     /* Nav unscrolled sits over the dark hero — always light until pill appears */
     #nav:not(.scrolled){color:#EDEDE8;}
     #nav:not(.scrolled) .theme-btn{color:#EDEDE8;border-color:rgba(237,237,232,0.22);}
+    .cs-back-link{font-size:12px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s;position:relative;text-decoration:none;}
+    .cs-back-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--fg);transition:width .3s ease;}
+    .cs-back-link:hover{color:var(--fg);}
+    .cs-back-link:hover::after{width:100%;}
+    #nav:not(.scrolled) .cs-back-link{color:rgba(237,237,232,0.6);}
+    #nav:not(.scrolled) .cs-back-link:hover{color:#EDEDE8;}
+    #nav:not(.scrolled) .cs-back-link::after{background:#EDEDE8;}
     /* Scroll hint always on dark hero */
     .scroll-hint span{color:rgba(237,237,232,0.5) !important;}
     .scroll-hint>div{background:rgba(237,237,232,0.18) !important;}
@@ -224,7 +231,8 @@
 <nav id="nav">
   <a href="index.html" class="nav-logo">dvdrod</a>
   <div class="nav-right">
-<button class="theme-btn" id="themeBtn"><span id="tIcon">◐</span><span id="tLabel">Light</span></button>
+    <a href="index.html" class="cs-back-link">Back home</a>
+    <button class="theme-btn" id="themeBtn"><span id="tIcon">◐</span><span id="tLabel">Light</span></button>
   </div>
 </nav>
 

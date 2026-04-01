@@ -60,6 +60,13 @@
     #nav:not(.scrolled){color:#EDEDE8;}
     #nav:not(.scrolled) .theme-btn{color:#EDEDE8;border-color:rgba(237,237,232,0.22);}
     #nav:not(.scrolled) .theme-btn:hover{background:#EDEDE8;color:#0C0C0B;border-color:#EDEDE8;}
+    .cs-back-link{font-size:12px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s;position:relative;text-decoration:none;}
+    .cs-back-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--fg);transition:width .3s ease;}
+    .cs-back-link:hover{color:var(--fg);}
+    .cs-back-link:hover::after{width:100%;}
+    #nav:not(.scrolled) .cs-back-link{color:rgba(237,237,232,0.6);}
+    #nav:not(.scrolled) .cs-back-link:hover{color:#EDEDE8;}
+    #nav:not(.scrolled) .cs-back-link::after{background:#EDEDE8;}
     /* Scroll hint always on dark hero */
     .scroll-hint span{color:rgba(237,237,232,0.5) !important;}
     .scroll-hint>div{background:rgba(237,237,232,0.18) !important;}
@@ -124,7 +131,7 @@
     .cs-metric:last-child{border-right:none;}
     .cs-metric-val{font-family:'Inter',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-.04em;color:var(--accent);line-height:1;margin-bottom:8px;}
     .cs-metric-label{font-size:12px;color:var(--muted);line-height:1.5;max-width:260px;margin:0 auto;}
-    .cs-visual{border-radius:16px;overflow:hidden;position:relative;opacity:0;transform:translateY(24px);}
+    .cs-visual{border-radius:16px;overflow:hidden;position:relative;}/* initial state set via gsap.set() */
     .cs-visual.full{aspect-ratio:16/8;margin-top:64px;}
     .cs-visual.wide{aspect-ratio:16/9;}
     .cs-visual-inner{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
@@ -151,7 +158,8 @@
     .cs-next--wip{pointer-events:none;cursor:default;}
     .cs-next--wip .cs-next-arrow{opacity:.3;}
     .wip-badge{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#F59E0B;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:100px;padding:5px 12px;}
-    .wip-badge-dot{width:6px;height:6px;border-radius:50%;background:#F59E0B;flex-shrink:0;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
+    .wip-badge-dot{width:6px;height:6px;border-radius:50%;background:#F59E0B;flex-shrink:0;animation:blink 2.2s ease infinite;}
     .cs-footer{padding:24px 44px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
     .cs-footer p{font-size:12px;color:var(--muted);}
     /* SUMMARY BAND */
@@ -233,6 +241,13 @@
       .cs-stakeholders { grid-template-columns:1fr; }
       .cs-grid-5col{ grid-template-columns:1fr; }
     }
+    .cs-sticky-sidebar{position:sticky;top:100px;}
+    @media(max-width:900px){
+      .cs-sticky-sidebar{position:static;}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .wip-badge-dot { animation:none; }
+    }
   </style>
 </head>
 <body>
@@ -255,7 +270,8 @@
 <nav id="nav">
   <a href="index.html" class="nav-logo">dvdrod</a>
   <div class="nav-right">
-<button class="theme-btn" id="themeBtn"><span id="tIcon">◐</span><span id="tLabel">Light</span></button>
+    <a href="index.html" class="cs-back-link">Back home</a>
+    <button class="theme-btn" id="themeBtn"><span id="tIcon">◐</span><span id="tLabel">Light</span></button>
   </div>
 </nav>
 
@@ -345,7 +361,7 @@
         <p>Before bringing this direction to stakeholders, we used Gemini to pressure-test the framing: asking it to argue against the quest approach, surface patterns from similar products, and flag assumptions we might be taking for granted. It helped sharpen the hypothesis faster than a round of internal reviews would have.</p>
       </div>
 
-      <div style="position:sticky;top:100px;">
+      <div class="cs-sticky-sidebar">
         <div style="border-left:3px solid var(--accent);padding-left:28px;">
           <p style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;">The hypothesis</p>
           <p style="font-size:clamp(16px,1.8vw,22px);font-weight:600;line-height:1.45;color:var(--fg);margin-bottom:16px;">If we guide new users through the app's most important features in a structured quest, they'll understand what NeoTaste is actually for. And they'll be more likely to pay for it.</p>
@@ -846,7 +862,7 @@
   </div>
 </div>
 
-<footer class="cs-footer"><p>© 2026 David Rodriguez</p><p></p></footer>
+<footer class="cs-footer"><p>© 2026 David Rodriguez</p></footer>
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -875,6 +891,15 @@
   });
   gsap.registerPlugin(ScrollTrigger);
   function initAnim(){
+    // Set initial hidden state via JS so elements are visible if JS fails
+    gsap.set('.cs-visual',{opacity:0,y:24});
+
+    // Skip scroll animations for users who prefer reduced motion
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('.cs-visual').forEach(el=>{el.style.opacity='1';el.style.transform='none';});
+      return;
+    }
+
     gsap.to('.cs-title .tl span',{y:0,duration:1,stagger:.1,ease:'power3.out',delay:.05});
     gsap.to('.cs-meta-strip',{opacity:1,y:0,duration:.7,ease:'power2.out',delay:.6});
     gsap.to('.scroll-hint',{opacity:1,duration:.5,delay:1.1});

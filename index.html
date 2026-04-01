@@ -522,7 +522,7 @@
     .pcard--wip { pointer-events: none; }
     .pcard--wip .p-arrow { display: none; }
     .wip-badge { display:inline-flex; align-items:center; gap:7px; font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#F59E0B; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3); border-radius:100px; padding:5px 12px; }
-    .wip-badge-dot { width:6px; height:6px; border-radius:50%; background:#F59E0B; flex-shrink:0; }
+    .wip-badge-dot { width:6px; height:6px; border-radius:50%; background:#F59E0B; flex-shrink:0; animation: blink 2.2s ease infinite; }
     .pcard-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -722,8 +722,7 @@
     .ei-role { font-size: 12px; color: var(--muted); }
     .ei-yr { font-size: 11px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
 
-    .pdf-strip { opacity: 0; transform: translateY(24px); }
-    .about-bio .cv-btn { opacity: 0; transform: translateY(16px); }
+    /* .pdf-strip and .about-bio .cv-btn initial states set via gsap.set() — see initScroll() */
 
     .awards-list { display: flex; flex-direction: column; }
     .award-item {
@@ -863,6 +862,12 @@
       .hero-title { font-size: 15vw; hyphens: manual; overflow-wrap: break-word; }
       .s-title { font-size: 14vw; }
       .pname { font-size: 7vw; }
+      .pcard-info { padding: 28px 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+      .sh-line::after { animation: none; }
+      .pill-dot, .wip-badge-dot { animation: none; }
     }
   </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -1574,6 +1579,19 @@
 
   /* ---- SCROLL ANIMATIONS ---- */
   function initScroll() {
+    // Set initial hidden states via JS so elements are visible if JS fails
+    gsap.set('.pdf-strip', { opacity: 0, y: 24 });
+    gsap.set('.about-bio .cv-btn', { opacity: 0, y: 16 });
+
+    // Skip scroll animations for users who prefer reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.pcard:not([hidden]), .pdf-strip, .about-bio .cv-btn').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      return;
+    }
+
     // Section titles — clipped line reveal (same as hero)
     gsap.utils.toArray('.s-title').forEach(el => {
       const spans = el.querySelectorAll('.tl span');
