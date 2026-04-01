@@ -199,7 +199,7 @@
       .cs-meta-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border);}
       .cs-footer{flex-direction:column;gap:12px;text-align:center;}
       .scroll-hint{top:auto;bottom:56px;}
-      .cs-summary-inner{grid-template-columns:1fr;gap:32px;} .cs-summary-stat{text-align:left;} .cs-summary-stats{gap:24px;flex-wrap:wrap;} .cs-next-steps{grid-template-columns:1fr;}
+      .cs-summary{padding-left:24px;padding-right:24px;} .cs-summary-inner{grid-template-columns:1fr;gap:32px;} .cs-summary-stat{text-align:left;} .cs-summary-stats{gap:24px;flex-wrap:wrap;} .cs-next-steps{grid-template-columns:1fr;}
       .cs-grid-2col,.cs-grid-3col{ grid-template-columns:1fr; }
       .cs-grid-5col{ grid-template-columns:repeat(2,1fr); }
     }
@@ -240,6 +240,10 @@
     @media(max-width:640px){
       .cs-stakeholders { grid-template-columns:1fr; }
       .cs-grid-5col{ grid-template-columns:1fr; }
+      .cs-grid-5col > div { max-width:280px; margin-left:auto; margin-right:auto; }
+      .cs-grid-5col > div span { text-align:center; }
+      .cs-dir-arrow { aspect-ratio:auto; padding:8px 0; }
+      .cs-dir-arrow svg { transform:rotate(90deg); }
     }
     .cs-sticky-sidebar{position:sticky;top:100px;}
     @media(max-width:900px){
@@ -652,7 +656,7 @@
         </div>
 
         <!-- Separator: arrow + label -->
-        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:9/19.5;gap:10px;">
+        <div class="cs-dir-arrow" style="display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:9/19.5;gap:10px;">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M5 12h14M13 6l6 6-6 6" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
