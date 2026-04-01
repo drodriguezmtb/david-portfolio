@@ -96,7 +96,7 @@
     .cs-title{font-family:'Inter',sans-serif;font-size:clamp(52px,9vw,130px);font-weight:800;letter-spacing:-.045em;line-height:.9;}
     .cs-title .tl{overflow:hidden;display:block;}
     .cs-title .tl span{display:block;transform:translateY(110%);}
-    .cs-meta-strip{position:relative;z-index:1;display:flex;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:700px;opacity:0;transform:translateY(20px);}
+    .cs-meta-strip{position:relative;z-index:1;display:flex;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:700px;}/* initial state set via gsap.set() */
     .cs-meta-item{flex:1;padding:16px 20px;border-right:1px solid var(--border);}
     .cs-meta-item:last-child{border-right:none;}
     .cs-meta-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
@@ -914,7 +914,8 @@
   });
   gsap.registerPlugin(ScrollTrigger);
   function initAnim(){
-    // .cs-visual initial state set via JS; .cs-meta-strip uses CSS opacity:0 (preloader covers it)
+    // both .cs-visual and .cs-meta-strip use gsap.set() — preloader covers the page on load
+    gsap.set('.cs-meta-strip',{opacity:0,y:20});
     gsap.set('.cs-visual',{opacity:0,y:24});
 
     // Skip scroll animations for users who prefer reduced motion
