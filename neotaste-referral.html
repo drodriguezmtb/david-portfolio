@@ -583,6 +583,7 @@
   });
   gsap.registerPlugin(ScrollTrigger);
   function initAnim(){
+    // .cs-meta-strip and .cs-visual use CSS opacity:0 (preloader covers the page on load)
     gsap.to('.cs-title .tl span',{y:0,duration:1,stagger:.1,ease:'power3.out',delay:.05});
     gsap.to('.cs-meta-strip',{opacity:1,y:0,duration:.7,ease:'power2.out',delay:.6});
     gsap.to('.scroll-hint',{opacity:1,duration:.5,delay:1.1});

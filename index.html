@@ -261,13 +261,13 @@
       font-size: 15px;
       font-weight: 800;
       letter-spacing: -0.02em;
-      opacity: 0;
+      /* opacity set via gsap.set() in heroIn() */
     }
     .nav-right {
       display: flex;
       align-items: center;
       gap: 36px;
-      opacity: 0;
+      /* opacity set via gsap.set() in heroIn() */
     }
     .nav-links {
       display: flex;
@@ -380,8 +380,7 @@
       padding: 7px 14px;
       border-radius: 100px;
       color: var(--muted);
-      transform: translateX(32px);
-      opacity: 0;
+      /* transform + opacity set via gsap.set() in heroIn() */
     }
     .pill.available { border-color: rgba(0,220,100,0.28); color: rgba(0,220,100,0.85); }
     [data-theme="light"] .pill.available { color: #006E2D; border-color: rgba(0,110,45,0.35); }
@@ -522,8 +521,7 @@
       border-radius: var(--radius);
       overflow: hidden;
       cursor: none;
-      opacity: 0;
-      transform: translateY(40px);
+      /* opacity + transform set via gsap.set() in initScroll() */
       transition: border-color 0.4s ease;
     }
     .pcard:hover { border-color: var(--border-hover); }
@@ -1556,6 +1554,10 @@
 
   /* ---- HERO ENTRANCE ---- */
   function heroIn() {
+    // Set initial hidden states via JS (not CSS) so elements are visible before JS runs
+    gsap.set('.nav-logo', { opacity: 0 });
+    gsap.set('.nav-right', { opacity: 0 });
+    gsap.set('.pill', { opacity: 0, x: 32 });
     // Nav — simple fade in
     gsap.to(['.nav-logo', '.nav-right'], {
       opacity: 1, duration: 0.7, stagger: 0.12, ease: 'power2.out'
@@ -1586,6 +1588,7 @@
   /* ---- SCROLL ANIMATIONS ---- */
   function initScroll() {
     // Set initial hidden states via JS so elements are visible if JS fails
+    gsap.set('.pcard:not([hidden])', { opacity: 0, y: 40 });
     gsap.set('.pdf-strip', { opacity: 0, y: 24 });
     gsap.set('.about-bio .cv-btn', { opacity: 0, y: 16 });
 

@@ -914,7 +914,7 @@
   });
   gsap.registerPlugin(ScrollTrigger);
   function initAnim(){
-    // Set initial hidden state via JS so elements are visible if JS fails
+    // .cs-visual initial state set via JS; .cs-meta-strip uses CSS opacity:0 (preloader covers it)
     gsap.set('.cs-visual',{opacity:0,y:24});
 
     // Skip scroll animations for users who prefer reduced motion
