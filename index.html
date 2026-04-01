@@ -361,7 +361,7 @@
       font-weight: 300;
       overflow: hidden;
     }
-    .hero-desc { opacity: 0; }
+    /* .hero-desc initial state set via gsap.set() — keeps element visible for LCP before JS runs */
 
     .hero-right {
       display: flex;
@@ -1569,10 +1569,8 @@
       y: 0, duration: 0.75, ease: 'power3.out', delay: 0.5
     });
     // Desc
-    gsap.fromTo('.hero-desc',
-      { opacity: 0, y: 16 },
-      { opacity: 1, y: 0, duration: 0.75, ease: 'power2.out', delay: 0.65 }
-    );
+    gsap.set('.hero-desc', { opacity: 0, y: 16 });
+    gsap.to('.hero-desc', { opacity: 1, y: 0, duration: 0.75, ease: 'power2.out', delay: 0.65 });
     // Pills
     gsap.to('.pill', {
       x: 0, opacity: 1, duration: 0.55, stagger: 0.1,
