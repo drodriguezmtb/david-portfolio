@@ -86,29 +86,43 @@
     .cursor-arrow svg { display: block; }
     .cursor-label {
       position: absolute;
-      top: 18px; left: 14px;
+      top: 18px; left: 16px;
       display: flex;
       align-items: center;
-      gap: 6px;
-      background: var(--accent);
-      color: #fff;
+      gap: 5px;
+      background: #1A1A19;
+      color: #EDEDE8;
       font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.04em;
-      padding: 5px 10px 5px 8px;
+      padding: 4px 10px 4px 8px;
       border-radius: 100px;
       white-space: nowrap;
-      transition: transform 0.18s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.18s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.07);
+      transition: background 0.25s ease, transform 0.2s cubic-bezier(0.25,0.46,0.45,0.94);
     }
     .cursor-label-dot {
-      width: 5px; height: 5px;
+      width: 6px; height: 6px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.7);
+      background: #FF3D00;
       flex-shrink: 0;
     }
-    body.is-hovering .cursor-label { transform: scale(1.08); }
-    body.is-hovering .cursor-arrow { transform: scale(0.9); }
+    @keyframes pill-bounce {
+      0%   { transform: scale(1,1); }
+      18%  { transform: scale(1.14,0.86); }
+      38%  { transform: scale(0.93,1.07); }
+      58%  { transform: scale(1.05,0.96); }
+      78%  { transform: scale(0.98,1.02); }
+      100% { transform: scale(1,1); }
+    }
+    body.is-hovering .cursor-arrow { transform: rotate(-12deg) scale(0.92); }
+    body.is-hovering .cursor-label {
+      background: #FF3D00;
+      color: #fff;
+      animation: pill-bounce 0.42s cubic-bezier(.36,.07,.19,.97);
+    }
+    body.is-hovering .cursor-label-dot { background: rgba(255,255,255,0.6); }
 
     /* ---- NAV ---- */
     nav {
@@ -231,16 +245,6 @@
     .error-back:hover { opacity: 0.8; transform: translateY(0) scale(1.02); }
     .error-back svg { flex-shrink: 0; }
 
-    /* ---- FOOTER ---- */
-    .error-footer {
-      position: absolute;
-      bottom: max(36px, calc(36px + env(safe-area-inset-bottom)));
-      right: 44px;
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-      opacity: 0;
-    }
 
     @media (max-width: 600px) {
       nav { padding: 20px 24px; }
@@ -300,7 +304,6 @@
     </svg>
   </a>
 
-  <div class="error-footer" id="errorFooter">dvdrod.com</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -343,7 +346,6 @@
   gsap.to('#errorBody',   { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out', delay: 0.55 });
   gsap.to('#errorBack',   { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out', delay: 0.7 });
   gsap.to('#errorGhost',  { opacity: 1, duration: 1.2, ease: 'power2.out', delay: 0.2 });
-  gsap.to('#errorFooter', { opacity: 1, duration: 0.6, ease: 'power2.out', delay: 0.9 });
 </script>
 </body>
 </html>
