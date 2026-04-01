@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5DGNJQL76"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C5DGNJQL76');</script>
+  <script>(function(){var s=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',s?s:(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));}());</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>404 — David Rodriguez</title>
+  <meta name="robots" content="noindex" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <style>
+    :root {
+      --bg:        #0C0C0B;
+      --bg2:       #141413;
+      --fg:        #EDEDE8;
+      --muted:     #93938F;
+      --border:    rgba(237,237,232,0.09);
+      --border-hover: rgba(237,237,232,0.38);
+      --accent:    #FF3D00;
+      --radius:    14px;
+      --transition: 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    [data-theme="light"] {
+      --bg:        #F0EDE5;
+      --bg2:       #E8E5DD;
+      --fg:        #0C0C0B;
+      --muted:     #5B5A57;
+      --border:    rgba(12,12,11,0.1);
+      --border-hover: rgba(12,12,11,0.38);
+      --accent:    #FF3D00;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+      min-height: 100svh;
+      transition: background var(--transition), color var(--transition);
+    }
+    a { color: inherit; text-decoration: none; }
+
+    @media (pointer: coarse) {
+      *, *::before, *::after { cursor: auto !important; }
+      body { cursor: auto; }
+      .cursor { display: none !important; }
+    }
+
+    /* Noise overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 9997;
+    }
+
+    /* ---- CURSOR ---- */
+    .cursor {
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      will-change: transform;
+      opacity: 0;
+    }
+    .cursor-arrow {
+      position: absolute;
+      top: 0; left: 0;
+      width: 22px; height: 26px;
+      transition: transform 0.2s cubic-bezier(0.25,0.46,0.45,0.94);
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.45));
+    }
+    .cursor-arrow svg { display: block; }
+    .cursor-label {
+      position: absolute;
+      top: 18px; left: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 5px 10px 5px 8px;
+      border-radius: 100px;
+      white-space: nowrap;
+      transition: transform 0.18s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.18s;
+    }
+    .cursor-label-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.7);
+      flex-shrink: 0;
+    }
+    body.is-hovering .cursor-label { transform: scale(1.08); }
+    body.is-hovering .cursor-arrow { transform: scale(0.9); }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 44px;
+      transition: all 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .nav-right { display: flex; align-items: center; gap: 36px; }
+    .theme-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 7px 15px;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+    .theme-btn:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+
+    /* ---- 404 LAYOUT ---- */
+    .page-404 {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 0 44px max(80px, calc(80px + env(safe-area-inset-bottom)));
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Big ghost number */
+    .error-ghost {
+      position: absolute;
+      top: 50%;
+      right: 44px;
+      transform: translateY(-50%);
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(180px, 28vw, 400px);
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--border-hover);
+      pointer-events: none;
+      user-select: none;
+      opacity: 0;
+    }
+
+    .error-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      opacity: 0;
+    }
+
+    .error-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(52px, 8vw, 120px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      color: var(--fg);
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+    .error-title .tl { overflow: hidden; display: block; }
+    .error-title .tl span {
+      display: block;
+      transform: translateY(110%);
+    }
+
+    .error-body {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 44px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .error-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--fg);
+      color: var(--bg);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 14px 24px;
+      border-radius: 100px;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    .error-back:hover { opacity: 0.8; transform: translateY(0) scale(1.02); }
+    .error-back svg { flex-shrink: 0; }
+
+    /* ---- FOOTER ---- */
+    .error-footer {
+      position: absolute;
+      bottom: max(36px, calc(36px + env(safe-area-inset-bottom)));
+      right: 44px;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      opacity: 0;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 20px 24px; }
+      .page-404 { padding: 0 24px max(80px, calc(80px + env(safe-area-inset-bottom))); }
+      .error-ghost { right: 24px; }
+      .error-footer { right: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor-arrow">
+    <svg width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2L2 21L6.8 16.2L10.4 24L13.4 22.6L9.8 14.8L17 14.8L2 2Z"
+            fill="white" stroke="#0C0C0B" stroke-width="1.4"
+            stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="cursor-label">
+    <span class="cursor-label-dot"></span>
+    <span>Lost</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">dvdrod</a>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle colour scheme">
+      <span id="tIcon">◐</span>
+      <span id="tLabel">Light</span>
+    </button>
+  </div>
+</nav>
+
+<!-- 404 -->
+<div class="page-404">
+  <div class="error-ghost" id="errorGhost" aria-hidden="true">404</div>
+
+  <p class="error-label" id="errorLabel">404 — Page not found</p>
+
+  <h1 class="error-title" id="errorTitle">
+    <span class="tl"><span>Nothing</span></span>
+    <span class="tl"><span>here.</span></span>
+  </h1>
+
+  <p class="error-body" id="errorBody">
+    The page you're looking for doesn't exist or has been moved. Happens to the best of us.
+  </p>
+
+  <a href="index.html" class="error-back" id="errorBack">
+    Back home
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 12L12 2M12 2H4M12 2V10"/>
+    </svg>
+  </a>
+
+  <div class="error-footer" id="errorFooter">dvdrod.com</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // Theme toggle
+  const html = document.documentElement;
+  const tBtn = document.getElementById('themeBtn');
+  const tIcon = document.getElementById('tIcon');
+  const tLbl = document.getElementById('tLabel');
+  let dark = (localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
+  tIcon.textContent = dark ? '◐' : '◑';
+  tLbl.textContent  = dark ? 'Light' : 'Dark';
+  tBtn.addEventListener('click', () => {
+    dark = !dark;
+    html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    tIcon.textContent = dark ? '◐' : '◑';
+    tLbl.textContent  = dark ? 'Light' : 'Dark';
+  });
+
+  // Custom cursor
+  if (window.matchMedia('(pointer: fine)').matches) {
+    const cursorEl = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursorEl.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
+      cursorEl.style.opacity = '1';
+    });
+    document.addEventListener('mouseleave', () => cursorEl.style.opacity = '0');
+    document.addEventListener('mouseenter', () => cursorEl.style.opacity = '1');
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('is-hovering'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('is-hovering'));
+    });
+  }
+
+  // Entrance animation
+  const spans = document.querySelectorAll('.error-title .tl span');
+  gsap.to(spans, { y: '0%', duration: 1.05, stagger: 0.08, ease: 'power3.out', delay: 0.1 });
+  gsap.to('#errorLabel',  { opacity: 1, duration: 0.6, ease: 'power2.out', delay: 0.15 });
+  gsap.to('#errorBody',   { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out', delay: 0.55 });
+  gsap.to('#errorBack',   { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out', delay: 0.7 });
+  gsap.to('#errorGhost',  { opacity: 1, duration: 1.2, ease: 'power2.out', delay: 0.2 });
+  gsap.to('#errorFooter', { opacity: 1, duration: 0.6, ease: 'power2.out', delay: 0.9 });
+</script>
+</body>
+</html>
