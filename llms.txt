@@ -1,0 +1,18 @@
+# David Rodriguez
+
+> Senior Product Designer based in Berlin with eight years of experience across banking, fitness, streaming, and food tech. Specialises in retention, gamification, and end-to-end product design for consumer apps. Currently open to new opportunities.
+
+## Pages
+
+- [Portfolio](https://dvdrod.com/): Homepage with selected work, about section, and contact.
+- [NeoTaste Quest System](https://dvdrod.com/neotaste-quests.html): Case study covering the end-to-end design of a gamified onboarding system for NeoTaste. Includes discovery research, competitor analysis, ideation, visual exploration, final designs, and results. The Quest System improved new user activation and long-term retention after a 30-day A/B test.
+
+## About
+
+David Rodriguez is a Senior Product Designer with experience at NeoTaste, Gymondo, Zattoo, and CaixaBank. His work focuses on behavioural design, retention mechanics, and shipping high-quality product experiences across mobile and web.
+
+## Contact
+
+- Email: dvd.rod@proton.me
+- LinkedIn: https://www.linkedin.com/in/david-rodriguez-product-designer/
+- Website: https://dvdrod.com

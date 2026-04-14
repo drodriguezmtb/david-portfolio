@@ -1,0 +1,13 @@
+/* TEAM */
+Name: David Rodriguez
+Role: Designer & Developer
+Location: Berlin, Germany
+Contact: dvd.rod@proton.me
+LinkedIn: https://www.linkedin.com/in/david-rodriguez-product-designer/
+
+/* SITE */
+Last update: 2026
+Standards: HTML5, CSS3
+Software: GSAP, ScrollTrigger
+Hosted on: Vercel
+Domain: dvdrod.com
